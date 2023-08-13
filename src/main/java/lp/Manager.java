@@ -1,5 +1,7 @@
 package lp;
 
+import lp.fe.javafx.MainApp;
+
 public class Manager {
 
     private static Manager manager;
@@ -7,6 +9,7 @@ public class Manager {
     public static Manager getInstance() {
         if (manager == null) {
             manager = new Manager();
+            javafx.application.Application.launch(MainApp.class);
         }
         return manager;
     }
@@ -16,6 +19,6 @@ public class Manager {
     }
 
     public static void main(String[] args) {
-        Manager.getInstance();
+        getInstance();
     }
 }
