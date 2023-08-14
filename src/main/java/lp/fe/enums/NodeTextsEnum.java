@@ -9,17 +9,17 @@ import lp.Manager;
 import java.util.HashMap;
 
 @Getter
-public enum FXTextEnum {
+public enum NodeTextsEnum {
 
     APPLICATION_TITLE("Battlefield 2 - Head Quarters", "Battlefield 2 - Informační přehledy");
 
-    private static final ObservableMap<StringProperty, FXTextEnum> COMPONENTS_FOR_TRANSLATE =
+    private static final ObservableMap<StringProperty, NodeTextsEnum> COMPONENTS_FOR_TRANSLATE =
             FXCollections.observableMap(new HashMap<>());
     private final Manager manager = Manager.getInstance();
     private final String engText;
     private final String czeText;
 
-    FXTextEnum(String engText, String czeText) {
+    NodeTextsEnum(String engText, String czeText) {
         this.engText = engText;
         this.czeText = czeText;
     }

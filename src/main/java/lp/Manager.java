@@ -2,7 +2,7 @@ package lp;
 
 import lp.be.service.LangService;
 import lp.be.serviceimpl.LangServiceImpl;
-import lp.fe.enums.FXTextEnum;
+import lp.fe.enums.NodeTextsEnum;
 import lp.fe.enums.LangEnum;
 import lp.fe.javafx.MainApp;
 
@@ -33,6 +33,6 @@ public class Manager {
 
     public void setLanguage(LangEnum language) {
         langService.setSelectedLanguage(language);
-        FXTextEnum.reloadTexts();
+        NodeTextsEnum.reloadTexts();
     }
 }
