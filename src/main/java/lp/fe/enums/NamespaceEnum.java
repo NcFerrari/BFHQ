@@ -5,7 +5,9 @@ import lombok.Getter;
 @Getter
 public enum NamespaceEnum {
 
-    BASIC_STYLE("css/basic-styles.css"),
+    PANES_STYLE("css/panes.css"),
+    BUTTONS_STYLE("css/buttons.css"),
+    TABLE_STYLE("css/table.css"),
     TEMPORARY_CSS_FILE("file:///C://temp/temporary.css"),
     EMPTY_STRING(""),
     DIALOG_BUTTON_YES_EN("Yes"),

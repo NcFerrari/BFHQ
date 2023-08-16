@@ -23,6 +23,7 @@ public class MainApp extends Application {
     private final Manager manager = Manager.getInstance();
 
     private VBox mainPane;
+    private UpperPane upperTab;
 
     @Override
     public void start(Stage stage) {
@@ -36,6 +37,8 @@ public class MainApp extends Application {
         stage.show();
 
         setListener(stage);
+
+        upperTab = new UpperPane(mainPane);
     }
 
     private void setListener(Stage stage) {
@@ -74,7 +77,9 @@ public class MainApp extends Application {
     }
 
     private void loadCssStyles(Scene scene) {
-        addCSS(scene);
+        addCSS(scene, NamespaceEnum.PANES_STYLE);
+        addCSS(scene, NamespaceEnum.BUTTONS_STYLE);
+        addCSS(scene, NamespaceEnum.TABLE_STYLE);
     }
 
     private void temporaryMethodToRemove(Scene scene) {
@@ -95,8 +100,8 @@ public class MainApp extends Application {
         t.start();
     }
 
-    private void addCSS(Scene scene) {
+    private void addCSS(Scene scene, NamespaceEnum namespaceEnum) {
         scene.getStylesheets().add(Objects.requireNonNull(MainApp.class.getClassLoader()
-                .getResource(NamespaceEnum.BASIC_STYLE.getText())).toExternalForm());
+                .getResource(namespaceEnum.getText())).toExternalForm());
     }
 }
