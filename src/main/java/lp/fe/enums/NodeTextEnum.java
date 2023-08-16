@@ -9,17 +9,19 @@ import lp.Manager;
 import java.util.HashMap;
 
 @Getter
-public enum NodeTextsEnum {
+public enum NodeTextEnum {
 
-    APPLICATION_TITLE("Battlefield 2 - Head Quarters", "Battlefield 2 - Informační přehledy");
+    APPLICATION_TITLE("Battlefield 2 - Head Quarters", "Battlefield 2 - Informační přehledy"),
+    DIALOG_TEXT_WINDOW_CLOSE_TITLE("Close application", "Ukončení aplikace"),
+    DIALOG_TEXT_WINDOW_CLOSE("Do you want to exit application?", "Přejete si ukončit program?");
 
-    private static final ObservableMap<StringProperty, NodeTextsEnum> COMPONENTS_FOR_TRANSLATE =
+    private static final ObservableMap<StringProperty, NodeTextEnum> COMPONENTS_FOR_TRANSLATE =
             FXCollections.observableMap(new HashMap<>());
     private final Manager manager = Manager.getInstance();
     private final String engText;
     private final String czeText;
 
-    NodeTextsEnum(String engText, String czeText) {
+    NodeTextEnum(String engText, String czeText) {
         this.engText = engText;
         this.czeText = czeText;
     }
