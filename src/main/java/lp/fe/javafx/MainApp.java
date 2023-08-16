@@ -23,7 +23,6 @@ public class MainApp extends Application {
     private final Manager manager = Manager.getInstance();
 
     private VBox mainPane;
-    private UpperPane upperTab;
 
     @Override
     public void start(Stage stage) {
@@ -38,7 +37,7 @@ public class MainApp extends Application {
 
         setListener(stage);
 
-        upperTab = new UpperPane(mainPane);
+        new UpperPane(mainPane);
     }
 
     private void setListener(Stage stage) {

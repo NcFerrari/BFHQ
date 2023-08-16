@@ -1,4 +1,4 @@
-.button {
+Button {
     -fx-background-color: #4b4331;
     -fx-border-radius: 50px;
     -fx-background-radius: 50px;
@@ -6,30 +6,30 @@
     -fx-text-fill: yellow;
 }
 
-.button:hover {
+Button:hover {
     -fx-background-color: #776539;
 }
 
-.button:pressed {
+Button:pressed {
     -fx-background-color: yellow;
     -fx-text-fill: #776539;
 }
 
-.combo-box {
+ComboBox {
     -fx-background-color: #4b4331;
     -fx-border-radius: 50px;
     -fx-background-radius: 50px;
     -fx-border-color: #a9a570;
 }
 
-.combo-box:hover {
+ComboBox:hover {
     -fx-background-color: #776539;
 }
 
-.combo-box .cell {
+ComboBox .list-cell {
     -fx-text-fill: yellow;
 }
 
-.combo-box .list-view .cell {
+ComboBox .list-view .list-cell {
     -fx-text-fill: black;
 }

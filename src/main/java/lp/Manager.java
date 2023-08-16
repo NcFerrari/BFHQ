@@ -35,8 +35,4 @@ public class Manager {
         langService.setSelectedLanguage(language);
         NodeTextEnum.reloadTexts();
     }
-
-    public void loadPlayersFromDB() {
-        
-    }
 }
