@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum LangEnum {
-    ENG("Anglicky"),
+    ENG("English"),
     CZE("Česky");
 
     private final String lang;

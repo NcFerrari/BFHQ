@@ -23,10 +23,10 @@ public class MainApp extends Application {
     private final Manager manager = Manager.getInstance();
 
     private VBox mainPane;
+    private TabbedPane tabbedPane;
 
     @Override
     public void start(Stage stage) {
-        manager.setLanguage(LangEnum.CZE);
         stage.setTitle(NodeTextEnum.APPLICATION_TITLE.getText(stage.titleProperty()));
         mainPane = new VBox();
         Scene scene = new Scene(mainPane, width, height);
@@ -38,6 +38,9 @@ public class MainApp extends Application {
         setListener(stage);
 
         new UpperPane(mainPane);
+        tabbedPane = new TabbedPane(mainPane);
+
+        resize(stage);
     }
 
     private void setListener(Stage stage) {
@@ -73,12 +76,14 @@ public class MainApp extends Application {
 
     private void resize(Stage stage) {
         mainPane.setMinSize(stage.getWidth(), stage.getHeight());
+        tabbedPane.resize(mainPane);
     }
 
     private void loadCssStyles(Scene scene) {
         addCSS(scene, NamespaceEnum.PANES_STYLE);
         addCSS(scene, NamespaceEnum.BUTTONS_STYLE);
         addCSS(scene, NamespaceEnum.TABLE_STYLE);
+        addCSS(scene, NamespaceEnum.TAB_PANE_STYLE);
     }
 
     private void temporaryMethodToRemove(Scene scene) {

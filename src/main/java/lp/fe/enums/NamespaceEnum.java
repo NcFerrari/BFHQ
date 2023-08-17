@@ -8,6 +8,7 @@ public enum NamespaceEnum {
     PANES_STYLE("css/panes.css"),
     BUTTONS_STYLE("css/buttons.css"),
     TABLE_STYLE("css/table.css"),
+    TAB_PANE_STYLE("css/tab-pane.css"),
     TEMPORARY_CSS_FILE("file:///C://temp/temporary.css"),
     EMPTY_STRING(""),
     DIALOG_BUTTON_YES_EN("Yes"),
