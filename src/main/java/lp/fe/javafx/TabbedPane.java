@@ -32,6 +32,7 @@ public class TabbedPane {
         tabPane.setTabMinWidth(mainPane.getWidth() / 5.824);
         tabPane.setTabMinHeight(mainPane.getHeight() / 16.98);
         tabPane.setStyle("-fx-font-size: " + mainPane.getHeight() / 32.65);
+        bf2Components.forEach(bf2Component -> bf2Component.resize(mainPane.getHeight()));
     }
 
     private void fillTabs() {

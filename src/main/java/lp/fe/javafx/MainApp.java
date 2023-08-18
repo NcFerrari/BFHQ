@@ -22,31 +22,30 @@ public class MainApp extends Application {
     private final double height = 17 * Toolkit.getDefaultToolkit().getScreenSize().height / 20.0;
     private final Manager manager = Manager.getInstance();
 
-    private VBox mainPane;
     private TabbedPane tabbedPane;
 
     @Override
     public void start(Stage stage) {
         stage.setTitle(NodeTextEnum.APPLICATION_TITLE.getText(stage.titleProperty()));
-        mainPane = new VBox();
+        VBox mainPane = new VBox();
         Scene scene = new Scene(mainPane, width, height);
         loadCssStyles(scene);
         temporaryMethodToRemove(scene);
         stage.setScene(scene);
         stage.show();
 
-        setListener(stage);
+        setListener(stage, mainPane);
 
         new UpperPane(mainPane);
         tabbedPane = new TabbedPane(mainPane);
 
-        resize(stage);
+        resize(mainPane);
     }
 
-    private void setListener(Stage stage) {
-        stage.widthProperty().addListener((observable, oldValue, newValue) -> resize(stage));
-        stage.heightProperty().addListener((observable, oldValue, newValue) -> resize(stage));
-        stage.maximizedProperty().addListener((observable, oldValue, newValue) -> resize(stage));
+    private void setListener(Stage stage, VBox mainPane) {
+        stage.widthProperty().addListener((observable, oldValue, newValue) -> resize(mainPane));
+        stage.heightProperty().addListener((observable, oldValue, newValue) -> resize(mainPane));
+        stage.maximizedProperty().addListener((observable, oldValue, newValue) -> resize(mainPane));
         stage.setOnCloseRequest(this::showClosingDialog);
     }
 
@@ -74,8 +73,7 @@ public class MainApp extends Application {
         }
     }
 
-    private void resize(Stage stage) {
-        mainPane.setMinSize(stage.getWidth(), stage.getHeight());
+    private void resize(VBox mainPane) {
         tabbedPane.resize(mainPane);
     }
 

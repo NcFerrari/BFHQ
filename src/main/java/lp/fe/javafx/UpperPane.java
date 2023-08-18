@@ -5,10 +5,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
+import lombok.Getter;
 import lp.Manager;
 import lp.fe.enums.LangEnum;
 import lp.fe.enums.NodeTextEnum;
 
+@Getter
 public class UpperPane {
 
     private final Manager manager = Manager.getInstance();
