@@ -8,6 +8,7 @@ import javafx.scene.layout.VBox;
 import lombok.Getter;
 import lp.Manager;
 import lp.fe.enums.LangEnum;
+import lp.fe.enums.NamespaceEnum;
 import lp.fe.enums.NodeTextEnum;
 
 @Getter
@@ -32,6 +33,7 @@ public class UpperPane {
         langEnumComboBox.getItems().addAll(LangEnum.CZE, LangEnum.ENG);
         langEnumComboBox.getSelectionModel().selectFirst();
         langEnumComboBox.valueProperty().addListener((observable, oldValue, newValue) -> manager.setLanguage(newValue));
+        langEnumComboBox.setId(NamespaceEnum.LANG_COMBO_BOX_STYLE.getText());
         topPane.getChildren().add(langEnumComboBox);
     }
 }

@@ -7,6 +7,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import lp.fe.javafx.bf2components.BF2Component;
 import lp.fe.javafx.bf2components.awards.Awards;
 import lp.fe.javafx.bf2components.stats.Stats;
@@ -28,11 +29,11 @@ public class TabbedPane {
         fillTabs();
     }
 
-    public void resize(VBox mainPane) {
-        tabPane.setTabMinWidth(mainPane.getWidth() / 5.824);
-        tabPane.setTabMinHeight(mainPane.getHeight() / 16.98);
-        tabPane.setStyle("-fx-font-size: " + mainPane.getHeight() / 32.65);
-        bf2Components.forEach(bf2Component -> bf2Component.resize(mainPane.getHeight()));
+    public void resize(Stage stage) {
+        tabPane.setTabMinWidth(stage.getWidth() / 5.824);
+        tabPane.setTabMinHeight(stage.getHeight() / 16.98);
+        tabPane.setStyle("-fx-font-size: " + stage.getHeight() / 32.65);
+        bf2Components.forEach(bf2Component -> bf2Component.resize(stage));
     }
 
     private void fillTabs() {

@@ -34,18 +34,18 @@ public class MainApp extends Application {
         stage.setScene(scene);
         stage.show();
 
-        setListener(stage, mainPane);
+        setListener(stage);
 
         new UpperPane(mainPane);
         tabbedPane = new TabbedPane(mainPane);
 
-        resize(mainPane);
+        resize(stage);
     }
 
-    private void setListener(Stage stage, VBox mainPane) {
-        stage.widthProperty().addListener((observable, oldValue, newValue) -> resize(mainPane));
-        stage.heightProperty().addListener((observable, oldValue, newValue) -> resize(mainPane));
-        stage.maximizedProperty().addListener((observable, oldValue, newValue) -> resize(mainPane));
+    private void setListener(Stage stage) {
+        stage.widthProperty().addListener((observable, oldValue, newValue) -> resize(stage));
+        stage.heightProperty().addListener((observable, oldValue, newValue) -> resize(stage));
+        stage.maximizedProperty().addListener((observable, oldValue, newValue) -> resize(stage));
         stage.setOnCloseRequest(this::showClosingDialog);
     }
 
@@ -73,8 +73,8 @@ public class MainApp extends Application {
         }
     }
 
-    private void resize(VBox mainPane) {
-        tabbedPane.resize(mainPane);
+    private void resize(Stage stage) {
+        tabbedPane.resize(stage);
     }
 
     private void loadCssStyles(Scene scene) {
