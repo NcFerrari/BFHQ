@@ -2,8 +2,8 @@ package lp;
 
 import lp.be.service.LangService;
 import lp.be.serviceimpl.LangServiceImpl;
-import lp.fe.enums.NodeTextEnum;
 import lp.fe.enums.LangEnum;
+import lp.fe.enums.NodeTextEnum;
 import lp.fe.javafx.MainApp;
 
 public class Manager {
