@@ -20,6 +20,8 @@ public class TabbedPane {
     public TabbedPane(VBox mainPane) {
         tabPane = new TabPane();
         tabPane.setOnKeyPressed(this::keyList);
+        tabPane.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) ->
+                bf2Components.get(newValue.intValue()).reloadData());
         mainPane.getChildren().add(tabPane);
 
         bf2Components.addListener((ListChangeListener<? super BF2Component>) observable -> {

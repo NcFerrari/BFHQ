@@ -46,3 +46,8 @@ Button:pressed {
     -fx-background-color: #4b4331;
     -fx-text-fill: yellow;
 }
+
+#name-combo-box .text-field {
+    -fx-text-fill: yellow;
+    -fx-background-color: #2b2b2b;
+}

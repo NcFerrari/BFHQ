@@ -3,10 +3,12 @@ package lp.fe.javafx.bf2components;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import lombok.Getter;
 import lp.Manager;
 import lp.fe.enums.NamespaceEnum;
 import lp.fe.enums.NodeTextEnum;
+import org.jetbrains.annotations.NotNull;
 
 @Getter
 public class LeftSidePart {
@@ -24,11 +26,27 @@ public class LeftSidePart {
         leftPane.getChildren().add(nameComboBox);
         nameComboBox.setId(NamespaceEnum.NAME_COMBO_BOX_STYLE.getText());
         nameComboBox.setEditable(true);
+        nameComboBox.valueProperty().addListener((observable, oldValue, newValue) ->
+                manager.setSelectedPlayer(newValue));
         fillNameComboBox();
     }
 
     public void fillNameComboBox() {
+        String name = null;
+        if (manager.getSelectedPlayer() != null) {
+            name = manager.getSelectedPlayer().getName();
+        }
         nameComboBox.getItems().clear();
         nameComboBox.getItems().addAll(manager.getPlayerNames());
+        if (nameComboBox.getItems().contains(name)) {
+            nameComboBox.getSelectionModel().select(name);
+        }
+    }
+
+    public void resize(@NotNull Stage stage) {
+        double oneThirdWidth = stage.getWidth() / 3;
+        getLeftPane().setPrefWidth(oneThirdWidth);
+        getPlayerNameTitle().setMinWidth(oneThirdWidth);
+        getNameComboBox().setPrefWidth(oneThirdWidth);
     }
 }

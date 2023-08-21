@@ -22,10 +22,7 @@ public abstract class BF2Component extends ReloadableComponent {
     }
 
     public void resize(@NotNull Stage stage) {
-        double oneThirdWidth = stage.getWidth() / 3;
         contentPane.setPrefHeight(stage.getHeight());
-        leftSidePart.getLeftPane().setPrefWidth(oneThirdWidth);
-        leftSidePart.getPlayerNameTitle().setMinWidth(oneThirdWidth);
-        leftSidePart.getNameComboBox().setPrefWidth(oneThirdWidth);
+        leftSidePart.resize(stage);
     }
 }
