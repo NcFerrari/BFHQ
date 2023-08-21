@@ -19,7 +19,6 @@ public class VehiclesDaoImpl extends EntityManager implements VehiclesDao {
         getSession().beginTransaction();
         getSession().saveOrUpdate(mapDtoToEntity(vehicles));
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     @Override
@@ -30,7 +29,6 @@ public class VehiclesDaoImpl extends EntityManager implements VehiclesDao {
         getSession().beginTransaction();
         VehiclesEntity entity = getSession().get(VehiclesEntity.class, id);
         getSession().getTransaction().commit();
-        getSession().close();
         return mapEntityToDto(entity);
     }
 
@@ -42,7 +40,6 @@ public class VehiclesDaoImpl extends EntityManager implements VehiclesDao {
         getSession().beginTransaction();
         List<VehiclesEntity> entities = getSession().createQuery("FROM VehiclesEntity").getResultList();
         getSession().getTransaction().commit();
-        getSession().close();
         List<Vehicles> dtos = new ArrayList<>();
         entities.forEach(entity -> dtos.add(mapEntityToDto(entity)));
         return dtos;
@@ -56,7 +53,6 @@ public class VehiclesDaoImpl extends EntityManager implements VehiclesDao {
         getSession().beginTransaction();
         getSession().delete(mapDtoToEntity(vehicles));
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     @Override
@@ -69,7 +65,6 @@ public class VehiclesDaoImpl extends EntityManager implements VehiclesDao {
         query.setParameter("id", id);
         query.executeUpdate();
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     public Vehicles mapEntityToDto(VehiclesEntity entity) {

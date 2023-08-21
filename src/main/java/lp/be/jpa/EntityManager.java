@@ -43,7 +43,7 @@ public class EntityManager {
     }
 
     public synchronized Session getSession() {
-        if (factory != null && session == null) {
+        if (factory != null && (session == null || !session.isOpen())) {
             session = Objects.requireNonNull(factory).getCurrentSession();
             logger.getLog().info(String.format(NamespaceEnum.CALL_COUNT.getText(), ++countOfCall));
         }

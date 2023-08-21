@@ -19,7 +19,6 @@ public class AwardsDaoImpl extends EntityManager implements AwardsDao {
         getSession().beginTransaction();
         getSession().saveOrUpdate(mapDtoToEntity(awards));
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     @Override
@@ -30,7 +29,6 @@ public class AwardsDaoImpl extends EntityManager implements AwardsDao {
         getSession().beginTransaction();
         AwardsEntity entity = getSession().get(AwardsEntity.class, id);
         getSession().getTransaction().commit();
-        getSession().close();
         return mapEntityToDto(entity);
     }
 
@@ -42,7 +40,6 @@ public class AwardsDaoImpl extends EntityManager implements AwardsDao {
         getSession().beginTransaction();
         List<AwardsEntity> entities = getSession().createQuery("FROM AwardsEntity").getResultList();
         getSession().getTransaction().commit();
-        getSession().close();
         List<Awards> dtos = new ArrayList<>();
         entities.forEach(entity -> dtos.add(mapEntityToDto(entity)));
         return dtos;
@@ -56,7 +53,6 @@ public class AwardsDaoImpl extends EntityManager implements AwardsDao {
         getSession().beginTransaction();
         getSession().delete(mapDtoToEntity(awards));
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     /**
@@ -79,7 +75,6 @@ public class AwardsDaoImpl extends EntityManager implements AwardsDao {
                 "WHERE id=:id " +
                 "ORDER BY earned DESC " + (limit > 0 ? "limit " + limit : "")).setParameter("id", playerId).list();
         getSession().getTransaction().commit();
-        getSession().close();
         List<Awards> dtos = new ArrayList<>();
         entities.forEach(entityObject -> {
             Awards dtoFromObject = new Awards();
@@ -108,7 +103,6 @@ public class AwardsDaoImpl extends EntityManager implements AwardsDao {
         query.setParameter("id", id);
         query.executeUpdate();
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     private Awards mapEntityToDto(AwardsEntity entity) {

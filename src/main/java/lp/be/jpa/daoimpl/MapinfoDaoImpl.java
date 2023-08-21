@@ -19,7 +19,6 @@ public class MapinfoDaoImpl extends EntityManager implements MapinfoDao {
         getSession().beginTransaction();
         getSession().saveOrUpdate(mapDtoToEntity(mapinfo));
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     @Override
@@ -30,7 +29,6 @@ public class MapinfoDaoImpl extends EntityManager implements MapinfoDao {
         getSession().beginTransaction();
         MapinfoEntity entity = getSession().get(MapinfoEntity.class, id);
         getSession().getTransaction().commit();
-        getSession().close();
         return mapEntityToDto(entity);
     }
 
@@ -42,7 +40,6 @@ public class MapinfoDaoImpl extends EntityManager implements MapinfoDao {
         getSession().beginTransaction();
         List<MapinfoEntity> entities = getSession().createQuery("FROM MapinfoEntity").getResultList();
         getSession().getTransaction().commit();
-        getSession().close();
         List<Mapinfo> dtos = new ArrayList<>();
         entities.forEach(entity -> dtos.add(mapEntityToDto(entity)));
         return dtos;
@@ -56,7 +53,6 @@ public class MapinfoDaoImpl extends EntityManager implements MapinfoDao {
         getSession().beginTransaction();
         getSession().delete(mapDtoToEntity(mapinfo));
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     @Override
@@ -69,7 +65,6 @@ public class MapinfoDaoImpl extends EntityManager implements MapinfoDao {
         query.setParameter("id", id);
         query.executeUpdate();
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     private Mapinfo mapEntityToDto(MapinfoEntity entity) {

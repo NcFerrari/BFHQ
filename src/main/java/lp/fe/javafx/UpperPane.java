@@ -27,6 +27,7 @@ public class UpperPane {
     private void addNodes() {
         Button updateButton = new Button();
         updateButton.setText(NodeTextEnum.UPDATE_DATA_BUTTON.getText(updateButton.textProperty()));
+        updateButton.setOnAction(evt -> manager.loadDataFromDB());
         topPane.getChildren().add(updateButton);
 
         ComboBox<LangEnum> langEnumComboBox = new ComboBox<>();

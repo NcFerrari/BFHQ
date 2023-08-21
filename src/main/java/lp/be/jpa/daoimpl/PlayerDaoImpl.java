@@ -26,7 +26,6 @@ public class PlayerDaoImpl extends EntityManager implements PlayerDao {
         getSession().beginTransaction();
         getSession().saveOrUpdate(mapDtoToEntity(player));
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     @Override
@@ -42,7 +41,6 @@ public class PlayerDaoImpl extends EntityManager implements PlayerDao {
         query.setParameter(NamespaceEnum.NAME.getText(), name);
         PlayerEntity playerEntity = query.getSingleResult();
         getSession().getTransaction().commit();
-        getSession().close();
         return mapEntityToDto(playerEntity);
     }
 
@@ -54,7 +52,6 @@ public class PlayerDaoImpl extends EntityManager implements PlayerDao {
         getSession().beginTransaction();
         PlayerEntity entity = getSession().get(PlayerEntity.class, id);
         getSession().getTransaction().commit();
-        getSession().close();
         return mapEntityToDto(entity);
     }
 
@@ -66,7 +63,6 @@ public class PlayerDaoImpl extends EntityManager implements PlayerDao {
         getSession().beginTransaction();
         List<PlayerEntity> entities = getSession().createQuery("FROM PlayerEntity").getResultList();
         getSession().getTransaction().commit();
-        getSession().close();
         List<Player> dtos = new ArrayList<>();
         entities.forEach(entity -> dtos.add(mapEntityToDto(entity)));
         return dtos;
@@ -80,7 +76,6 @@ public class PlayerDaoImpl extends EntityManager implements PlayerDao {
         getSession().beginTransaction();
         getSession().delete(mapDtoToEntity(player));
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     @Override
@@ -93,7 +88,6 @@ public class PlayerDaoImpl extends EntityManager implements PlayerDao {
         query.setParameter("id", id);
         query.executeUpdate();
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     private Player mapEntityToDto(PlayerEntity entity) {

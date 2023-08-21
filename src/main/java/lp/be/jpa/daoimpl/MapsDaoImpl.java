@@ -19,7 +19,6 @@ public class MapsDaoImpl extends EntityManager implements MapsDao {
         getSession().beginTransaction();
         getSession().saveOrUpdate(mapDtoToEntity(maps));
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     @Override
@@ -30,7 +29,6 @@ public class MapsDaoImpl extends EntityManager implements MapsDao {
         getSession().beginTransaction();
         MapsEntity entity = getSession().get(MapsEntity.class, id);
         getSession().getTransaction().commit();
-        getSession().close();
         return mapEntityToDto(entity);
     }
 
@@ -42,7 +40,6 @@ public class MapsDaoImpl extends EntityManager implements MapsDao {
         getSession().beginTransaction();
         List<Object[]> entities = getSession().createNativeQuery("SELECT * FROM maps").getResultList();
         getSession().getTransaction().commit();
-        getSession().close();
         List<Maps> dtos = new ArrayList<>();
         entities.forEach(entityObject -> {
             Maps dtoFromObject = new Maps();
@@ -66,7 +63,6 @@ public class MapsDaoImpl extends EntityManager implements MapsDao {
         getSession().beginTransaction();
         getSession().delete(mapDtoToEntity(maps));
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     @Override
@@ -79,7 +75,6 @@ public class MapsDaoImpl extends EntityManager implements MapsDao {
         query.setParameter("id", id);
         query.executeUpdate();
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     @Override
@@ -93,7 +88,6 @@ public class MapsDaoImpl extends EntityManager implements MapsDao {
                 "FROM maps " +
                 "WHERE id=:id ").setParameter("id", playerId).list();
         getSession().getTransaction().commit();
-        getSession().close();
         List<Maps> dtos = new ArrayList<>();
         entities.forEach(entityObject -> {
             Maps dtoFromObject = new Maps();

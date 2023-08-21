@@ -19,7 +19,6 @@ public class Ip2nationDaoImpl extends EntityManager implements Ip2nationDao {
         getSession().beginTransaction();
         getSession().saveOrUpdate(mapDtoToEntity(ip2nation));
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     @Override
@@ -30,7 +29,6 @@ public class Ip2nationDaoImpl extends EntityManager implements Ip2nationDao {
         getSession().beginTransaction();
         Ip2nationEntity entity = getSession().get(Ip2nationEntity.class, id);
         getSession().getTransaction().commit();
-        getSession().close();
         return mapEntityToDto(entity);
     }
 
@@ -42,7 +40,6 @@ public class Ip2nationDaoImpl extends EntityManager implements Ip2nationDao {
         getSession().beginTransaction();
         List<Ip2nationEntity> entities = getSession().createQuery("FROM Ip2nationEntity").getResultList();
         getSession().getTransaction().commit();
-        getSession().close();
         List<Ip2nation> dtos = new ArrayList<>();
         entities.forEach(entity -> dtos.add(mapEntityToDto(entity)));
         return dtos;
@@ -56,7 +53,6 @@ public class Ip2nationDaoImpl extends EntityManager implements Ip2nationDao {
         getSession().beginTransaction();
         getSession().delete(mapDtoToEntity(ip2nation));
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     @Override
@@ -69,7 +65,6 @@ public class Ip2nationDaoImpl extends EntityManager implements Ip2nationDao {
         query.setParameter("id", id);
         query.executeUpdate();
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     private Ip2nation mapEntityToDto(Ip2nationEntity entity) {

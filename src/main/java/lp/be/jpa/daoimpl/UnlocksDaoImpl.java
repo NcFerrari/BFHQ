@@ -19,7 +19,6 @@ public class UnlocksDaoImpl extends EntityManager implements UnlocksDao {
         getSession().beginTransaction();
         getSession().saveOrUpdate(mapDtoToEntity(unlocks));
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     @Override
@@ -30,7 +29,6 @@ public class UnlocksDaoImpl extends EntityManager implements UnlocksDao {
         getSession().beginTransaction();
         UnlocksEntity entity = getSession().get(UnlocksEntity.class, id);
         getSession().getTransaction().commit();
-        getSession().close();
         return mapEntityToDto(entity);
     }
 
@@ -42,7 +40,6 @@ public class UnlocksDaoImpl extends EntityManager implements UnlocksDao {
         getSession().beginTransaction();
         List<UnlocksEntity> entities = getSession().createQuery("FROM UnlocksEntity").getResultList();
         getSession().getTransaction().commit();
-        getSession().close();
         List<Unlocks> dtos = new ArrayList<>();
         entities.forEach(entity -> dtos.add(mapEntityToDto(entity)));
         return dtos;
@@ -56,7 +53,6 @@ public class UnlocksDaoImpl extends EntityManager implements UnlocksDao {
         getSession().beginTransaction();
         getSession().delete(mapDtoToEntity(unlocks));
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     @Override
@@ -69,7 +65,6 @@ public class UnlocksDaoImpl extends EntityManager implements UnlocksDao {
         query.setParameter("id", id);
         query.executeUpdate();
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     private Unlocks mapEntityToDto(UnlocksEntity entity) {

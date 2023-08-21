@@ -19,7 +19,6 @@ public class RoundHistoryDaoImpl extends EntityManager implements RoundHistoryDa
         getSession().beginTransaction();
         getSession().saveOrUpdate(mapDtoToEntity(roundHistory));
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     @Override
@@ -30,7 +29,6 @@ public class RoundHistoryDaoImpl extends EntityManager implements RoundHistoryDa
         getSession().beginTransaction();
         RoundHistoryEntity entity = getSession().get(RoundHistoryEntity.class, id);
         getSession().getTransaction().commit();
-        getSession().close();
         return mapEntityToDto(entity);
     }
 
@@ -42,7 +40,6 @@ public class RoundHistoryDaoImpl extends EntityManager implements RoundHistoryDa
         getSession().beginTransaction();
         List<RoundHistoryEntity> entities = getSession().createQuery("FROM RoundHistoryEntity").getResultList();
         getSession().getTransaction().commit();
-        getSession().close();
         List<RoundHistory> dtos = new ArrayList<>();
         entities.forEach(entity -> dtos.add(mapEntityToDto(entity)));
         return dtos;
@@ -56,7 +53,6 @@ public class RoundHistoryDaoImpl extends EntityManager implements RoundHistoryDa
         getSession().beginTransaction();
         getSession().delete(mapDtoToEntity(roundHistory));
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     @Override
@@ -69,7 +65,6 @@ public class RoundHistoryDaoImpl extends EntityManager implements RoundHistoryDa
         query.setParameter("id", id);
         query.executeUpdate();
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     private RoundHistory mapEntityToDto(RoundHistoryEntity entity) {

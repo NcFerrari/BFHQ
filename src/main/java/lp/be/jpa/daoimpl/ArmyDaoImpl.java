@@ -19,7 +19,6 @@ public class ArmyDaoImpl extends EntityManager implements ArmyDao {
         getSession().beginTransaction();
         getSession().saveOrUpdate(mapDtoToEntity(army));
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     @Override
@@ -30,7 +29,6 @@ public class ArmyDaoImpl extends EntityManager implements ArmyDao {
         getSession().beginTransaction();
         ArmyEntity entity = getSession().get(ArmyEntity.class, id);
         getSession().getTransaction().commit();
-        getSession().close();
         return mapEntityToDto(entity);
     }
 
@@ -42,7 +40,6 @@ public class ArmyDaoImpl extends EntityManager implements ArmyDao {
         getSession().beginTransaction();
         List<ArmyEntity> entities = getSession().createQuery("FROM ArmyEntity").getResultList();
         getSession().getTransaction().commit();
-        getSession().close();
         List<Army> dtos = new ArrayList<>();
         entities.forEach(entity -> dtos.add(mapEntityToDto(entity)));
         return dtos;
@@ -56,7 +53,6 @@ public class ArmyDaoImpl extends EntityManager implements ArmyDao {
         getSession().beginTransaction();
         getSession().delete(mapDtoToEntity(army));
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     @Override
@@ -69,7 +65,6 @@ public class ArmyDaoImpl extends EntityManager implements ArmyDao {
         query.setParameter("id", id);
         query.executeUpdate();
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     public Army mapEntityToDto(ArmyEntity entity) {

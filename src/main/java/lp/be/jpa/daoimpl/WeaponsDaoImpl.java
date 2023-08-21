@@ -19,7 +19,6 @@ public class WeaponsDaoImpl extends EntityManager implements WeaponsDao {
         getSession().beginTransaction();
         getSession().saveOrUpdate(mapDtoToEntity(weapons));
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     @Override
@@ -30,7 +29,6 @@ public class WeaponsDaoImpl extends EntityManager implements WeaponsDao {
         getSession().beginTransaction();
         WeaponsEntity entity = getSession().get(WeaponsEntity.class, id);
         getSession().getTransaction().commit();
-        getSession().close();
         return mapEntityToDto(entity);
     }
 
@@ -42,7 +40,6 @@ public class WeaponsDaoImpl extends EntityManager implements WeaponsDao {
         getSession().beginTransaction();
         List<WeaponsEntity> entities = getSession().createQuery("FROM WeaponsEntity").getResultList();
         getSession().getTransaction().commit();
-        getSession().close();
         List<Weapons> dtos = new ArrayList<>();
         entities.forEach(entity -> dtos.add(mapEntityToDto(entity)));
         return dtos;
@@ -56,7 +53,6 @@ public class WeaponsDaoImpl extends EntityManager implements WeaponsDao {
         getSession().beginTransaction();
         getSession().delete(mapDtoToEntity(weapons));
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     @Override
@@ -69,7 +65,6 @@ public class WeaponsDaoImpl extends EntityManager implements WeaponsDao {
         query.setParameter("id", id);
         query.executeUpdate();
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     public Weapons mapEntityToDto(WeaponsEntity entity) {

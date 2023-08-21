@@ -19,7 +19,6 @@ public class ServersDaoImpl extends EntityManager implements ServersDao {
         getSession().beginTransaction();
         getSession().saveOrUpdate(mapDtoToEntity(servers));
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     @Override
@@ -30,7 +29,6 @@ public class ServersDaoImpl extends EntityManager implements ServersDao {
         getSession().beginTransaction();
         ServersEntity entity = getSession().get(ServersEntity.class, id);
         getSession().getTransaction().commit();
-        getSession().close();
         return mapEntityToDto(entity);
     }
 
@@ -42,7 +40,6 @@ public class ServersDaoImpl extends EntityManager implements ServersDao {
         getSession().beginTransaction();
         List<ServersEntity> entities = getSession().createQuery("FROM ServersEntity").getResultList();
         getSession().getTransaction().commit();
-        getSession().close();
         List<Servers> dtos = new ArrayList<>();
         entities.forEach(entity -> dtos.add(mapEntityToDto(entity)));
         return dtos;
@@ -56,7 +53,6 @@ public class ServersDaoImpl extends EntityManager implements ServersDao {
         getSession().beginTransaction();
         getSession().delete(mapDtoToEntity(servers));
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     @Override
@@ -69,7 +65,6 @@ public class ServersDaoImpl extends EntityManager implements ServersDao {
         query.setParameter("id", id);
         query.executeUpdate();
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     private Servers mapEntityToDto(ServersEntity entity) {

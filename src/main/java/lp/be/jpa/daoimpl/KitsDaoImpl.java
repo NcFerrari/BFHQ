@@ -19,7 +19,6 @@ public class KitsDaoImpl extends EntityManager implements KitsDao {
         getSession().beginTransaction();
         getSession().saveOrUpdate(mapDtoToEntity(kits));
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     @Override
@@ -30,7 +29,6 @@ public class KitsDaoImpl extends EntityManager implements KitsDao {
         getSession().beginTransaction();
         KitsEntity entity = getSession().get(KitsEntity.class, id);
         getSession().getTransaction().commit();
-        getSession().close();
         return mapEntityToDto(entity);
     }
 
@@ -42,7 +40,6 @@ public class KitsDaoImpl extends EntityManager implements KitsDao {
         getSession().beginTransaction();
         List<KitsEntity> entities = getSession().createQuery("FROM KitsEntity").getResultList();
         getSession().getTransaction().commit();
-        getSession().close();
         List<Kits> dtos = new ArrayList<>();
         entities.forEach(entity -> dtos.add(mapEntityToDto(entity)));
         return dtos;
@@ -56,7 +53,6 @@ public class KitsDaoImpl extends EntityManager implements KitsDao {
         getSession().beginTransaction();
         getSession().delete(mapDtoToEntity(kits));
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     @Override
@@ -69,7 +65,6 @@ public class KitsDaoImpl extends EntityManager implements KitsDao {
         query.setParameter("id", id);
         query.executeUpdate();
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     public Kits mapEntityToDto(KitsEntity entity) {

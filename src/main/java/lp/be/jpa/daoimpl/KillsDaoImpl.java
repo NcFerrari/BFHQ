@@ -19,7 +19,6 @@ public class KillsDaoImpl extends EntityManager implements KillsDao {
         getSession().beginTransaction();
         getSession().saveOrUpdate(mapDtoToEntity(kills));
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     @Override
@@ -30,7 +29,6 @@ public class KillsDaoImpl extends EntityManager implements KillsDao {
         getSession().beginTransaction();
         KillsEntity entity = getSession().get(KillsEntity.class, id);
         getSession().getTransaction().commit();
-        getSession().close();
         return mapEntityToDto(entity);
     }
 
@@ -42,7 +40,6 @@ public class KillsDaoImpl extends EntityManager implements KillsDao {
         getSession().beginTransaction();
         List<KillsEntity> entities = getSession().createQuery("FROM KillsEntity").getResultList();
         getSession().getTransaction().commit();
-        getSession().close();
         List<Kills> dtos = new ArrayList<>();
         entities.forEach(entity -> dtos.add(mapEntityToDto(entity)));
         return dtos;
@@ -56,7 +53,6 @@ public class KillsDaoImpl extends EntityManager implements KillsDao {
         getSession().beginTransaction();
         getSession().delete(mapDtoToEntity(kills));
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     @Override
@@ -69,7 +65,6 @@ public class KillsDaoImpl extends EntityManager implements KillsDao {
         query.setParameter("id", id);
         query.executeUpdate();
         getSession().getTransaction().commit();
-        getSession().close();
     }
 
     private Kills mapEntityToDto(KillsEntity entity) {
