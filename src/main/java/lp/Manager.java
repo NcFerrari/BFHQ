@@ -12,8 +12,10 @@ import lp.be.serviceimpl.LangServiceImpl;
 import lp.fe.enums.LangEnum;
 import lp.fe.enums.NodeTextEnum;
 import lp.fe.javafx.MainApp;
+import lp.fe.javafx.bf2components.ReloadableComponent;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +27,7 @@ public class Manager {
     private final LangService langService = LangServiceImpl.getInstance();
     private final Map<String, Player> players = new HashMap<>();
     private final List<Maps> maps = new ArrayList<>();
+    private final List<ReloadableComponent> reloadableList = new ArrayList<>();
 
     private final PlayerDao playerDao = new PlayerDaoImpl();
     private final MapsDao mapsDao = new MapsDaoImpl();
@@ -68,5 +71,15 @@ public class Manager {
 
     public void setSelectedPlayer(String playerName) {
         selectedPlayer = players.get(playerName);
+    }
+
+    public List<String> getPlayerNames() {
+        List<String> playerNames = new ArrayList<>(players.keySet());
+        Collections.sort(playerNames);
+        return playerNames;
+    }
+
+    public void registerReloadableComponent(ReloadableComponent component) {
+        reloadableList.add(component);
     }
 }

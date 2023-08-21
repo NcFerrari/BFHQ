@@ -8,4 +8,9 @@ public class Awards extends BF2Component {
     public Awards() {
         super(NodeTextEnum.TAB_MENU_AWARDS);
     }
+
+    @Override
+    public void reloadData() {
+        getLeftSidePart().fillNameComboBox();
+    }
 }

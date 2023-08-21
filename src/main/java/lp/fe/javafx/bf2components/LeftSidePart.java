@@ -4,12 +4,14 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import lombok.Getter;
+import lp.Manager;
 import lp.fe.enums.NamespaceEnum;
 import lp.fe.enums.NodeTextEnum;
 
 @Getter
 public class LeftSidePart {
 
+    private final Manager manager = Manager.getInstance();
     private final VBox leftPane = new VBox();
     private final Label playerNameTitle = new Label();
     private final ComboBox<String> nameComboBox = new ComboBox<>();
@@ -21,5 +23,12 @@ public class LeftSidePart {
         leftPane.setId(NamespaceEnum.LEFT_SIDE_PART_STYLE.getText());
         leftPane.getChildren().add(nameComboBox);
         nameComboBox.setId(NamespaceEnum.NAME_COMBO_BOX_STYLE.getText());
+        nameComboBox.setEditable(true);
+        fillNameComboBox();
+    }
+
+    public void fillNameComboBox() {
+        nameComboBox.getItems().clear();
+        nameComboBox.getItems().addAll(manager.getPlayerNames());
     }
 }

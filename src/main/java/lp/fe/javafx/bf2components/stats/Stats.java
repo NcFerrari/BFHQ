@@ -8,4 +8,9 @@ public class Stats extends BF2Component {
     public Stats() {
         super(NodeTextEnum.TAB_MENU_STATS);
     }
+
+    @Override
+    public void reloadData() {
+        getLeftSidePart().fillNameComboBox();
+    }
 }
