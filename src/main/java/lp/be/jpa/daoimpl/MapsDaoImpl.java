@@ -35,6 +35,30 @@ public class MapsDaoImpl extends EntityManager implements MapsDao {
     }
 
     @Override
+    public List<Maps> getAllMaps() {
+        if (getSession() == null) {
+            return new ArrayList<>();
+        }
+        getSession().beginTransaction();
+        List<Object[]> entities = getSession().createNativeQuery("SELECT * FROM maps").getResultList();
+        getSession().getTransaction().commit();
+        getSession().close();
+        List<Maps> dtos = new ArrayList<>();
+        entities.forEach(entityObject -> {
+            Maps dtoFromObject = new Maps();
+            dtoFromObject.setId(Integer.valueOf("" + entityObject[0]));
+            dtoFromObject.setMapid(Short.valueOf("" + entityObject[1]));
+            dtoFromObject.setTime(Long.valueOf("" + entityObject[2]));
+            dtoFromObject.setWin(Long.valueOf("" + entityObject[3]));
+            dtoFromObject.setLoss(Long.valueOf("" + entityObject[4]));
+            dtoFromObject.setBest(Long.valueOf("" + entityObject[5]));
+            dtoFromObject.setWorst(Long.valueOf("" + entityObject[6]));
+            dtos.add(dtoFromObject);
+        });
+        return dtos;
+    }
+
+    @Override
     public void deleteMaps(Maps maps) {
         if (getSession() == null || maps == null) {
             return;

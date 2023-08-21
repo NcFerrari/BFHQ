@@ -5,6 +5,11 @@ import lombok.Getter;
 @Getter
 public enum NamespaceEnum {
 
+    HIBERNATE_CONFIG("hibernate.cfg.xml"),
+    HIBERNATE_CONNECTION_URL("hibernate.connection.url"),
+    JDBC("jdbc:mysql://localhost:3306/bf2stats"),
+    CANNOT_LOG_DB("Cannot log to database"),
+    CALL_COUNT("Count of call: %d"),
     PANES_STYLE("css/panes.css"),
     BUTTONS_STYLE("css/buttons.css"),
     TABLE_STYLE("css/table.css"),
