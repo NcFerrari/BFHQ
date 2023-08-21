@@ -4,18 +4,20 @@ import javafx.scene.control.Tab;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import lombok.Getter;
+import lp.Manager;
 import lp.fe.enums.NodeTextEnum;
 import org.jetbrains.annotations.NotNull;
 
 @Getter
-public abstract class BF2Component extends ReloadableComponent {
+public abstract class BF2Component {
 
+    protected final Manager manager = Manager.getInstance();
     private final HBox contentPane = new HBox();
     private final LeftSidePart leftSidePart = new LeftSidePart();
     private final Tab tab = new Tab();
 
     protected BF2Component(@NotNull NodeTextEnum title) {
-        super();
+        manager.registerReloadableComponent(this);
         tab.setText(title.getText(tab.textProperty()));
         tab.setClosable(false);
         tab.setContent(contentPane);
@@ -26,4 +28,6 @@ public abstract class BF2Component extends ReloadableComponent {
         contentPane.setPrefHeight(stage.getHeight());
         leftSidePart.resize(stage);
     }
+
+    public abstract void reloadData();
 }

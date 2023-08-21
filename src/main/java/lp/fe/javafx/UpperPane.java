@@ -12,13 +12,13 @@ import lp.Manager;
 import lp.fe.enums.LangEnum;
 import lp.fe.enums.NamespaceEnum;
 import lp.fe.enums.NodeTextEnum;
-import lp.fe.javafx.bf2components.ReloadableComponent;
+import lp.fe.javafx.bf2components.BF2Component;
 
 @Getter
 public class UpperPane {
 
     private final Manager manager = Manager.getInstance();
-    private final ObservableList<ReloadableComponent> reloadableList = FXCollections.observableArrayList();
+    private final ObservableList<BF2Component> reloadableList = FXCollections.observableArrayList();
     private final FlowPane topPane;
 
     public UpperPane(VBox mainPane) {
@@ -33,7 +33,7 @@ public class UpperPane {
         updateButton.setText(NodeTextEnum.UPDATE_DATA_BUTTON.getText(updateButton.textProperty()));
         updateButton.setOnAction(evt -> {
             manager.loadDataFromDB();
-            manager.getReloadableList().forEach(ReloadableComponent::reloadData);
+            manager.getReloadableList().forEach(BF2Component::reloadData);
         });
         topPane.getChildren().add(updateButton);
 
