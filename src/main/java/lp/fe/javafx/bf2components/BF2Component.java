@@ -15,6 +15,7 @@ public abstract class BF2Component extends ReloadableComponent {
     private final Tab tab = new Tab();
 
     protected BF2Component(@NotNull NodeTextEnum title) {
+        super();
         tab.setText(title.getText(tab.textProperty()));
         tab.setClosable(false);
         tab.setContent(contentPane);
