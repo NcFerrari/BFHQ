@@ -16,7 +16,6 @@ import lp.fe.javafx.bf2components.BF2Component;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.EnumMap;
-import java.util.List;
 import java.util.Map;
 
 public class Stats extends BF2Component {

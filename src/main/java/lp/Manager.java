@@ -8,6 +8,7 @@ import lp.be.jpa.dao.MapsDao;
 import lp.be.jpa.dao.PlayerDao;
 import lp.be.jpa.daoimpl.MapsDaoImpl;
 import lp.be.jpa.daoimpl.PlayerDaoImpl;
+import lp.be.service.BF2Image;
 import lp.be.service.LangService;
 import lp.be.serviceimpl.LangServiceImpl;
 import lp.fe.enums.LangEnum;
