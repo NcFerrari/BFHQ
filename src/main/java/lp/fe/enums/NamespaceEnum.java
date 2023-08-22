@@ -23,11 +23,21 @@ public enum NamespaceEnum {
     TITLE_STYLE("title"),
     LEFT_SIDE_PART_STYLE("left-side-part"),
     NAME_COMBO_BOX_STYLE("name-combo-box"),
+    PROGRESS_BAR_STYLE("progress-bar"),
+    BORDER_LIGHT_STYLE("border-light"),
+    DAYS_LETTER("d"),
+    HOURS_LETTER("h"),
+    MINUTES_LETTER("min"),
+    SECONDS_LETTER("s"),
     EMPTY_STRING(""),
+    SPACE_STRING(" "),
     DIALOG_BUTTON_YES_EN("Yes"),
     DIALOG_BUTTON_NO_EN("No"),
     DIALOG_BUTTON_YES_CZ("Ano"),
-    DIALOG_BUTTON_NO_CZ("Ne");
+    DIALOG_BUTTON_NO_CZ("Ne"),
+    SUB_TITLE_STYLE("sub-title"),
+    DB_VALUE_STYLE("db-value"),
+    VALUE_STYLE("value");
 
     private final String text;
 

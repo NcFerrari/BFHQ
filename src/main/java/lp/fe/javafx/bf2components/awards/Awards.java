@@ -13,4 +13,8 @@ public class Awards extends BF2Component {
     public void reloadData() {
         getLeftSidePart().fillNameComboBox();
     }
+
+    @Override
+    public void rewriteData() {
+    }
 }

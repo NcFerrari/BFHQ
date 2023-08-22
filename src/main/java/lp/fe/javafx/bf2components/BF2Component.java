@@ -30,4 +30,6 @@ public abstract class BF2Component {
     }
 
     public abstract void reloadData();
+
+    public abstract void rewriteData();
 }

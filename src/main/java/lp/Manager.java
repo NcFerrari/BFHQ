@@ -1,5 +1,6 @@
 package lp;
 
+import javafx.beans.property.StringProperty;
 import lombok.Getter;
 import lp.be.business.dto.Maps;
 import lp.be.business.dto.Player;
@@ -10,6 +11,7 @@ import lp.be.jpa.daoimpl.PlayerDaoImpl;
 import lp.be.service.LangService;
 import lp.be.serviceimpl.LangServiceImpl;
 import lp.fe.enums.LangEnum;
+import lp.fe.enums.NamespaceEnum;
 import lp.fe.enums.NodeTextEnum;
 import lp.fe.javafx.MainApp;
 import lp.fe.javafx.bf2components.BF2Component;
@@ -81,5 +83,24 @@ public class Manager {
 
     public void registerReloadableComponent(BF2Component component) {
         reloadableList.add(component);
+    }
+
+    public String longToTime(Long time) {
+        String result = NamespaceEnum.EMPTY_STRING.getText();
+        long countedTime = time;
+        if (countedTime / 86_400 > 0) {
+            result += countedTime / 86_400 + NamespaceEnum.DAYS_LETTER.getText() + NamespaceEnum.SPACE_STRING.getText();
+            countedTime %= 86_400;
+        }
+        if (countedTime / 3_600 > 0 || time > 3_600) {
+            result += countedTime / 3_600 + NamespaceEnum.HOURS_LETTER.getText() + NamespaceEnum.SPACE_STRING.getText();
+            countedTime %= 3_600;
+        }
+        if (countedTime / 60 > 0 || time > 60) {
+            result += countedTime / 60 + NamespaceEnum.MINUTES_LETTER.getText() + NamespaceEnum.SPACE_STRING.getText();
+            countedTime %= 60;
+        }
+        result += countedTime + NamespaceEnum.SECONDS_LETTER.getText();
+        return result;
     }
 }

@@ -2,6 +2,7 @@ package lp.fe.javafx.bf2components;
 
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import lombok.Getter;
@@ -26,8 +27,17 @@ public class LeftSidePart {
         leftPane.getChildren().add(nameComboBox);
         nameComboBox.setId(NamespaceEnum.NAME_COMBO_BOX_STYLE.getText());
         nameComboBox.setEditable(true);
-        nameComboBox.valueProperty().addListener((observable, oldValue, newValue) ->
-                manager.setSelectedPlayer(newValue));
+        nameComboBox.getEditor().setOnKeyPressed(evt -> {
+            if (evt.getCode().equals(KeyCode.UP)) {
+                nameComboBox.getSelectionModel().selectPrevious();
+            } else if (evt.getCode().equals(KeyCode.DOWN)) {
+                nameComboBox.getSelectionModel().selectNext();
+            }
+        });
+        nameComboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
+            manager.setSelectedPlayer(newValue);
+            manager.getReloadableList().forEach(BF2Component::rewriteData);
+        });
         fillNameComboBox();
     }
 
