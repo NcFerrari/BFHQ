@@ -1,7 +1,5 @@
 package lp.be.service;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import lp.be.enums.PictureSourceEnum;
 
 public interface PictureService {
