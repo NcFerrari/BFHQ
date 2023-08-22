@@ -25,6 +25,7 @@ public enum NamespaceEnum {
     NAME_COMBO_BOX_STYLE("name-combo-box"),
     PROGRESS_BAR_STYLE("progress-bar"),
     BORDER_LIGHT_STYLE("border-light"),
+    LAST_THREE_AWARDS_PANE_STYLE("last-three-awards"),
     DAYS_LETTER("d"),
     HOURS_LETTER("h"),
     MINUTES_LETTER("min"),

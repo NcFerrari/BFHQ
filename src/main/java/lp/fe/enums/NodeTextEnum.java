@@ -33,6 +33,8 @@ public enum NodeTextEnum {
     TEAM_KILLS("Team kills", "Zabití kamaráda"),
     WINS("Wins", "Výhry"),
     LOSSES("Losses", "Prohry"),
+    LAST_THREE_AWARDS_TITLE("THREE LATEST AWARDS", "POSLEDNÍ TŘI OCENĚNÍ"),
+
     PRIVATE("Private", "Soukromý"),
     PRIVATE_FIRST_CLASS("Private First Class", "Vojín"),
     LANCE_CORPORAL("Lance Corporal", "Svobodník"),

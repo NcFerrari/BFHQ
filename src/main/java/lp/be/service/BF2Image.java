@@ -10,9 +10,13 @@ import lp.fe.enums.NodeTextEnum;
 @Setter
 public class BF2Image {
 
+    private final ImageView imageView;
     private String name;
-    private ImageView imageView;
     private NodeTextEnum toolkitKeyWord;
+
+    public BF2Image() {
+        this(null, null);
+    }
 
     public BF2Image(String name, Image image) {
         this.name = name;
@@ -31,8 +35,21 @@ public class BF2Image {
         }
     }
 
+    public void setImage(Image image) {
+        imageView.setImage(image);
+    }
+
     public Image getImage() {
         return imageView.getImage();
+    }
+
+    public void setImageViewSize(double width, double height) {
+        imageView.setFitWidth(width);
+        imageView.setFitHeight(height);
+    }
+
+    public void removeImage() {
+        getImageView().setImage(null);
     }
 
     private boolean nodeTextEnumContains(String name) {

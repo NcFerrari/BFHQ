@@ -1,8 +1,10 @@
 package lp.fe.javafx.bf2components.stats;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -10,6 +12,10 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import lp.be.business.dto.Player;
+import lp.be.enums.PictureSourceEnum;
+import lp.be.service.BF2Image;
+import lp.be.service.PictureService;
+import lp.be.serviceimpl.PictureServiceImpl;
 import lp.fe.enums.NamespaceEnum;
 import lp.fe.enums.NodeTextEnum;
 import lp.fe.javafx.bf2components.BF2Component;
@@ -18,19 +24,22 @@ import org.jetbrains.annotations.NotNull;
 import java.util.EnumMap;
 import java.util.Map;
 
-public class Stats extends BF2Component {
+public class StatsPane extends BF2Component {
 
     private final double[] rankLimits = {0, 150, 500, 800, 2_500, 5_000, 8_000, 20_000, 20_000, 50_000, 50_000, 50_000,
             60_000, 75_000, 90_000, 11_500, 12_500, 15_000, 18_000, 18_000, 20_000, 20_000};
     private final Map<NodeTextEnum, Label> personalInfoLabels = new EnumMap<>(NodeTextEnum.class);
+    private final ObservableList<BF2Image> lastThreeAwards = FXCollections.observableArrayList();
+    private final PictureService pictureService = PictureServiceImpl.getInstance();
+
     private VBox rankDataPane;
     private Label currentRank;
     private Label nextRank;
     private ProgressBar progressBar;
     private StackPane imagePane;
-    private ImageView rankImage;
+    private BF2Image rankImage;
 
-    public Stats() {
+    public StatsPane() {
         super(NodeTextEnum.TAB_MENU_STATS);
 
         initRankTitle();
@@ -67,10 +76,11 @@ public class Stats extends BF2Component {
         personalInfoLabels.get(NodeTextEnum.WINS).setText(String.valueOf(player.getWins()));
         personalInfoLabels.get(NodeTextEnum.LOSSES).setText(String.valueOf(player.getLosses()));
 
-//        resetAwardsImages();
+        resetAwardsImages();
+        for (int i = 0; i < manager.getLastAwardsForSelectedPlayer(3).size(); i++) {
+            lastThreeAwards.get(i).setImage(pictureService.getImage(PictureSourceEnum.RANKS, 1).getImage());
+        }
 
-//        List<Awards> lastAwards = manager.getLastAwardsForSelectedPlayer(3);
-//
 //        TextFXEnumInterface lastAward = TextFXEnum.EMPTY_STRING;
 //        if (lastAwards.get(0) != null) {
 //            String preparedValueText = TextEnum.LEVEL.getText();
@@ -81,14 +91,6 @@ public class Stats extends BF2Component {
 //            lastAward = TextFXAwardsEnum.valueOf(preparedValueText);
 //        }
 //        manager.getComponentsForLanguage().replace(lastAwardValueLabel.textProperty(), lastAward);
-//
-//        for (int i = 0; i < lastAwards.size(); i++) {
-//            if (lastAwards.get(i) == null) {
-//                break;
-//            }
-//            awards.get(i).setImage(pictureService.getAwardImage(lastAwards.get(i).getAwd(),
-//                    lastAwards.get(i).getLevel().intValue()));
-//        }
     }
 
     @Override
@@ -99,8 +101,8 @@ public class Stats extends BF2Component {
         rankDataPane.setPrefWidth(oneSixth);
         progressBar.setPrefWidth(oneSixth);
         imagePane.setPrefWidth(oneSixth);
-        rankImage.setFitWidth(oneNinth);
-        rankImage.setFitHeight(oneNinth);
+        rankImage.setImageViewSize(oneNinth, oneNinth);
+        lastThreeAwards.forEach(bf2Image -> bf2Image.setImageViewSize(oneNinth - 20, oneNinth));
     }
 
     private void initRankTitle() {
@@ -123,8 +125,8 @@ public class Stats extends BF2Component {
         getLeftSidePart().getLeftPane().getChildren().add(rankPane);
 
         imagePane = new StackPane();
-        rankImage = new ImageView();
-        imagePane.getChildren().add(rankImage);
+        rankImage = new BF2Image();
+        imagePane.getChildren().add(rankImage.getImageView());
         rankPane.getChildren().add(imagePane);
     }
 
@@ -185,23 +187,24 @@ public class Stats extends BF2Component {
     }
 
     private void initLastThreeAwards() {
-//        lastThreeAwardsTitle = new Label();
-//        lastThreeAwardsTitle.setText(TextFXEnum.LAST_THREE_AWARDS_TITLE.getText(lastThreeAwardsTitle.textProperty()));
-//        lastThreeAwardsTitle.getStyleClass().add(TextEnum.SUB_TITLE_STYLE.getText());
-//        mainPane.getChildren().add(lastThreeAwardsTitle);
-//
-//        HBox awardsPane = new HBox();
-//        awardsPane.setSpacing(20);
-//        awardsPane.getStyleClass().add(TextEnum.AWARDS_PANE_STYLE.getText());
-//        mainPane.getChildren().add(awardsPane);
-//
-//        for (int i = 0; i < 3; i++) {
-//            ImageView imageView = new ImageView();
-//            awards.add(imageView);
-//            awardsPane.getChildren().add(imageView);
-//        }
-//        resetAwardsImages();
-//
+        Label lastThreeAwardsTitle = new Label();
+        lastThreeAwardsTitle.setText(NodeTextEnum.LAST_THREE_AWARDS_TITLE.getText(lastThreeAwardsTitle.textProperty()));
+        lastThreeAwardsTitle.setId(NamespaceEnum.SUB_TITLE_STYLE.getText());
+        getLeftSidePart().getLeftPane().getChildren().add(lastThreeAwardsTitle);
+
+        HBox lastThreeAwardsPane = new HBox();
+        lastThreeAwardsPane.setAlignment(Pos.CENTER);
+        lastThreeAwardsPane.setSpacing(20);
+        lastThreeAwardsPane.setId(NamespaceEnum.LAST_THREE_AWARDS_PANE_STYLE.getText());
+        getLeftSidePart().getLeftPane().getChildren().add(lastThreeAwardsPane);
+
+        for (int i = 0; i < 3; i++) {
+            BF2Image bf2Image = new BF2Image();
+            lastThreeAwards.add(bf2Image);
+            lastThreeAwardsPane.getChildren().add(bf2Image.getImageView());
+        }
+        resetAwardsImages();
+
 //        BorderPane lastAwardPane = new BorderPane();
 //        mainPane.getChildren().add(lastAwardPane);
 //        Label textLabel = new Label();
@@ -214,7 +217,7 @@ public class Stats extends BF2Component {
 //        lastAwardPane.setRight(lastAwardValueLabel);
     }
 
-//    private void resetAwardsImages() {
-//        awards.forEach(award -> award.setImage(null));
-//    }
+    private void resetAwardsImages() {
+        lastThreeAwards.forEach(BF2Image::removeImage);
+    }
 }

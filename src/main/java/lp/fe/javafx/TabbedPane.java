@@ -9,8 +9,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import lp.fe.javafx.bf2components.BF2Component;
-import lp.fe.javafx.bf2components.awards.Awards;
-import lp.fe.javafx.bf2components.stats.Stats;
+import lp.fe.javafx.bf2components.awards.AwardsPane;
+import lp.fe.javafx.bf2components.stats.StatsPane;
 
 public class TabbedPane {
 
@@ -39,8 +39,8 @@ public class TabbedPane {
     }
 
     private void fillTabs() {
-        bf2Components.add(new Stats());
-        bf2Components.add(new Awards());
+        bf2Components.add(new StatsPane());
+        bf2Components.add(new AwardsPane());
     }
 
     private void keyList(KeyEvent evt) {

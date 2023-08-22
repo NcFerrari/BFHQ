@@ -1,14 +1,15 @@
 package lp;
 
-import javafx.beans.property.StringProperty;
 import lombok.Getter;
+import lp.be.business.dto.Awards;
 import lp.be.business.dto.Maps;
 import lp.be.business.dto.Player;
+import lp.be.jpa.dao.AwardsDao;
 import lp.be.jpa.dao.MapsDao;
 import lp.be.jpa.dao.PlayerDao;
+import lp.be.jpa.daoimpl.AwardsDaoImpl;
 import lp.be.jpa.daoimpl.MapsDaoImpl;
 import lp.be.jpa.daoimpl.PlayerDaoImpl;
-import lp.be.service.BF2Image;
 import lp.be.service.LangService;
 import lp.be.serviceimpl.LangServiceImpl;
 import lp.fe.enums.LangEnum;
@@ -34,6 +35,7 @@ public class Manager {
 
     private final PlayerDao playerDao = new PlayerDaoImpl();
     private final MapsDao mapsDao = new MapsDaoImpl();
+    private final AwardsDao awardsDao = new AwardsDaoImpl();
 
     private Player selectedPlayer;
 
@@ -103,5 +105,13 @@ public class Manager {
         }
         result += countedTime + NamespaceEnum.SECONDS_LETTER.getText();
         return result;
+    }
+
+    /**
+     * @param limitOfAwards if limit is 0, it returns all awards for selected player
+     * @return list of awards
+     */
+    public List<Awards> getLastAwardsForSelectedPlayer(int limitOfAwards) {
+        return awardsDao.getAllAwardsById(getSelectedPlayer().getId(), limitOfAwards);
     }
 }

@@ -4,9 +4,9 @@ import javafx.scene.control.Button;
 import lp.fe.enums.NodeTextEnum;
 import lp.fe.javafx.bf2components.BF2Component;
 
-public class Awards extends BF2Component {
+public class AwardsPane extends BF2Component {
 
-    public Awards() {
+    public AwardsPane() {
         super(NodeTextEnum.TAB_MENU_AWARDS);
     }
 
