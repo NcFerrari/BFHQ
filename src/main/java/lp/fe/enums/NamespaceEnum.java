@@ -25,6 +25,9 @@ public enum NamespaceEnum {
     NAME_COMBO_BOX_STYLE("name-combo-box"),
     PROGRESS_BAR_STYLE("progress-bar"),
     BORDER_LIGHT_STYLE("border-light"),
+    SUB_TITLE_STYLE("sub-title"),
+    DB_VALUE_STYLE("db-value"),
+    VALUE_STYLE("value"),
     LAST_THREE_AWARDS_PANE_STYLE("last-three-awards"),
     DAYS_LETTER("d"),
     HOURS_LETTER("h"),
@@ -35,10 +38,7 @@ public enum NamespaceEnum {
     DIALOG_BUTTON_YES_EN("Yes"),
     DIALOG_BUTTON_NO_EN("No"),
     DIALOG_BUTTON_YES_CZ("Ano"),
-    DIALOG_BUTTON_NO_CZ("Ne"),
-    SUB_TITLE_STYLE("sub-title"),
-    DB_VALUE_STYLE("db-value"),
-    VALUE_STYLE("value");
+    DIALOG_BUTTON_NO_CZ("Ne");
 
     private final String text;
 

@@ -3,7 +3,6 @@ package lp.be.serviceimpl;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import lp.be.enums.PictureSourceEnum;
 import lp.be.service.BF2Image;
 import lp.be.service.PictureService;
 
@@ -25,18 +24,53 @@ public class PictureServiceImpl implements PictureService {
     }
 
     @Override
-    public BF2Image getImage(PictureSourceEnum sourceEnum, String pictureName) {
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(
-                sourceEnum.getPath() + pictureName + sourceEnum.getFileFormat());
-        if (inputStream == null) {
-            return null;
-        }
-        return new BF2Image(pictureName, new Image(inputStream));
+    public BF2Image getRankBF2Image(int rank) {
+        return getImage(PictureSourceEnum.RANKS, rank);
     }
 
     @Override
-    public BF2Image getImage(PictureSourceEnum sourceEnum, int pictureNameAsNumber) {
-        return getImage(sourceEnum, String.valueOf(pictureNameAsNumber));
+    public BF2Image getSmallRankBF2Image(int rank) {
+        return getImage(PictureSourceEnum.SMALL_RANKS, rank);
+    }
+
+    @Override
+    public BF2Image getAwardBF2Image(int imageId) {
+        return getAwardBF2Image(imageId, 1);
+    }
+
+    @Override
+    public BF2Image getAwardBF2Image(int imageId, int level) {
+        return getImage(PictureSourceEnum.getPictureSourceEnum(imageId, level), imageId);
+    }
+
+    @Override
+    public BF2Image getSmallAwardBF2Image(int imageId) {
+        return getImage(PictureSourceEnum.getPictureSourceEnum(imageId, 1, true), imageId);
+    }
+
+    @Override
+    public BF2Image getFactionBF2Image(int faction) {
+        return getImage(PictureSourceEnum.FACTIONS, faction);
+    }
+
+    @Override
+    public BF2Image getKitBF2Image(int kit) {
+        return getImage(PictureSourceEnum.KITS, kit);
+    }
+
+    @Override
+    public BF2Image getMapBF2Image(int map) {
+        return getImage(PictureSourceEnum.MAPS, map);
+    }
+
+    @Override
+    public BF2Image getVehicleBF2Image(int vehicle) {
+        return getImage(PictureSourceEnum.VEHICLES, vehicle);
+    }
+
+    @Override
+    public BF2Image getWeaponBF2Image(int weapon) {
+        return getImage(PictureSourceEnum.WEAPONS, weapon);
     }
 
     @Override
@@ -60,5 +94,14 @@ public class PictureServiceImpl implements PictureService {
         ((ColorAdjust) imageView.getEffect()).setSaturation(saturation);
         ((ColorAdjust) imageView.getEffect()).setBrightness(brightness);
         ((ColorAdjust) imageView.getEffect()).setContrast(contrast);
+    }
+
+    private BF2Image getImage(PictureSourceEnum sourceEnum, int pictureId) {
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(
+                sourceEnum.getPath() + pictureId + sourceEnum.getFileFormat());
+        if (inputStream == null) {
+            return null;
+        }
+        return new BF2Image(sourceEnum.getPath() + pictureId, new Image(inputStream));
     }
 }

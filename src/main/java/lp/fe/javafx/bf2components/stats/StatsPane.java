@@ -12,7 +12,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import lp.be.business.dto.Player;
-import lp.be.enums.PictureSourceEnum;
 import lp.be.service.BF2Image;
 import lp.be.service.PictureService;
 import lp.be.serviceimpl.PictureServiceImpl;
@@ -65,8 +64,14 @@ public class StatsPane extends BF2Component {
 
         int rank = player.getRank();
         NodeTextEnum.getComponentsForTranslate().replace(currentRank.textProperty(), NodeTextEnum.getRank(rank));
-        NodeTextEnum.getComponentsForTranslate().replace(nextRank.textProperty(), NodeTextEnum.getRank(rank + 1));
-        progressBar.setProgress((player.getScore() - rankLimits[rank]) / (rankLimits[rank + 1] - rankLimits[rank]));
+        if (rank < 21) {
+            NodeTextEnum.getComponentsForTranslate().replace(nextRank.textProperty(), NodeTextEnum.getRank(rank + 1));
+            progressBar.setProgress((player.getScore() - rankLimits[rank]) / (rankLimits[rank + 1] - rankLimits[rank]));
+        } else {
+            NodeTextEnum.getComponentsForTranslate().replace(nextRank.textProperty(), NodeTextEnum.EMPTY_STRING);
+        }
+
+        rankImage.setImage(pictureService.getRankBF2Image(rank).getImage());
 
         personalInfoLabels.get(NodeTextEnum.GLOBAL_SCORE).setText(String.valueOf(player.getScore()));
         personalInfoLabels.get(NodeTextEnum.TIME).setText(manager.longToTime(player.getTime()));
@@ -77,8 +82,9 @@ public class StatsPane extends BF2Component {
         personalInfoLabels.get(NodeTextEnum.LOSSES).setText(String.valueOf(player.getLosses()));
 
         resetAwardsImages();
-        for (int i = 0; i < manager.getLastAwardsForSelectedPlayer(3).size(); i++) {
-            lastThreeAwards.get(i).setImage(pictureService.getImage(PictureSourceEnum.RANKS, 1).getImage());
+        int i = 0;
+        for (BF2Image bf2Image : manager.getAwardsForSelectedPlayer(3)) {
+            lastThreeAwards.get(i++).setImage(bf2Image.getImage());
         }
 
 //        TextFXEnumInterface lastAward = TextFXEnum.EMPTY_STRING;
@@ -91,6 +97,7 @@ public class StatsPane extends BF2Component {
 //            lastAward = TextFXAwardsEnum.valueOf(preparedValueText);
 //        }
 //        manager.getComponentsForLanguage().replace(lastAwardValueLabel.textProperty(), lastAward);
+        personalInfoLabels.get(NodeTextEnum.LAST_AWARD).setText("");
     }
 
     @Override
@@ -204,17 +211,7 @@ public class StatsPane extends BF2Component {
             lastThreeAwardsPane.getChildren().add(bf2Image.getImageView());
         }
         resetAwardsImages();
-
-//        BorderPane lastAwardPane = new BorderPane();
-//        mainPane.getChildren().add(lastAwardPane);
-//        Label textLabel = new Label();
-//        textLabel.setText(TextFXEnum.LAST_AWARD.getText(textLabel.textProperty()));
-//        textLabel.getStyleClass().add(TextEnum.VALUE_STYLE.getText());
-//        lastAwardPane.setLeft(textLabel);
-//        lastAwardValueLabel = new Label();
-//        lastAwardValueLabel.getStyleClass().add(TextEnum.DB_VALUE_STYLE.getText());
-//        lastAwardValueLabel.setText(TextFXEnum.EMPTY_STRING.getText(lastAwardValueLabel.textProperty()));
-//        lastAwardPane.setRight(lastAwardValueLabel);
+        addBorderLine(NodeTextEnum.LAST_AWARD);
     }
 
     private void resetAwardsImages() {

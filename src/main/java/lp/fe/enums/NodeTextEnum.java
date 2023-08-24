@@ -34,6 +34,7 @@ public enum NodeTextEnum {
     WINS("Wins", "Výhry"),
     LOSSES("Losses", "Prohry"),
     LAST_THREE_AWARDS_TITLE("THREE LATEST AWARDS", "POSLEDNÍ TŘI OCENĚNÍ"),
+    LAST_AWARD("LATEST AWARD", "POSLEDNÍ OCENĚNÍ"),
 
     PRIVATE("Private", "Soukromý"),
     PRIVATE_FIRST_CLASS("Private First Class", "Vojín"),
