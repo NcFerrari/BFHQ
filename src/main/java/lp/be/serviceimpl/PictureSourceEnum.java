@@ -3,6 +3,7 @@ package lp.be.serviceimpl;
 import lombok.Getter;
 
 @Getter
+public
 enum PictureSourceEnum {
 
     BRONZE_BADGES("pictures/badges/bronze/", ".jpg"),

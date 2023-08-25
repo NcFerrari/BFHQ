@@ -28,11 +28,12 @@ public class Manager {
     private static Manager manager;
     private final LangService langService = LangServiceImpl.getInstance();
     private final Map<String, Player> players = new HashMap<>();
-    private Map<Integer, List<Awards>> awards = new HashMap<>();
+    private final Map<Integer, List<Awards>> awards = new HashMap<>();
     private final List<BF2Component> reloadableList = new ArrayList<>();
     private final PictureService pictureService = PictureServiceImpl.getInstance();
 
     private Player selectedPlayer;
+    private boolean showToolkit;
 
     public static Manager getInstance() {
         if (manager == null) {
@@ -57,6 +58,11 @@ public class Manager {
     public void setLanguage(LangEnum language) {
         langService.setSelectedLanguage(language);
         NodeTextEnum.reloadTexts();
+    }
+
+    public void switchShowingTooltips() {
+        showToolkit = !showToolkit;
+        reloadableList.forEach(BF2Component::rewriteData);
     }
 
     public void loadDataFromDB() {

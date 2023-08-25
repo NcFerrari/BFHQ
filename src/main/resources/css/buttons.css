@@ -1,4 +1,8 @@
-Button {
+ToggleButton:selected {
+    -fx-background-color: #b29c5e;
+}
+
+Button, ToggleButton {
     -fx-background-color: #4b4331;
     -fx-border-radius: 50px;
     -fx-background-radius: 50px;

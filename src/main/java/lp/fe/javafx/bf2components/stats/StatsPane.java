@@ -69,9 +69,10 @@ public class StatsPane extends BF2Component {
             progressBar.setProgress((player.getScore() - rankLimits[rank]) / (rankLimits[rank + 1] - rankLimits[rank]));
         } else {
             NodeTextEnum.getComponentsForTranslate().replace(nextRank.textProperty(), NodeTextEnum.EMPTY_STRING);
+            progressBar.setProgress(1);
         }
 
-        rankImage.setImage(pictureService.getRankBF2Image(rank).getImage());
+        rankImage.updateData(pictureService.getRankBF2Image(rank), false);
 
         personalInfoLabels.get(NodeTextEnum.GLOBAL_SCORE).setText(String.valueOf(player.getScore()));
         personalInfoLabels.get(NodeTextEnum.TIME).setText(manager.longToTime(player.getTime()));
@@ -84,7 +85,7 @@ public class StatsPane extends BF2Component {
         resetAwardsImages();
         int i = 0;
         for (BF2Image bf2Image : manager.getAwardsForSelectedPlayer(3)) {
-            lastThreeAwards.get(i++).setImage(bf2Image.getImage());
+            lastThreeAwards.get(i++).updateData(bf2Image, manager.isShowToolkit());
         }
 
 //        TextFXEnumInterface lastAward = TextFXEnum.EMPTY_STRING;

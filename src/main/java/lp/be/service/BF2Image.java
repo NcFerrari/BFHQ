@@ -1,5 +1,6 @@
 package lp.be.service;
 
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import lombok.Getter;
@@ -11,32 +12,31 @@ import lp.fe.enums.NodeTextEnum;
 public class BF2Image {
 
     private final ImageView imageView;
-    private String name;
-    private NodeTextEnum toolkitKeyWord;
+    private final Tooltip tooltip;
+    private final NodeTextEnum nodeTextEnum;
 
     public BF2Image() {
         this(null, null);
     }
 
-    public BF2Image(String name, Image image) {
-        this.name = name;
+    public BF2Image(Image image, NodeTextEnum nodeTextEnum) {
+        this.nodeTextEnum = nodeTextEnum;
         imageView = new ImageView();
+        tooltip = new Tooltip();
         imageView.setImage(image);
-        setToolkitKeyWord(name);
     }
 
-    public void setToolkitKeyWord(String name) {
-        if (name == null) {
-            return;
+    public void updateData(BF2Image bf2Image, boolean enableToolkit) {
+        if (!NodeTextEnum.getComponentsForTranslate().containsKey(tooltip.textProperty())) {
+            tooltip.setText(NodeTextEnum.EMPTY_STRING.getText(tooltip.textProperty()));
         }
-        String possibleName = name.toUpperCase().trim();
-        if (nodeTextEnumContains(possibleName)) {
-            this.toolkitKeyWord = NodeTextEnum.valueOf(possibleName);
+        if (enableToolkit && bf2Image.getNodeTextEnum() != null) {
+            Tooltip.install(imageView, tooltip);
+            NodeTextEnum.getComponentsForTranslate().replace(tooltip.textProperty(), bf2Image.getNodeTextEnum());
+        } else {
+            Tooltip.uninstall(imageView, tooltip);
         }
-    }
-
-    public void setImage(Image image) {
-        imageView.setImage(image);
+        imageView.setImage(bf2Image.getImage());
     }
 
     public Image getImage() {
@@ -50,14 +50,5 @@ public class BF2Image {
 
     public void removeImage() {
         getImageView().setImage(null);
-    }
-
-    private boolean nodeTextEnumContains(String name) {
-        for (NodeTextEnum value : NodeTextEnum.values()) {
-            if (value.name().equals(name)) {
-                return true;
-            }
-        }
-        return false;
     }
 }

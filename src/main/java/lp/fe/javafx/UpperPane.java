@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import lombok.Getter;
@@ -29,6 +30,11 @@ public class UpperPane {
     }
 
     private void addNodes() {
+        ToggleButton toolkitToggleButton = new ToggleButton();
+        toolkitToggleButton.setText(NodeTextEnum.TOOLKIT_TEXT.getText(toolkitToggleButton.textProperty()));
+        toolkitToggleButton.setOnAction(evt -> manager.switchShowingTooltips());
+        topPane.getChildren().add(toolkitToggleButton);
+
         Button updateButton = new Button();
         updateButton.setText(NodeTextEnum.UPDATE_DATA_BUTTON.getText(updateButton.textProperty()));
         updateButton.setOnAction(evt -> {

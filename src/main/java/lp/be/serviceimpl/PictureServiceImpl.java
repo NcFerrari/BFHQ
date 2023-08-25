@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import lp.be.service.BF2Image;
 import lp.be.service.PictureService;
+import lp.fe.enums.NodeTextEnum;
 
 import java.io.InputStream;
 
@@ -102,6 +103,6 @@ public class PictureServiceImpl implements PictureService {
         if (inputStream == null) {
             return null;
         }
-        return new BF2Image(sourceEnum.getPath() + pictureId, new Image(inputStream));
+        return new BF2Image(new Image(inputStream), NodeTextEnum.getNodeTextEnum(sourceEnum, pictureId));
     }
 }
