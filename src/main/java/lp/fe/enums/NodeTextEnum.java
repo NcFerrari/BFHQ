@@ -101,28 +101,67 @@ public enum NodeTextEnum {
     LEVEL_3_1220803("Expert Helicopter", "Pilot vrtulníku expert"),
     LEVEL_3_1222016("Expert Transport", "Expertní transport"),
 
-    PRIVATE("Private", "Soukromý"),
-    PRIVATE_FIRST_CLASS("Private First Class", "Vojín"),
-    LANCE_CORPORAL("Lance Corporal", "Svobodník"),
-    CORPORAL("Corporal", "Desátník"),
-    SERGEANT("Sergeant", "Četař"),
-    STAFF_SERGEANT("Staff Sergeant", "Rotný"),
-    GUNNERY_SERGEANT("Gunnery Sergeant", "Četař dělostřelectva"),
-    MASTER_SERGEANT("Master Sergeant", "Vrchní rotmistr"),
-    FIRST_SERGEANT("First Sergeant", "První rotmistr"),
-    MASTER_GUNNERY_SERGEANT("Master Gunnery Sergeant", "Vrchní četař dělostřelectva"),
-    SERGEANT_MAJOR("Sergeant Major", "Hlavní četař"),
-    SERGEANT_MAJOR_OF_THE_CORPS("Sergeant Major of the Corps", "Hlavní četař sboru"),
-    SECOND_LIEUTENANT("2nd Lieutenant", "Poručík"),
-    FIRST_LIEUTENANT("1st Lieutenant", "Nadporučík"),
-    CAPTAIN("Captain", "Kapitán"),
-    MAJOR("Major", "Major"),
-    LIEUTENANT_COLONEL("Lieutenant Colonel", "Podplukovník"),
-    COLONEL("Colonel", "Plukovník"),
-    BRIGADIER_GENERAL("Brigadier General", "Brigádní generál"),
-    MAJOR_GENERAL("Major General", "Generálmajor"),
-    LIEUTENANT_GENERAL("Lieutenant General", "Generálporučík"),
-    GENERAL("General", "Generál");
+    MEDAL_2020419("Distinguished Service Medal", "Medajle za slavné služby"),
+    MEDAL_2020719("Golden Scimitar", "Zlatá šavle"),
+    MEDAL_2020903("Combat Infantry Medal", "Medajle za boj pěchoty"),
+    MEDAL_2020913("Marksman Infantry Medal", "Medajle za střelce pěchoty"),
+    MEDAL_2020919("Sharpshooter Infa9ntry Medal", "Medaje za ostrostřelce pěchoty"),
+    MEDAL_2021322("Medal of Valor", "Medajle hrdiny"),
+    MEDAL_2021403("Navy Cross", "Námořní kříž"),
+    MEDAL_2021613("People's Medallion", "Lidový medajlon"),
+    MEDAL_2051902("Bronze Star", "Bronzová hvězda"),
+    MEDAL_2051907("Gold Star", "Zlatá hvězda"),
+    MEDAL_2051919("Silver Star", "Stříbrná hvězda"),
+    MEDAL_2190303("Combat Action Medal", "Medajle za akci v boji"),
+    MEDAL_2190308("Helicopter Combat Medal", "Medajle za létání s vrtulníkem"),
+    MEDAL_2190309("Air Combat Medal", "Medajle za boj ve vzduchu"),
+    MEDAL_2190318("Armor Combat Medal", "Medajle za práci obrněnců"),
+    MEDAL_2190703("Good Conduct Medal", "Medajle za dobré chování"),
+    MEDAL_2191319("Meritorious Service Medal", "Medajle za zasloužilé služby"),
+    MEDAL_2191608("Purple Heart Medal", "Purpurové srdce"),
+    MEDAL_3270519("European Union Special Service Medal", "Medajle za zvláštní službu Evropské unie"),
+
+    RIBBON_3040109("Air Defense Ribbon", "Stuha za protivzdušnou obranu"),
+    RIBBON_3040718("Ground Defense Ribbon", "Stuha za pozemní obranu"),
+    RIBBON_3150914("Infantry Officer Ribbon", "Stuha důstojníka pěchoty"),
+    RIBBON_3151920("Staff Officer Ribbon", "Stuha štábního důstojníka"),
+    RIBBON_3190105("Aerial Service Ribbon", "Stuha za práci ve vzduchu"),
+    RIBBON_3190118("Armored Service Ribbon", "Stuha za práci obrněnců"),
+    RIBBON_3190318("Crew Service Ribbon", "Stuha za služby mužstva"),
+    RIBBON_3190409("Distinguished Service Ribbon", "Stuha za významnou službu"),
+    RIBBON_3190605("Far-East Service Ribbon", "Čínská služební stuha"),
+    RIBBON_3190803("Helicopter Service Ribbon", "Stuha za práci s vrtulníkem"),
+    RIBBON_3191305("Middle East Service Ribbon", "Středovýchodní služební stuha"),
+    RIBBON_3211305("Meritorious Unit Ribbon", "Stuha zasloužilé jednotce"),
+    RIBBON_3212201("Valorous Unit Ribbon", "Stuha za udatné zásluhy"),
+    RIBBON_3240102("Airborne Ribbon", "Stuha letectva"),
+    RIBBON_3240301("Combat Action Ribbon", "Stuha za akci v boji"),
+    RIBBON_3240703("Good Conduct Ribbon", "Stuha za dobré chování"),
+    RIBBON_3241213("Legion of Merit Ribbon", "Stuha udatné jednotce"),
+    RIBBON_3242303("War College Ribbon", "Stuha od vojenské akademie"),
+
+    RANK_0("Private", "Soukromý"),
+    RANK_1("Private First Class", "Vojín"),
+    RANK_2("Lance Corporal", "Svobodník"),
+    RANK_3("Corporal", "Desátník"),
+    RANK_4("Sergeant", "Četař"),
+    RANK_5("Staff Sergeant", "Rotný"),
+    RANK_6("Gunnery Sergeant", "Četař dělostřelectva"),
+    RANK_7("Master Sergeant", "Vrchní rotmistr"),
+    RANK_8("First Sergeant", "První rotmistr"),
+    RANK_9("Master Gunnery Sergeant", "Vrchní četař dělostřelectva"),
+    RANK_10("Sergeant Major", "Hlavní četař"),
+    RANK_11("Sergeant Major of the Corps", "Hlavní četař sboru"),
+    RANK_12("2nd Lieutenant", "Poručík"),
+    RANK_13("1st Lieutenant", "Nadporučík"),
+    RANK_14("Captain", "Kapitán"),
+    RANK_15("Major", "Major"),
+    RANK_16("Lieutenant Colonel", "Podplukovník"),
+    RANK_17("Colonel", "Plukovník"),
+    RANK_18("Brigadier General", "Brigádní generál"),
+    RANK_19("Major General", "Generálmajor"),
+    RANK_20("Lieutenant General", "Generálporučík"),
+    RANK_21("General", "Generál");
 
     private static final ObservableMap<StringProperty, NodeTextEnum> COMPONENTS_FOR_TRANSLATE =
             FXCollections.observableMap(new HashMap<>());
@@ -147,87 +186,44 @@ public enum NodeTextEnum {
         COMPONENTS_FOR_TRANSLATE.forEach((component, text) -> component.set(text.getSelectedText()));
     }
 
-    public static NodeTextEnum getNodeTextEnum(PictureSourceEnum pictureSourceEnum, int pictureId) {
-        switch (pictureSourceEnum) {
-            case BRONZE_BADGES:
-                return NodeTextEnum.valueOf("LEVEL_1_" + pictureId);
-            case SILVER_BADGES:
-                return null;
-            case GOLD_BADGES:
-                return null;
-            case MEDALS:
-                return null;
-            case RIBBONS:
-            case SMALL_RIBBONS:
-                return null;
-            case RANKS:
-            case SMALL_RANKS:
-                return getRank(pictureId);
-            default:
-                return null;
-        }
-    }
-
-    public static NodeTextEnum getRank(int rank) {
-        switch (rank) {
-            case 0:
-                return PRIVATE;
-            case 1:
-                return PRIVATE_FIRST_CLASS;
-            case 2:
-                return LANCE_CORPORAL;
-            case 3:
-                return CORPORAL;
-            case 4:
-                return SERGEANT;
-            case 5:
-                return STAFF_SERGEANT;
-            case 6:
-                return GUNNERY_SERGEANT;
-            case 7:
-                return MASTER_SERGEANT;
-            case 8:
-                return FIRST_SERGEANT;
-            case 9:
-                return MASTER_GUNNERY_SERGEANT;
-            case 10:
-                return SERGEANT_MAJOR;
-            case 11:
-                return SERGEANT_MAJOR_OF_THE_CORPS;
-            case 12:
-                return SECOND_LIEUTENANT;
-            case 13:
-                return FIRST_LIEUTENANT;
-            case 14:
-                return CAPTAIN;
-            case 15:
-                return MAJOR;
-            case 16:
-                return LIEUTENANT_COLONEL;
-            case 17:
-                return COLONEL;
-            case 18:
-                return BRIGADIER_GENERAL;
-            case 19:
-                return MAJOR_GENERAL;
-            case 20:
-                return LIEUTENANT_GENERAL;
-            case 21:
-                return GENERAL;
-            default:
-                return EMPTY_STRING;
-        }
-    }
-
     public String getText(StringProperty stringProperty) {
         COMPONENTS_FOR_TRANSLATE.put(stringProperty, this);
         return getSelectedText();
     }
 
-    private String getSelectedText() {
+    public String getSelectedText() {
         if (manager.getLanguage().equals(LangEnum.ENG)) {
             return getEngText();
         }
         return getCzeText();
+    }
+
+    public static NodeTextEnum getNodeTextEnum(PictureSourceEnum pictureSourceEnum, int pictureId) {
+        NamespaceEnum namespaceEnum;
+        switch (pictureSourceEnum) {
+            case BRONZE_BADGES:
+                namespaceEnum = NamespaceEnum.LEVEL_ONE;
+                break;
+            case SILVER_BADGES:
+                namespaceEnum = NamespaceEnum.LEVEL_TWO;
+                break;
+            case GOLD_BADGES:
+                namespaceEnum = NamespaceEnum.LEVEL_THREE;
+                break;
+            case MEDALS:
+                namespaceEnum = NamespaceEnum.MEDAL_PREFIX;
+                break;
+            case RIBBONS:
+            case SMALL_RIBBONS:
+                namespaceEnum = NamespaceEnum.RIBBON_PREFIX;
+                break;
+            case RANKS:
+            case SMALL_RANKS:
+                namespaceEnum = NamespaceEnum.RANK_PREFIX;
+                break;
+            default:
+                return null;
+        }
+        return NodeTextEnum.valueOf(namespaceEnum.getText() + pictureId);
     }
 }

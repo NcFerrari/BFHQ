@@ -37,6 +37,7 @@ public class StatsPane extends BF2Component {
     private ProgressBar progressBar;
     private StackPane imagePane;
     private BF2Image rankImage;
+    private Label lastAwardLabel;
 
     public StatsPane() {
         super(NodeTextEnum.TAB_MENU_STATS);
@@ -63,9 +64,11 @@ public class StatsPane extends BF2Component {
         }
 
         int rank = player.getRank();
-        NodeTextEnum.getComponentsForTranslate().replace(currentRank.textProperty(), NodeTextEnum.getRank(rank));
+        NodeTextEnum.getComponentsForTranslate().replace(currentRank.textProperty(),
+                NodeTextEnum.valueOf(NamespaceEnum.RANK_PREFIX.getText() + rank));
         if (rank < 21) {
-            NodeTextEnum.getComponentsForTranslate().replace(nextRank.textProperty(), NodeTextEnum.getRank(rank + 1));
+            NodeTextEnum.getComponentsForTranslate().replace(nextRank.textProperty(),
+                    NodeTextEnum.valueOf(NamespaceEnum.RANK_PREFIX.getText() + (rank + 1)));
             progressBar.setProgress((player.getScore() - rankLimits[rank]) / (rankLimits[rank + 1] - rankLimits[rank]));
         } else {
             NodeTextEnum.getComponentsForTranslate().replace(nextRank.textProperty(), NodeTextEnum.EMPTY_STRING);
@@ -87,18 +90,10 @@ public class StatsPane extends BF2Component {
         for (BF2Image bf2Image : manager.getAwardsForSelectedPlayer(3)) {
             lastThreeAwards.get(i++).updateData(bf2Image, manager.isShowToolkit());
         }
-
-//        TextFXEnumInterface lastAward = TextFXEnum.EMPTY_STRING;
-//        if (lastAwards.get(0) != null) {
-//            String preparedValueText = TextEnum.LEVEL.getText();
-//            if (lastAwards.get(0).getAwd() < 2020419) {
-//                preparedValueText += lastAwards.get(0).getLevel() + TextEnum.UNDERSCORE.getText();
-//            }
-//            preparedValueText += lastAwards.get(0).getAwd();
-//            lastAward = TextFXAwardsEnum.valueOf(preparedValueText);
-//        }
-//        manager.getComponentsForLanguage().replace(lastAwardValueLabel.textProperty(), lastAward);
-        personalInfoLabels.get(NodeTextEnum.LAST_AWARD).setText("");
+        NodeTextEnum.getComponentsForTranslate().replace(lastAwardLabel.textProperty(), NodeTextEnum.EMPTY_STRING);
+        for (BF2Image bf2Image : manager.getAwardsForSelectedPlayer(1)) {
+            NodeTextEnum.getComponentsForTranslate().replace(lastAwardLabel.textProperty(), bf2Image.getNodeTextEnum());
+        }
     }
 
     @Override
@@ -213,6 +208,8 @@ public class StatsPane extends BF2Component {
         }
         resetAwardsImages();
         addBorderLine(NodeTextEnum.LAST_AWARD);
+        lastAwardLabel = personalInfoLabels.get(NodeTextEnum.LAST_AWARD);
+        lastAwardLabel.setText(NodeTextEnum.EMPTY_STRING.getText(lastAwardLabel.textProperty()));
     }
 
     private void resetAwardsImages() {

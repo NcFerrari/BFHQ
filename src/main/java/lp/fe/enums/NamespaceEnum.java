@@ -38,7 +38,13 @@ public enum NamespaceEnum {
     DIALOG_BUTTON_YES_EN("Yes"),
     DIALOG_BUTTON_NO_EN("No"),
     DIALOG_BUTTON_YES_CZ("Ano"),
-    DIALOG_BUTTON_NO_CZ("Ne");
+    DIALOG_BUTTON_NO_CZ("Ne"),
+    LEVEL_ONE("LEVEL_1_"),
+    LEVEL_TWO("LEVEL_2_"),
+    LEVEL_THREE("LEVEL_3_"),
+    MEDAL_PREFIX("MEDAL_"),
+    RANK_PREFIX("RANK_"),
+    RIBBON_PREFIX("RIBBON_");
 
     private final String text;
 
