@@ -45,7 +45,7 @@ public class UpperPane {
 
         ComboBox<LangEnum> langEnumComboBox = new ComboBox<>();
         langEnumComboBox.getItems().addAll(LangEnum.CZE, LangEnum.ENG);
-        langEnumComboBox.getSelectionModel().selectFirst();
+        langEnumComboBox.getSelectionModel().select(manager.getLanguage());
         langEnumComboBox.valueProperty().addListener((observable, oldValue, newValue) -> manager.setLanguage(newValue));
         langEnumComboBox.setId(NamespaceEnum.LANG_COMBO_BOX_STYLE.getText());
         topPane.getChildren().add(langEnumComboBox);
