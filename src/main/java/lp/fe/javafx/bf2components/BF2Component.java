@@ -15,6 +15,7 @@ public abstract class BF2Component {
     protected final Manager manager = Manager.getInstance();
     private final HBox contentPane = new HBox();
     private final LeftSidePart leftSidePart = new LeftSidePart();
+    private final RightSidePart rightSidePart = new RightSidePart();
     private final Tab tab = new Tab();
 
     protected BF2Component(@NotNull NodeTextEnum title) {
@@ -26,11 +27,13 @@ public abstract class BF2Component {
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         contentPane.getChildren().add(scrollPane);
+        contentPane.getChildren().add(getRightSidePart().getRightPane());
     }
 
     public void resize(@NotNull Stage stage) {
         contentPane.setPrefHeight(stage.getHeight());
         leftSidePart.resize(stage);
+        rightSidePart.resize(stage);
     }
 
     public abstract void reloadData();

@@ -22,12 +22,18 @@ FlowPane {
     -fx-border-color: #a9a570;
 }
 
+#right-side-part {
+    -fx-background-color: #2b2b2b;
+    -fx-border-color: #a9a570;
+}
+
 #value {
     -fx-text-fill: #757474;
 }
 
 #db-value {
     -fx-text-fill: white;
+    -fx-padding: 0 40px 0 0;
 }
 
 #value, #db-value {
