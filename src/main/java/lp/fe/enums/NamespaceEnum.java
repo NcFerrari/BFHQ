@@ -31,12 +31,17 @@ public enum NamespaceEnum {
     DB_VALUE_STYLE("db-value"),
     VALUE_STYLE("value"),
     LAST_THREE_AWARDS_PANE_STYLE("last-three-awards"),
+    FIRST_COLUMN_MOST_PLAYED_STYLE("first-column-most-played "),
+    ID_UP_TAB_PANE("up-tab-pane"),
+    ID_DOWN_TAB_PANE("down-tab-pane"),
+    PREF_WIDTH_STYLE("-fx-pref-width: "),
     DAYS_LETTER("d"),
     HOURS_LETTER("h"),
     MINUTES_LETTER("min"),
     SECONDS_LETTER("s"),
     EMPTY_STRING(""),
     SPACE_STRING(" "),
+    ZERO("0"),
     DIALOG_BUTTON_YES_EN("Yes"),
     DIALOG_BUTTON_NO_EN("No"),
     DIALOG_BUTTON_YES_CZ("Ano"),
@@ -46,7 +51,11 @@ public enum NamespaceEnum {
     LEVEL_THREE("LEVEL_3_"),
     MEDAL_PREFIX("MEDAL_"),
     RANK_PREFIX("RANK_"),
-    RIBBON_PREFIX("RIBBON_");
+    RIBBON_PREFIX("RIBBON_"),
+    KIT("KIT_"),
+    VEHICLE("VEHICLE_"),
+    WEAPON("WEAPON_"),
+    MAP("MAP_");
 
     private final String text;
 

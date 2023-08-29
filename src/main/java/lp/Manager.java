@@ -2,8 +2,10 @@ package lp;
 
 import lombok.Getter;
 import lp.be.business.dto.Awards;
+import lp.be.business.dto.Maps;
 import lp.be.business.dto.Player;
 import lp.be.jpa.daoimpl.AwardsDaoImpl;
+import lp.be.jpa.daoimpl.MapsDaoImpl;
 import lp.be.jpa.daoimpl.PlayerDaoImpl;
 import lp.be.service.BF2Image;
 import lp.be.service.LangService;
@@ -18,6 +20,7 @@ import lp.fe.javafx.bf2components.BF2Component;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +32,7 @@ public class Manager {
     private final LangService langService = LangServiceImpl.getInstance();
     private final Map<String, Player> players = new HashMap<>();
     private final Map<Integer, List<Awards>> awards = new HashMap<>();
+    private final Map<Integer, List<Maps>> maps = new HashMap<>();
     private final List<BF2Component> reloadableList = new ArrayList<>();
     private final PictureService pictureService = PictureServiceImpl.getInstance();
 
@@ -38,13 +42,14 @@ public class Manager {
     public static Manager getInstance() {
         if (manager == null) {
             manager = new Manager();
-            javafx.application.Application.launch(MainApp.class);
+//            javafx.application.Application.launch(MainApp.class);
+            javafx.application.Application.launch(Test.class);
         }
         return manager;
     }
 
     private Manager() {
-        loadDataFromDB();
+//        loadDataFromDB();
     }
 
     public static void main(String[] args) {
@@ -75,6 +80,10 @@ public class Manager {
         new AwardsDaoImpl().getAllAwards().forEach(award -> {
             awards.putIfAbsent(award.getId(), new ArrayList<>());
             awards.get(award.getId()).add(award);
+        });
+        new MapsDaoImpl().getAllMaps().forEach(map -> {
+            maps.putIfAbsent(map.getId(), new ArrayList<>());
+            maps.get(map.getId()).add(map);
         });
     }
 
@@ -126,5 +135,67 @@ public class Manager {
                     playerAwards.get(i).getLevel().intValue()));
         }
         return bf2Images;
+    }
+
+    public Map<NamespaceEnum, String[]> getMostPlayedData() throws Exception {
+        Map<NamespaceEnum, String[]> result = new EnumMap<>(NamespaceEnum.class);
+
+        Long[] kitTimeArray = new Long[7];
+        for (int i = 0; i < kitTimeArray.length; i++) {
+            kitTimeArray[i] = (Long) getSelectedPlayer().getKits().getClass()
+                    .getMethod("getTime" + i).invoke(getSelectedPlayer().getKits());
+        }
+
+        Long[] vehicleTimeArray = new Long[8];
+        for (int i = 0; i < vehicleTimeArray.length - 1; i++) {
+            vehicleTimeArray[i] = (Long) getSelectedPlayer().getVehicles().getClass()
+                    .getMethod("getTime" + i).invoke(getSelectedPlayer().getVehicles());
+        }
+        vehicleTimeArray[7] = getSelectedPlayer().getVehicles().getTimepara();
+
+        Long[] weaponTimeArray = new Long[14];
+        for (int i = 0; i < weaponTimeArray.length - 5; i++) {
+            weaponTimeArray[i] = (Long) getSelectedPlayer().getWeapons().getClass()
+                    .getMethod("getTime" + i).invoke(getSelectedPlayer().getWeapons());
+        }
+        weaponTimeArray[9] = getSelectedPlayer().getWeapons().getKnifetime();
+        weaponTimeArray[10] = getSelectedPlayer().getWeapons().getC4time();
+        weaponTimeArray[11] = getSelectedPlayer().getWeapons().getHandgrenadetime();
+        weaponTimeArray[12] = getSelectedPlayer().getWeapons().getClaymoretime();
+        weaponTimeArray[13] = getSelectedPlayer().getWeapons().getAtminetime();
+
+        result.put(NamespaceEnum.KIT, getMostPlayedValueFromArray(kitTimeArray));
+        result.put(NamespaceEnum.VEHICLE, getMostPlayedValueFromArray(vehicleTimeArray));
+        result.put(NamespaceEnum.WEAPON, getMostPlayedValueFromArray(weaponTimeArray));
+        result.put(NamespaceEnum.MAP, getMostPlayedMap());
+        return result;
+    }
+
+    private String[] getMostPlayedValueFromArray(Long[] array) {
+        String mostPlayedIndex = NamespaceEnum.ZERO.getText();
+        long highestTimePlayed = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] > highestTimePlayed) {
+                highestTimePlayed = array[i];
+                mostPlayedIndex = String.valueOf(i);
+            }
+        }
+        return new String[]{mostPlayedIndex, longToTime(highestTimePlayed)};
+    }
+
+    private String[] getMostPlayedMap() {
+        long mostPlayedIndex = 0;
+        long highestTimePlayed = 0;
+        for (int i = 0; i < getMapsForSelectedPlayer().size(); i++) {
+            if (getMapsForSelectedPlayer().get(i).getTime() > highestTimePlayed) {
+                highestTimePlayed = getMapsForSelectedPlayer().get(i).getTime();
+                mostPlayedIndex = getMapsForSelectedPlayer().get(i).getMapid();
+            }
+        }
+        return new String[]{String.valueOf(mostPlayedIndex), longToTime(highestTimePlayed)};
+    }
+
+    public List<Maps> getMapsForSelectedPlayer() {
+        return maps.get(getSelectedPlayer().getId());
     }
 }

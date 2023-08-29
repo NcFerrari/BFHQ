@@ -50,28 +50,28 @@ public class PictureServiceImpl implements PictureService {
     }
 
     @Override
-    public BF2Image getFactionBF2Image(int faction) {
-        return getImage(PictureSourceEnum.FACTIONS, faction);
+    public BF2Image getFactionBF2Image(int factionId) {
+        return getImage(PictureSourceEnum.FACTIONS, factionId);
     }
 
     @Override
-    public BF2Image getKitBF2Image(int kit) {
-        return getImage(PictureSourceEnum.KITS, kit);
+    public BF2Image getKitBF2Image(int kitId) {
+        return getImage(PictureSourceEnum.KITS, kitId);
     }
 
     @Override
-    public BF2Image getMapBF2Image(int map) {
-        return getImage(PictureSourceEnum.MAPS, map);
+    public BF2Image getMapBF2Image(int mapId) {
+        return getImage(PictureSourceEnum.MAPS, mapId);
     }
 
     @Override
-    public BF2Image getVehicleBF2Image(int vehicle) {
-        return getImage(PictureSourceEnum.VEHICLES, vehicle);
+    public BF2Image getVehicleBF2Image(int vehicleId) {
+        return getImage(PictureSourceEnum.VEHICLES, vehicleId);
     }
 
     @Override
-    public BF2Image getWeaponBF2Image(int weapon) {
-        return getImage(PictureSourceEnum.WEAPONS, weapon);
+    public BF2Image getWeaponBF2Image(int weaponId) {
+        return getImage(PictureSourceEnum.WEAPONS, weaponId);
     }
 
     @Override

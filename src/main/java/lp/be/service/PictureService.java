@@ -12,15 +12,15 @@ public interface PictureService {
 
     BF2Image getSmallAwardBF2Image(int imageId);
 
-    BF2Image getFactionBF2Image(int faction);
+    BF2Image getFactionBF2Image(int factionId);
 
-    BF2Image getKitBF2Image(int kit);
+    BF2Image getKitBF2Image(int kitId);
 
-    BF2Image getMapBF2Image(int map);
+    BF2Image getMapBF2Image(int mapId);
 
-    BF2Image getVehicleBF2Image(int vehicle);
+    BF2Image getVehicleBF2Image(int vehicleId);
 
-    BF2Image getWeaponBF2Image(int weapon);
+    BF2Image getWeaponBF2Image(int weaponId);
 
     void removeColor(BF2Image bf2Image);
 

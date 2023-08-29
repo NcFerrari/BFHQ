@@ -13,7 +13,7 @@ public class BF2Image {
 
     private final ImageView imageView;
     private final Tooltip tooltip;
-    private final NodeTextEnum nodeTextEnum;
+    private NodeTextEnum nodeTextEnum;
 
     public BF2Image() {
         this(null, null);
@@ -26,15 +26,24 @@ public class BF2Image {
         imageView.setImage(image);
     }
 
+    public void installTooltip(String text) {
+        tooltip.setText(text);
+        Tooltip.install(imageView, tooltip);
+    }
+
+    public void uninstallTooltip() {
+        Tooltip.uninstall(imageView, tooltip);
+    }
+
     public void updateData(BF2Image bf2Image, boolean enableToolkit) {
         if (!NodeTextEnum.getComponentsForTranslate().containsKey(tooltip.textProperty())) {
             tooltip.setText(NodeTextEnum.EMPTY_STRING.getText(tooltip.textProperty()));
         }
         if (enableToolkit && bf2Image.getNodeTextEnum() != null) {
-            Tooltip.install(imageView, tooltip);
             NodeTextEnum.getComponentsForTranslate().replace(tooltip.textProperty(), bf2Image.getNodeTextEnum());
+            Tooltip.install(imageView, tooltip);
         } else {
-            Tooltip.uninstall(imageView, tooltip);
+            uninstallTooltip();
         }
         imageView.setImage(bf2Image.getImage());
     }

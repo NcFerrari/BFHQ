@@ -10,7 +10,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import lombok.Getter;
+import lp.Manager;
+import lp.be.business.dto.Player;
 import lp.be.service.BF2Image;
 import lp.be.service.PictureService;
 import lp.be.serviceimpl.PictureServiceImpl;
@@ -29,6 +32,7 @@ public class StatsOneThird {
     private final Map<NodeTextEnum, Label> personalInfoLabels = new EnumMap<>(NodeTextEnum.class);
     private final ObservableList<BF2Image> lastThreeAwards = FXCollections.observableArrayList();
     private final PictureService pictureService = PictureServiceImpl.getInstance();
+    private final Manager manager = Manager.getInstance();
     private final LeftSidePart leftSidePart;
 
     private VBox rankDataPane;
@@ -145,9 +149,8 @@ public class StatsOneThird {
         leftSidePart.getLeftPane().getChildren().add(lastThreeAwardsPane);
 
         for (int i = 0; i < 3; i++) {
-            BF2Image bf2Image = new BF2Image();
-            lastThreeAwards.add(bf2Image);
-            lastThreeAwardsPane.getChildren().add(bf2Image.getImageView());
+            lastThreeAwards.add(new BF2Image());
+            lastThreeAwardsPane.getChildren().add(lastThreeAwards.get(i).getImageView());
         }
         resetAwardsImages();
         addBorderLine(NodeTextEnum.LAST_AWARD);
@@ -155,7 +158,54 @@ public class StatsOneThird {
         lastAwardLabel.setText(NodeTextEnum.EMPTY_STRING.getText(lastAwardLabel.textProperty()));
     }
 
-    public void resetAwardsImages() {
+    private void resetAwardsImages() {
         lastThreeAwards.forEach(BF2Image::removeImage);
+    }
+
+    public void resize(Stage stage) {
+        double oneSixth = stage.getWidth() / 6;
+        double oneNinth = stage.getWidth() / 9;
+        getRankDataPane().setPrefWidth(oneSixth);
+        getProgressBar().setPrefWidth(oneSixth);
+        getImagePane().setPrefWidth(oneSixth);
+        getRankImage().setImageViewSize(oneNinth, oneNinth);
+        getLastThreeAwards().forEach(bf2Image -> bf2Image.setImageViewSize(oneNinth - 20, oneNinth));
+    }
+
+    public void rewriteData(Player player) {
+        int rank = player.getRank();
+        NodeTextEnum.getComponentsForTranslate().replace(currentRank.textProperty(),
+                NodeTextEnum.valueOf(NamespaceEnum.RANK_PREFIX.getText() + rank));
+        if (rank < 21) {
+            NodeTextEnum.getComponentsForTranslate().replace(nextRank.textProperty(),
+                    NodeTextEnum.valueOf(NamespaceEnum.RANK_PREFIX.getText() + (rank + 1)));
+            progressBar.setProgress((player.getScore() - rankLimits[rank]) / (rankLimits[rank + 1] - rankLimits[rank]));
+        } else {
+            NodeTextEnum.getComponentsForTranslate().replace(nextRank.textProperty(), NodeTextEnum.EMPTY_STRING);
+            progressBar.setProgress(1);
+        }
+
+        rankImage.updateData(pictureService.getRankBF2Image(rank), false);
+
+        personalInfoLabels.get(NodeTextEnum.GLOBAL_SCORE).setText(String.valueOf(player.getScore()));
+        personalInfoLabels.get(NodeTextEnum.TIME).setText(manager.longToTime(player.getTime()));
+        personalInfoLabels.get(NodeTextEnum.KILLS).setText(String.valueOf(player.getKills()));
+        personalInfoLabels.get(NodeTextEnum.DEATHS).setText(String.valueOf(player.getDeaths()));
+        personalInfoLabels.get(NodeTextEnum.TEAM_KILLS).setText(
+                String.valueOf(player.getTeamkills()));
+        personalInfoLabels.get(NodeTextEnum.WINS).setText(String.valueOf(player.getWins()));
+        personalInfoLabels.get(NodeTextEnum.LOSSES).setText(String.valueOf(player.getLosses()));
+
+        resetAwardsImages();
+        int i = 0;
+        for (BF2Image bf2Image : manager.getAwardsForSelectedPlayer(3)) {
+            lastThreeAwards.get(i++).updateData(bf2Image, manager.isShowToolkit());
+        }
+
+        NodeTextEnum.getComponentsForTranslate().replace(lastAwardLabel.textProperty(),
+                NodeTextEnum.EMPTY_STRING);
+        for (BF2Image bf2Image : manager.getAwardsForSelectedPlayer(1)) {
+            NodeTextEnum.getComponentsForTranslate().replace(lastAwardLabel.textProperty(), bf2Image.getNodeTextEnum());
+        }
     }
 }
