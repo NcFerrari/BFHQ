@@ -1,0 +1,97 @@
+#right-side-part .tab-pane {
+    -fx-border-color: rgb(140, 140, 48);
+}
+
+#right-side-part .tab-pane .tab {
+    -fx-padding: 0;
+    -fx-border-color: #7a7a40;
+    -fx-pref-height: 50;
+}
+
+#right-side-part .tab-pane .tab:selected {
+    -fx-background-color: linear-gradient(to top, black 0%, black 15%, silver 50%, silver 100%);
+}
+
+#right-side-part  .tab-pane .tab-header-background {
+    -fx-background-color: transparent;
+}
+
+#right-side-part .table-view {
+    -fx-background-color: transparent;
+}
+
+#right-side-part .table-row-cell {
+    -fx-background-color: transparent;
+}
+
+#right-side-part .table-row-cell:empty {
+    -fx-background-color: transparent;
+}
+
+#right-side-part .table-row-cell:empty .table-cell {
+    -fx-border-width: 0px;
+    -fx-background-color: transparent;
+}
+
+#right-side-part .table-view .column-header {
+    -fx-border-color: #2b2b2b;
+    -fx-border-width: 2px;
+    -fx-background-insets: 0px;
+    -fx-font-family: "Haettenschweiler";
+}
+
+#right-side-part .table-column {
+    -fx-background-color: #3a3939;
+    -fx-border-color: #2b2b2b;
+    -fx-border-width: 2px;
+    -fx-font-family: "Arial Narrow";
+}
+
+#right-side-part .table-cell {
+    -fx-alignment: CENTER;
+}
+
+#right-side-part .table-column .label {
+    -fx-alignment: CENTER-LEFT;
+    -fx-text-fill: white;
+}
+
+#right-side-part .faction-titles {
+    -fx-alignment: CENTER-LEFT;
+}
+
+#right-side-part .table-view .scroll-bar {
+    -fx-background-color: transparent;
+}
+
+#right-side-part .table-view .scroll-bar:horizontal .thumb {
+    -fx-background-color: yellow;
+    -fx-background-radius: 15px;
+}
+
+#right-side-part .table-view .scroll-bar:vertical .thumb {
+    -fx-background-color: yellow;
+    -fx-background-radius: 15px;
+}
+
+#right-side-part .table-cell#first-column-most-played {
+    -fx-alignment: CENTER;
+    -fx-font-size: 26px;
+}
+
+#right-side-part .table-view .filler, .corner {
+    -fx-background-color: #2b2b2b;
+}
+
+#right-side-part #x {
+    -fx-text-fill: #6e6969;
+}
+
+#right-side-part #center-right .cell {
+    -fx-alignment: CENTER-RIGHT;
+}
+
+#right-side-part .table-cell#first-column {
+    -fx-alignment: CENTER-LEFT;
+    -fx-font-size: 26px;
+}

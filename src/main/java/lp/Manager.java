@@ -143,20 +143,20 @@ public class Manager {
         Long[] kitTimeArray = new Long[7];
         for (int i = 0; i < kitTimeArray.length; i++) {
             kitTimeArray[i] = (Long) getSelectedPlayer().getKits().getClass()
-                    .getMethod("getTime" + i).invoke(getSelectedPlayer().getKits());
+                    .getMethod(NamespaceEnum.GET_TIME.getText() + i).invoke(getSelectedPlayer().getKits());
         }
 
         Long[] vehicleTimeArray = new Long[8];
         for (int i = 0; i < vehicleTimeArray.length - 1; i++) {
             vehicleTimeArray[i] = (Long) getSelectedPlayer().getVehicles().getClass()
-                    .getMethod("getTime" + i).invoke(getSelectedPlayer().getVehicles());
+                    .getMethod(NamespaceEnum.GET_TIME.getText() + i).invoke(getSelectedPlayer().getVehicles());
         }
         vehicleTimeArray[7] = getSelectedPlayer().getVehicles().getTimepara();
 
         Long[] weaponTimeArray = new Long[14];
         for (int i = 0; i < weaponTimeArray.length - 5; i++) {
             weaponTimeArray[i] = (Long) getSelectedPlayer().getWeapons().getClass()
-                    .getMethod("getTime" + i).invoke(getSelectedPlayer().getWeapons());
+                    .getMethod(NamespaceEnum.GET_TIME.getText() + i).invoke(getSelectedPlayer().getWeapons());
         }
         weaponTimeArray[9] = getSelectedPlayer().getWeapons().getKnifetime();
         weaponTimeArray[10] = getSelectedPlayer().getWeapons().getC4time();
@@ -207,13 +207,48 @@ public class Manager {
         for (int i = 0; i < 4; i++) {
             try {
                 result.put(factions[i], new String[]{
-                        longToTime((Long) army.getClass().getMethod("getTime" + (i != 3 ? i : 9)).invoke(army)),
-                        String.valueOf(army.getClass().getMethod("getWin" + (i != 3 ? i : 9)).invoke(army)),
-                        String.valueOf(army.getClass().getMethod("getLoss" + (i != 3 ? i : 9)).invoke(army))});
+                        longToTime((Long) army.getClass().getMethod(
+                                NamespaceEnum.GET_TIME.getText() + (i != 3 ? i : 9)).invoke(army)),
+                        String.valueOf(army.getClass().getMethod(
+                                NamespaceEnum.GET_WIN.getText() + (i != 3 ? i : 9)).invoke(army)),
+                        String.valueOf(army.getClass().getMethod(
+                                NamespaceEnum.GET_LOSS.getText() + (i != 3 ? i : 9)).invoke(army))});
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
         return result;
+    }
+
+    public Map<NodeTextEnum, String[]> getMapsStatsData() {
+        Map<NodeTextEnum, String[]> result = new EnumMap<>(NodeTextEnum.class);
+        maps.get(getSelectedPlayer().getId()).forEach(map -> result.put(NodeTextEnum.valueOf(
+                NamespaceEnum.MAP.getText() + map.getMapid()), new String[]{
+                String.valueOf(map.getWin()), String.valueOf(map.getLoss()), longToTime(map.getTime())})
+        );
+        return result;
+    }
+
+    public List<String[]> getTeamWorkData() {
+        List<String[]> result = new ArrayList<>();
+        result.add(new String[]{formatNumber(getSelectedPlayer().getTeamscore())});
+        result.add(new String[]{formatNumber(getSelectedPlayer().getCaptures())});
+        result.add(new String[]{formatNumber(getSelectedPlayer().getCaptureassists())});
+        result.add(new String[]{formatNumber(getSelectedPlayer().getDefends())});
+        result.add(new String[]{formatNumber(getSelectedPlayer().getDamageassists())});
+        result.add(new String[]{formatNumber(getSelectedPlayer().getHeals())});
+        result.add(new String[]{formatNumber(getSelectedPlayer().getRevives())});
+        result.add(new String[]{formatNumber(getSelectedPlayer().getAmmos())});
+        result.add(new String[]{formatNumber(getSelectedPlayer().getRepairs())});
+        result.add(new String[]{formatNumber(getSelectedPlayer().getDriverspecials())});
+        return result;
+    }
+
+    private String formatNumber(Long value) {
+        StringBuilder result = new StringBuilder(value.toString());
+        for (int i = result.length() - 3; i > 0; i -= 3) {
+            result.insert(i, NamespaceEnum.TEXT_POINT.getText());
+        }
+        return result.toString();
     }
 }

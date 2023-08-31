@@ -43,6 +43,27 @@ public enum NodeTextEnum {
     MAP("MAP", "MAPA"),
     MOST_PLAYED_TAB("MOST PLAYED", "NEJVÍC HRANÉ"),
     ARMY_STATS_TAB("ARMY STATS", "ARMÁDNÍ STATISTIKY"),
+    MAP_NAME("Map name", "Název mapy"),
+    MAP_STATS_TAB("MAP STATS", "STATISTIKY MAP"),
+    TEAM_ACTION("Team action", "Týmové akce"),
+    SCORE("Score", "Body"),
+    TEAM_WORK_SCORE("Teamwork score", "Skóre týmové práce"),
+    CAPTURED_CP("Captured CP (command post)", "Zabrané velitelské stanoviště"),
+    CAPTURE_ASSIST("Capture Assist", "Asistence zabrání"),
+    DEFENDED_CP("Defended CP", "Obrana velitelského stanoviště"),
+    KILL_ASSISTS("Kill assists", "Asistence zabití"),
+    HEAL("Heal", "Uzdravování"),
+    REVIVE("Revive", "Oživování"),
+    SUPPORT("Support", "Doplňování munice"),
+    REPAIR("Repair", "Opravování"),
+    DRIVER_SPECIAL("Driver special", "Speciální bod z auta"),
+    TEAM_WORK_TITLE("TEAMWORK", "TÝMOVÁ PRÁCE"),
+    DRIVER_SPECIAL_TOOLTIP("A driver special ability point is when you're the driver of a vehicle, and your passenger" +
+            "is an engineer, support or medic.\nWhen they support someone, heal someone, or repair someone, then you " +
+            "get a driver special ability point.",
+            "Speciální bod z auta získáš jako řidič vozidla a někdo z tvých pasažérů je inženýr, zásobovač nebo" +
+                    "zdravotník.\nKdyž někoho zásobují, uzdraví nebo opraví, tak potom získáš speciální bod z auta."),
+
     FACTION_USMC("United States Marine Corps", "Námořní pěchota spojených Států"),
     FACTION_PLA("People's Liberation Army", "Lidová Osvobozenecká Armáda"),
     FACTION_MEC("Middle Eastern Coalition", "Koalice Středo-východu"),

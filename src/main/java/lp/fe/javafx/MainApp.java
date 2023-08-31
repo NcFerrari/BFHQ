@@ -82,6 +82,7 @@ public class MainApp extends Application {
         addCSS(scene, NamespaceEnum.BUTTONS_STYLE);
         addCSS(scene, NamespaceEnum.TABLE_STYLE);
         addCSS(scene, NamespaceEnum.TAB_PANE_STYLE);
+        addCSS(scene, NamespaceEnum.RIGHT_SIDE_STYLE);
     }
 
     private void temporaryMethodToRemove(Scene scene) {

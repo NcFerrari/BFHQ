@@ -14,6 +14,7 @@ public enum NamespaceEnum {
     BUTTONS_STYLE("css/buttons.css"),
     TABLE_STYLE("css/table.css"),
     TAB_PANE_STYLE("css/tab-pane.css"),
+    RIGHT_SIDE_STYLE("css/right-side-part.css"),
     TEMPORARY_CSS_FILE("file:///C://temp/temporary.css"),
     DATE_FORMAT("yyyy-MM-dd"),
     HOUR_FORMAT("HH"),
@@ -34,6 +35,7 @@ public enum NamespaceEnum {
     FIRST_COLUMN_MOST_PLAYED_STYLE("first-column-most-played "),
     FIRST_COLUMN_STYLE("first-column"),
     CENTER_RIGHT_TABLE_STYLE("center-right"),
+    CENTER_RIGHT_TABLE("center-right"),
     ID_UP_TAB_PANE("up-tab-pane"),
     ID_DOWN_TAB_PANE("down-tab-pane"),
     PREF_WIDTH_STYLE("-fx-pref-width: "),
@@ -44,6 +46,8 @@ public enum NamespaceEnum {
     EMPTY_STRING(""),
     SPACE_STRING(" "),
     ZERO("0"),
+    X_MARK("x"),
+    TEXT_POINT("."),
     DIALOG_BUTTON_YES_EN("Yes"),
     DIALOG_BUTTON_NO_EN("No"),
     DIALOG_BUTTON_YES_CZ("Ano"),
@@ -57,7 +61,10 @@ public enum NamespaceEnum {
     KIT("KIT_"),
     VEHICLE("VEHICLE_"),
     WEAPON("WEAPON_"),
-    MAP("MAP_");
+    MAP("MAP_"),
+    GET_TIME("getTime"),
+    GET_WIN("getWin"),
+    GET_LOSS("getLoss");
 
     private final String text;
 

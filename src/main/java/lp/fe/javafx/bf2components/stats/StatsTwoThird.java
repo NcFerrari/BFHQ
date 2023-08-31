@@ -9,14 +9,13 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.image.Image;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import lombok.Getter;
 import lp.Manager;
-import lp.be.business.dto.Player;
 import lp.be.service.BF2Image;
 import lp.be.service.PictureService;
 import lp.be.serviceimpl.PictureServiceImpl;
@@ -45,8 +44,8 @@ public class StatsTwoThird {
 
         tabMostPlayed();
         tabArmyStats();
-//        tabMapStats();
-//        tabTeamWork();
+        tabMapStats();
+        tabTeamWork();
 //        tabPlayerStats();
 //        tabKitEquipment();
 //        tabVehicleCategory();
@@ -56,8 +55,8 @@ public class StatsTwoThird {
     public void rewriteData() {
         reloadTabMostPlayedData();
         reloadTabArmyStats();
-//        reloadTabMapStats();
-//        reloadTabTeamWork();
+        reloadTabMapStats();
+        reloadTabTeamWork();
 //        reloadTabPlayerStats();
 //        reloadTabKitEquipment();
 //        reloadTabVehicleCategory();
@@ -180,28 +179,28 @@ public class StatsTwoThird {
         }
     }
 
-//    private void tabMapStats() {
-//        NodeTextEnum[] columnTitles = {NodeTextEnum.MAP_NAME, NodeTextEnum.WINS, NodeTextEnum.LOSSES, NodeTextEnum.TIME};
-//        NodeTextEnum[] maps = {NodeTextEnum.MAP_0, NodeTextEnum.MAP_1, NodeTextEnum.MAP_2, NodeTextEnum.MAP_3, NodeTextEnum.MAP_4,
-//                NodeTextEnum.MAP_5, NodeTextEnum.MAP_6, NodeTextEnum.MAP_10, NodeTextEnum.MAP_11, NodeTextEnum.MAP_12,
-//                NodeTextEnum.MAP_100, NodeTextEnum.MAP_101, NodeTextEnum.MAP_102, NodeTextEnum.MAP_103, NodeTextEnum.MAP_105,
-//                NodeTextEnum.MAP_110, NodeTextEnum.MAP_200, NodeTextEnum.MAP_201, NodeTextEnum.MAP_202, NodeTextEnum.MAP_601,
-//                NodeTextEnum.MAP_700};
-//        generateTab(TabPositionEnum.UP, NodeTextEnum.MAP_STATS_TAB, columnTitles, maps, 0);
-//    }
-//
-//    private void tabTeamWork() {
-//        NodeTextEnum[] columnTitles = {NodeTextEnum.TEAM_ACTION, NodeTextEnum.SCORE};
-//        NodeTextEnum[] teamActions = {NodeTextEnum.TEAM_WORK_SCORE, NodeTextEnum.CAPTURED_CP, NodeTextEnum.CAPTURE_ASSIST,
-//                NodeTextEnum.DEFENDED_CP, NodeTextEnum.KILL_ASSISTS, NodeTextEnum.HEAL, NodeTextEnum.REVIVE, NodeTextEnum.SUPPORT,
-//                NodeTextEnum.REPAIR, NodeTextEnum.DRIVER_SPECIAL};
-//        generateTab(TabPositionEnum.UP, NodeTextEnum.TEAM_WORK_TITLE, columnTitles, teamActions, 0);
-//        Tooltip tooltip = new Tooltip();
-//        tooltip.setText(NodeTextEnum.DRIVER_SPECIAL_TOOLTIP.getText(tooltip.textProperty()));
-//        ((Label) tableMap.get(NodeTextEnum.TEAM_WORK_TITLE).getItems().get(teamActions.length - 1)[0].get()).
-//                setTooltip(tooltip);
-//    }
-//
+    private void tabMapStats() {
+        NodeTextEnum[] columnTitles = {NodeTextEnum.MAP_NAME, NodeTextEnum.WINS, NodeTextEnum.LOSSES, NodeTextEnum.TIME};
+        NodeTextEnum[] maps = {NodeTextEnum.MAP_0, NodeTextEnum.MAP_1, NodeTextEnum.MAP_2, NodeTextEnum.MAP_3,
+                NodeTextEnum.MAP_4, NodeTextEnum.MAP_5, NodeTextEnum.MAP_6, NodeTextEnum.MAP_10, NodeTextEnum.MAP_11,
+                NodeTextEnum.MAP_12, NodeTextEnum.MAP_100, NodeTextEnum.MAP_101, NodeTextEnum.MAP_102,
+                NodeTextEnum.MAP_103, NodeTextEnum.MAP_105, NodeTextEnum.MAP_110, NodeTextEnum.MAP_200,
+                NodeTextEnum.MAP_201, NodeTextEnum.MAP_202, NodeTextEnum.MAP_601, NodeTextEnum.MAP_700};
+        generateTab(TabPositionEnum.UP, NodeTextEnum.MAP_STATS_TAB, columnTitles, maps, 0);
+    }
+
+    private void tabTeamWork() {
+        NodeTextEnum[] columnTitles = {NodeTextEnum.TEAM_ACTION, NodeTextEnum.SCORE};
+        NodeTextEnum[] teamActions = {NodeTextEnum.TEAM_WORK_SCORE, NodeTextEnum.CAPTURED_CP, NodeTextEnum.CAPTURE_ASSIST,
+                NodeTextEnum.DEFENDED_CP, NodeTextEnum.KILL_ASSISTS, NodeTextEnum.HEAL, NodeTextEnum.REVIVE, NodeTextEnum.SUPPORT,
+                NodeTextEnum.REPAIR, NodeTextEnum.DRIVER_SPECIAL};
+        generateTab(TabPositionEnum.UP, NodeTextEnum.TEAM_WORK_TITLE, columnTitles, teamActions, 0);
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText(NodeTextEnum.DRIVER_SPECIAL_TOOLTIP.getText(tooltip.textProperty()));
+        ((Label) tableMap.get(NodeTextEnum.TEAM_WORK_TITLE).getItems().get(teamActions.length - 1)[0].get()).
+                setTooltip(tooltip);
+    }
+
 //    private void tabPlayerStats() {
 //        NodeTextEnum[] columnTitles = {NodeTextEnum.PLAYER_ACTION, NodeTextEnum.SCORE};
 //        NodeTextEnum[] playerActions = {NodeTextEnum.KILL_STREAK, NodeTextEnum.DEATH_STREAK, NodeTextEnum.DRIVER_ASSISTS,
@@ -242,13 +241,10 @@ public class StatsTwoThird {
             data = manager.getMostPlayedData();
             NamespaceEnum[] categories = {NamespaceEnum.KIT, NamespaceEnum.VEHICLE,
                     NamespaceEnum.WEAPON, NamespaceEnum.MAP};
-
             ObservableList<ObjectProperty<Object>[]> rowObject = tableMap.get(NodeTextEnum.MOST_PLAYED_TAB).getItems();
-
             for (int i = 0; i < rowObject.get(0).length; i++) {
                 NodeTextEnum.getComponentsForTranslate().replace(((Label) rowObject.get(0)[i].get()).textProperty(),
                         NodeTextEnum.valueOf(categories[i].getText() + data.get(categories[i])[0]));
-
                 BF2Image bf2image;
                 switch (categories[i]) {
                     case KIT:
@@ -272,6 +268,7 @@ public class StatsTwoThird {
                 ((Label) rowObject.get(2)[i].get()).setText(data.get(categories[i])[1]);
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -287,41 +284,41 @@ public class StatsTwoThird {
         }
     }
 
-//    private void reloadTabMapStats() {
-//        Map<NamespaceEnum, String[]> data = manager.getMapsStatsData();
-//        NamespaceEnum[] maps = {NamespaceEnum.MAP_0, NamespaceEnum.MAP_1, NamespaceEnum.MAP_2, NamespaceEnum.MAP_3, NamespaceEnum.MAP_4,
-//                NamespaceEnum.MAP_5, NamespaceEnum.MAP_6, NamespaceEnum.MAP_10, NamespaceEnum.MAP_11, NamespaceEnum.MAP_12,
-//                NamespaceEnum.MAP_100, NamespaceEnum.MAP_101, NamespaceEnum.MAP_102, NamespaceEnum.MAP_103, NamespaceEnum.MAP_105,
-//                NamespaceEnum.MAP_110, NamespaceEnum.MAP_200, NamespaceEnum.MAP_201, NamespaceEnum.MAP_202, NamespaceEnum.MAP_601,
-//                NamespaceEnum.MAP_700};
-//        ObservableList<ObjectProperty<Object>[]> rowObject = tableMap.get(NodeTextEnum.MAP_STATS_TAB).getItems();
-//        for (int i = 0; i < rowObject.size(); i++) {
-//            String wins = NamespaceEnum.X_MARK.getText();
-//            String losses = NamespaceEnum.X_MARK.getText();
-//            String time = NamespaceEnum.X_MARK.getText();
-//            String id = NamespaceEnum.X_MARK.getText();
-//            if (data.containsKey(maps[i])) {
-//                wins = data.get(maps[i])[0];
-//                losses = data.get(maps[i])[1];
-//                time = data.get(maps[i])[2];
-//                id = NamespaceEnum.EMPTY_STRING.getText();
-//            }
-//            Label winLabel = ((Label) rowObject.get(i)[1].get());
-//            winLabel.setText(wins);
-//            winLabel.setId(id);
-//            Label lossesLabel = ((Label) rowObject.get(i)[2].get());
-//            lossesLabel.setText(losses);
-//            lossesLabel.setId(id);
-//            Label timeLabel = ((Label) rowObject.get(i)[3].get());
-//            timeLabel.setText(time);
-//            timeLabel.setId(id);
-//        }
-//    }
-//
-//    private void reloadTabTeamWork() {
-//        generateTab(manager.getTeamWorkData(), NodeTextEnum.TEAM_WORK_TITLE);
-//    }
-//
+    private void reloadTabMapStats() {
+        Map<NodeTextEnum, String[]> data = manager.getMapsStatsData();
+        NodeTextEnum[] maps = {NodeTextEnum.MAP_0, NodeTextEnum.MAP_1, NodeTextEnum.MAP_2, NodeTextEnum.MAP_3, NodeTextEnum.MAP_4,
+                NodeTextEnum.MAP_5, NodeTextEnum.MAP_6, NodeTextEnum.MAP_10, NodeTextEnum.MAP_11, NodeTextEnum.MAP_12,
+                NodeTextEnum.MAP_100, NodeTextEnum.MAP_101, NodeTextEnum.MAP_102, NodeTextEnum.MAP_103, NodeTextEnum.MAP_105,
+                NodeTextEnum.MAP_110, NodeTextEnum.MAP_200, NodeTextEnum.MAP_201, NodeTextEnum.MAP_202, NodeTextEnum.MAP_601,
+                NodeTextEnum.MAP_700};
+        ObservableList<ObjectProperty<Object>[]> rowObject = tableMap.get(NodeTextEnum.MAP_STATS_TAB).getItems();
+        for (int i = 0; i < rowObject.size(); i++) {
+            String wins = NamespaceEnum.X_MARK.getText();
+            String losses = NamespaceEnum.X_MARK.getText();
+            String time = NamespaceEnum.X_MARK.getText();
+            String id = NamespaceEnum.X_MARK.getText();
+            if (data.containsKey(maps[i])) {
+                wins = data.get(maps[i])[0];
+                losses = data.get(maps[i])[1];
+                time = data.get(maps[i])[2];
+                id = NamespaceEnum.EMPTY_STRING.getText();
+            }
+            Label winLabel = ((Label) rowObject.get(i)[1].get());
+            winLabel.setText(wins);
+            winLabel.setId(id);
+            Label lossesLabel = ((Label) rowObject.get(i)[2].get());
+            lossesLabel.setText(losses);
+            lossesLabel.setId(id);
+            Label timeLabel = ((Label) rowObject.get(i)[3].get());
+            timeLabel.setText(time);
+            timeLabel.setId(id);
+        }
+    }
+
+    private void reloadTabTeamWork() {
+        generateTab(FXCollections.observableArrayList(manager.getTeamWorkData()), NodeTextEnum.TEAM_WORK_TITLE);
+    }
+
 //    private void reloadTabPlayerStats() {
 //        generateTab(manager.getPlayerStatsData(), NodeTextEnum.PLAYER_STATS);
 //    }
@@ -337,33 +334,33 @@ public class StatsTwoThird {
 //    private void reloadKits() {
 //        generateTab(manager.getKitsData(), NodeTextEnum.KITS);
 //    }
-//
-//    private void generateTab(List<String[]> data, NodeTextEnum title) {
-//        ObservableList<ObjectProperty<Object>[]> rowObject = tableMap.get(title).getItems();
-//        for (int i = 0; i < rowObject.size(); i++) {
-//            for (int j = 0; j < tableMap.get(title).getColumns().size() - 1; j++) {
-//                ((Label) rowObject.get(i)[j + 1].get()).setText(data.get(i)[j]);
-//            }
-//        }
-//    }
-//
-//    private void generateTab(TabPositionEnum position, NodeTextEnum title, NodeTextEnum[] columns, NodeTextEnum[] rows,
-//                             int fontSize) {
-//        createTable(position, title, columns, rows.length);
-//        tableMap.get(title).getColumns().get(0).setId(NamespaceEnum.FIRST_COLUMN.getText());
-//        tableMap.get(title).setId(NamespaceEnum.CENTER_RIGHT_TABLE.getText());
-//        ObservableList<ObjectProperty<Object>[]> rowObject = tableMap.get(title).getItems();
-//        for (int i = 0; i < rows.length; i++) {
-//            Label label = generateNewLabel(rows[i]);
-//            if (fontSize > 0) {
-//                label.setFont(new Font(fontSize));
-//            }
-//            rowObject.get(i)[0] = new SimpleObjectProperty<>(label);
-//            for (int j = 1; j < columns.length; j++) {
-//                addLabelToRow(rowObject.get(i), j, fontSize);
-//            }
-//        }
-//    }
+
+    private void generateTab(ObservableList<String[]> data, NodeTextEnum title) {
+        ObservableList<ObjectProperty<Object>[]> rowObject = tableMap.get(title).getItems();
+        for (int i = 0; i < rowObject.size(); i++) {
+            for (int j = 0; j < tableMap.get(title).getColumns().size() - 1; j++) {
+                ((Label) rowObject.get(i)[j + 1].get()).setText(data.get(i)[j]);
+            }
+        }
+    }
+
+    private void generateTab(TabPositionEnum position, NodeTextEnum title, NodeTextEnum[] columns, NodeTextEnum[] rows,
+                             int fontSize) {
+        createTable(position, title, columns, rows.length);
+        tableMap.get(title).getColumns().get(0).setId(NamespaceEnum.FIRST_COLUMN_STYLE.getText());
+        tableMap.get(title).setId(NamespaceEnum.CENTER_RIGHT_TABLE.getText());
+        ObservableList<ObjectProperty<Object>[]> rowObject = tableMap.get(title).getItems();
+        for (int i = 0; i < rows.length; i++) {
+            Label label = generateNewLabel(rows[i]);
+            if (fontSize > 0) {
+                label.setFont(new Font(fontSize));
+            }
+            rowObject.get(i)[0] = new SimpleObjectProperty<>(label);
+            for (int j = 1; j < columns.length; j++) {
+                addLabelToRow(rowObject.get(i), j, fontSize);
+            }
+        }
+    }
 
     private Label generateNewLabel(NodeTextEnum NodeTextEnum) {
         Label label = new Label();
