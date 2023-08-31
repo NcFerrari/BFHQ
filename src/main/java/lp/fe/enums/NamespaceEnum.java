@@ -66,7 +66,12 @@ public enum NamespaceEnum {
     MAP("MAP_"),
     GET_TIME("getTime"),
     GET_WIN("getWin"),
-    GET_LOSS("getLoss");
+    GET_LOSS("getLoss"),
+    GET_KILLS("getKills"),
+    GET_DEATHS("getDeaths"),
+    GET_HIT("getHit"),
+    GET_FIRED("getFired"),
+    GET_RK("getRk");
 
     private final String text;
 
