@@ -43,6 +43,10 @@ public enum NodeTextEnum {
     MAP("MAP", "MAPA"),
     MOST_PLAYED_TAB("MOST PLAYED", "NEJVÍC HRANÉ"),
     ARMY_STATS_TAB("ARMY STATS", "ARMÁDNÍ STATISTIKY"),
+    FACTION_USMC("United States Marine Corps", "Námořní pěchota spojených Států"),
+    FACTION_PLA("People's Liberation Army", "Lidová Osvobozenecká Armáda"),
+    FACTION_MEC("Middle Eastern Coalition", "Koalice Středo-východu"),
+    FACTION_EU("European Union", "Evropská Unie"),
 
     KIT_0("Anti-tank", "Bazukář"),
     KIT_1("Assault", "Pěšák"),

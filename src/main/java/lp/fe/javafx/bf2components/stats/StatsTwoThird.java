@@ -44,7 +44,7 @@ public class StatsTwoThird {
         rightPane.getChildren().addAll(upTabPane, downTabPane);
 
         tabMostPlayed();
-//        tabArmyStats();
+        tabArmyStats();
 //        tabMapStats();
 //        tabTeamWork();
 //        tabPlayerStats();
@@ -53,9 +53,9 @@ public class StatsTwoThird {
 //        tabKits();
     }
 
-    public void rewriteData(Player player) {
+    public void rewriteData() {
         reloadTabMostPlayedData();
-//        reloadTabArmyStats();
+        reloadTabArmyStats();
 //        reloadTabMapStats();
 //        reloadTabTeamWork();
 //        reloadTabPlayerStats();
@@ -83,10 +83,10 @@ public class StatsTwoThird {
             ((ImageView) objectImage.get()).setFitWidth(twoThird / 8);
             ((ImageView) objectImage.get()).setFitHeight(twoThird / 8);
         }
-//        for (ObjectProperty<Object>[] rowObject : tableMap.get(NodeTextEnum.ARMY_STATS_TAB).getItems()) {
-//            ((ImageView) rowObject[0].get()).setFitWidth(twoThird / 6);
-//            ((ImageView) rowObject[0].get()).setFitHeight(twoThird / 24);
-//        }
+        for (ObjectProperty<Object>[] rowObject : tableMap.get(NodeTextEnum.ARMY_STATS_TAB).getItems()) {
+            ((ImageView) rowObject[0].get()).setFitWidth(twoThird / 6);
+            ((ImageView) rowObject[0].get()).setFitHeight(twoThird / 24);
+        }
     }
 
     private void createTable(TabPositionEnum tabContainer, NodeTextEnum tabTitle,
@@ -155,29 +155,29 @@ public class StatsTwoThird {
     private void tabArmyStats() {
         NodeTextEnum[] columnTitles = {NodeTextEnum.EMPTY_STRING, NodeTextEnum.EMPTY_STRING, NodeTextEnum.TIME,
                 NodeTextEnum.WINS, NodeTextEnum.LOSSES};
-        Image[] factionImages = {};
-//        pictureService.getPicture(PicturesEnum.FACTION_USMC),
-//                pictureService.getPicture(PicturesEnum.FACTION_MEC),
-//                pictureService.getPicture(PicturesEnum.FACTION_PLA),
-//                pictureService.getPicture(PicturesEnum.FACTION_EU)};
-        NodeTextEnum[] factionNames = {};
-//        NodeTextEnum.FACTION_USMC,
-//                NodeTextEnum.FACTION_MEC,
-//                NodeTextEnum.FACTION_PLA,
-//                NodeTextEnum.FACTION_EU};
+        BF2Image[] factionImages = {
+                pictureService.getFactionBF2Image(0),
+                pictureService.getFactionBF2Image(1),
+                pictureService.getFactionBF2Image(2),
+                pictureService.getFactionBF2Image(9)};
+        NodeTextEnum[] factionNames = {
+                NodeTextEnum.FACTION_USMC,
+                NodeTextEnum.FACTION_MEC,
+                NodeTextEnum.FACTION_PLA,
+                NodeTextEnum.FACTION_EU};
         createTable(TabPositionEnum.UP, NodeTextEnum.ARMY_STATS_TAB, columnTitles, factionImages.length);
-//        tableMap.get(NodeTextEnum.ARMY_STATS_TAB).getColumns().get(1).setId(NamespaceEnum.FIRST_COLUMN.getText());
-//        tableMap.get(NodeTextEnum.ARMY_STATS_TAB).setId(NamespaceEnum.CENTER_RIGHT_TABLE.getText());
+        tableMap.get(NodeTextEnum.ARMY_STATS_TAB).getColumns().get(1).setId(NamespaceEnum.FIRST_COLUMN_STYLE.getText());
+        tableMap.get(NodeTextEnum.ARMY_STATS_TAB).setId(NamespaceEnum.CENTER_RIGHT_TABLE_STYLE.getText());
         ObservableList<ObjectProperty<Object>[]> rowObject = tableMap.get(NodeTextEnum.ARMY_STATS_TAB).getItems();
-//        for (int i = 0; i < rowObject.size(); i++) {
-//            rowObject.get(i)[0] = new SimpleObjectProperty<>(new ImageView(factionImages[i]));
-//            Label armyLabel = generateNewLabel(factionNames[i]);
-//            armyLabel.setFont(new Font(11.5));
-//            rowObject.get(i)[1] = new SimpleObjectProperty<>(armyLabel);
-//            addLabelToRow(rowObject.get(i), 2);
-//            addLabelToRow(rowObject.get(i), 3);
-//            addLabelToRow(rowObject.get(i), 4);
-//        }
+        for (int i = 0; i < rowObject.size(); i++) {
+            rowObject.get(i)[0] = new SimpleObjectProperty<>(factionImages[i].getImageView());
+            Label armyLabel = generateNewLabel(factionNames[i]);
+            armyLabel.setFont(new Font(11.5));
+            rowObject.get(i)[1] = new SimpleObjectProperty<>(armyLabel);
+            addLabelToRow(rowObject.get(i), 2);
+            addLabelToRow(rowObject.get(i), 3);
+            addLabelToRow(rowObject.get(i), 4);
+        }
     }
 
 //    private void tabMapStats() {
@@ -275,17 +275,18 @@ public class StatsTwoThird {
         }
     }
 
-//    private void reloadTabArmyStats() {
-//        Map<NamespaceEnum, String[]> data = manager.getArmyStatsData();
-//        NamespaceEnum[] factions = {NamespaceEnum.USMC_ARMY, NamespaceEnum.MEC_ARMY, NamespaceEnum.PLA_ARMY, NamespaceEnum.EU_ARMY};
-//        for (int i = 0; i < tableMap.get(NodeTextEnum.ARMY_STATS_TAB).getItems().size(); i++) {
-//            ObjectProperty<Object>[] row = tableMap.get(NodeTextEnum.ARMY_STATS_TAB).getItems().get(i);
-//            ((Label) row[2].get()).setText(data.get(factions[i])[0]);
-//            ((Label) row[3].get()).setText(data.get(factions[i])[1]);
-//            ((Label) row[4].get()).setText(data.get(factions[i])[2]);
-//        }
-//    }
-//
+    private void reloadTabArmyStats() {
+        Map<NodeTextEnum, String[]> data = manager.getArmyStatsData();
+        NodeTextEnum[] factions = {NodeTextEnum.FACTION_USMC, NodeTextEnum.FACTION_MEC, NodeTextEnum.FACTION_PLA,
+                NodeTextEnum.FACTION_EU};
+        for (int i = 0; i < tableMap.get(NodeTextEnum.ARMY_STATS_TAB).getItems().size(); i++) {
+            ObjectProperty<Object>[] row = tableMap.get(NodeTextEnum.ARMY_STATS_TAB).getItems().get(i);
+            ((Label) row[2].get()).setText(data.get(factions[i])[0]);
+            ((Label) row[3].get()).setText(data.get(factions[i])[1]);
+            ((Label) row[4].get()).setText(data.get(factions[i])[2]);
+        }
+    }
+
 //    private void reloadTabMapStats() {
 //        Map<NamespaceEnum, String[]> data = manager.getMapsStatsData();
 //        NamespaceEnum[] maps = {NamespaceEnum.MAP_0, NamespaceEnum.MAP_1, NamespaceEnum.MAP_2, NamespaceEnum.MAP_3, NamespaceEnum.MAP_4,
@@ -363,12 +364,12 @@ public class StatsTwoThird {
 //            }
 //        }
 //    }
-//
-//    private Label generateNewLabel(NodeTextEnum NodeTextEnum) {
-//        Label label = new Label();
-//        label.setText(NodeTextEnum.getText(label.textProperty()));
-//        return label;
-//    }
+
+    private Label generateNewLabel(NodeTextEnum NodeTextEnum) {
+        Label label = new Label();
+        label.setText(NodeTextEnum.getText(label.textProperty()));
+        return label;
+    }
 
     private void addLabelToRow(ObjectProperty<Object>[] rowArray, int index, int labelTextSize) {
         Label label = new Label();

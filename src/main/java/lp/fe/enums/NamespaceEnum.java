@@ -32,6 +32,8 @@ public enum NamespaceEnum {
     VALUE_STYLE("value"),
     LAST_THREE_AWARDS_PANE_STYLE("last-three-awards"),
     FIRST_COLUMN_MOST_PLAYED_STYLE("first-column-most-played "),
+    FIRST_COLUMN_STYLE("first-column"),
+    CENTER_RIGHT_TABLE_STYLE("center-right"),
     ID_UP_TAB_PANE("up-tab-pane"),
     ID_DOWN_TAB_PANE("down-tab-pane"),
     PREF_WIDTH_STYLE("-fx-pref-width: "),

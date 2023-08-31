@@ -1,6 +1,7 @@
 package lp;
 
 import lombok.Getter;
+import lp.be.business.dto.Army;
 import lp.be.business.dto.Awards;
 import lp.be.business.dto.Maps;
 import lp.be.business.dto.Player;
@@ -42,14 +43,13 @@ public class Manager {
     public static Manager getInstance() {
         if (manager == null) {
             manager = new Manager();
-//            javafx.application.Application.launch(MainApp.class);
-            javafx.application.Application.launch(Test.class);
+            javafx.application.Application.launch(MainApp.class);
         }
         return manager;
     }
 
     private Manager() {
-//        loadDataFromDB();
+        loadDataFromDB();
     }
 
     public static void main(String[] args) {
@@ -197,5 +197,23 @@ public class Manager {
 
     public List<Maps> getMapsForSelectedPlayer() {
         return maps.get(getSelectedPlayer().getId());
+    }
+
+    public Map<NodeTextEnum, String[]> getArmyStatsData() {
+        Map<NodeTextEnum, String[]> result = new EnumMap<>(NodeTextEnum.class);
+        Army army = getSelectedPlayer().getArmy();
+        NodeTextEnum[] factions = {NodeTextEnum.FACTION_USMC, NodeTextEnum.FACTION_MEC, NodeTextEnum.FACTION_PLA,
+                NodeTextEnum.FACTION_EU};
+        for (int i = 0; i < 4; i++) {
+            try {
+                result.put(factions[i], new String[]{
+                        longToTime((Long) army.getClass().getMethod("getTime" + (i != 3 ? i : 9)).invoke(army)),
+                        String.valueOf(army.getClass().getMethod("getWin" + (i != 3 ? i : 9)).invoke(army)),
+                        String.valueOf(army.getClass().getMethod("getLoss" + (i != 3 ? i : 9)).invoke(army))});
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return result;
     }
 }

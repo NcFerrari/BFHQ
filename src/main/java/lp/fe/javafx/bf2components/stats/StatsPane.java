@@ -30,7 +30,7 @@ public class StatsPane extends BF2Component {
             return;
         }
         statsOneThird.rewriteData(player);
-        statsTwoThird.rewriteData(player);
+        statsTwoThird.rewriteData();
     }
 
     @Override
