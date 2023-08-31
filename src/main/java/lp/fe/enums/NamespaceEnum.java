@@ -39,7 +39,7 @@ public enum NamespaceEnum {
     CENTER_RIGHT_TABLE("center-right"),
     ID_UP_TAB_PANE("up-tab-pane"),
     ID_DOWN_TAB_PANE("down-tab-pane"),
-    PREF_WIDTH_STYLE("-fx-pref-width: "),
+    PREF_WIDTH_STYLE("-fx-pref-width: %f;-fx-font-size: %f;"),
     DAYS_LETTER("d"),
     HOURS_LETTER("h"),
     MINUTES_LETTER("min"),

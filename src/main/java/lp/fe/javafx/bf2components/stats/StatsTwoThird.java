@@ -70,14 +70,13 @@ public class StatsTwoThird {
         upTabPane.setPrefHeight(stage.getHeight() / 2);
         downTabPane.setPrefHeight(stage.getHeight() / 2);
         double upTabWidth = twoThird / upTabPane.getTabs().size() - 30;
-        String upStyle = NamespaceEnum.PREF_WIDTH_STYLE.getText() + upTabWidth;
+        String upStyle = String.format(NamespaceEnum.PREF_WIDTH_STYLE.getText(), upTabWidth, upTabWidth / 7.57);
         upTabPane.getTabs().forEach(tab -> tab.setStyle(upStyle));
         double downTabWidth = twoThird / downTabPane.getTabs().size() - 30;
-        String downStyle = NamespaceEnum.PREF_WIDTH_STYLE.getText() + downTabWidth;
+        String downStyle = String.format(NamespaceEnum.PREF_WIDTH_STYLE.getText(), downTabWidth, downTabWidth / 7.57);
         downTabPane.getTabs().forEach(tab -> tab.setStyle(downStyle));
-        tableMap.values().forEach(table ->
-                table.getColumns().forEach(column ->
-                        column.setPrefWidth((twoThird / table.getColumns().size()) - 30)));
+        tableMap.values().forEach(table -> table.getColumns().forEach(column ->
+                column.setPrefWidth((twoThird / table.getColumns().size()) - 30)));
         for (ObjectProperty<Object> objectImage : tableMap.get(NodeTextEnum.MOST_PLAYED_TAB).getItems().get(1)) {
             ((ImageView) objectImage.get()).setFitWidth(twoThird / 8);
             ((ImageView) objectImage.get()).setFitHeight(twoThird / 8);
