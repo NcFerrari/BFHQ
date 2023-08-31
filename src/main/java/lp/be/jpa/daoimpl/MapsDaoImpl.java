@@ -32,7 +32,6 @@ public class MapsDaoImpl extends EntityManager implements MapsDao {
         return mapEntityToDto(entity);
     }
 
-    @Override
     public List<Maps> getAllMaps() {
         if (getSession() == null) {
             return new ArrayList<>();

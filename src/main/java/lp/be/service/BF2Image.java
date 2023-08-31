@@ -26,15 +26,6 @@ public class BF2Image {
         imageView.setImage(image);
     }
 
-    public void installTooltip(String text) {
-        tooltip.setText(text);
-        Tooltip.install(imageView, tooltip);
-    }
-
-    public void uninstallTooltip() {
-        Tooltip.uninstall(imageView, tooltip);
-    }
-
     public void updateData(BF2Image bf2Image, boolean enableToolkit) {
         if (!NodeTextEnum.getComponentsForTranslate().containsKey(tooltip.textProperty())) {
             tooltip.setText(NodeTextEnum.EMPTY_STRING.getText(tooltip.textProperty()));
@@ -43,7 +34,7 @@ public class BF2Image {
             NodeTextEnum.getComponentsForTranslate().replace(tooltip.textProperty(), bf2Image.getNodeTextEnum());
             Tooltip.install(imageView, tooltip);
         } else {
-            uninstallTooltip();
+            Tooltip.uninstall(imageView, tooltip);
         }
         imageView.setImage(bf2Image.getImage());
     }

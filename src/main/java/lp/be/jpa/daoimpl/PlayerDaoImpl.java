@@ -55,7 +55,6 @@ public class PlayerDaoImpl extends EntityManager implements PlayerDao {
         return mapEntityToDto(entity);
     }
 
-    @Override
     public List<Player> getAllPlayer() {
         if (getSession() == null) {
             return new ArrayList<>();

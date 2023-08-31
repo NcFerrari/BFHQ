@@ -46,10 +46,10 @@ public class StatsTwoThird {
         tabArmyStats();
         tabMapStats();
         tabTeamWork();
-//        tabPlayerStats();
-//        tabKitEquipment();
-//        tabVehicleCategory();
-//        tabKits();
+        tabPlayerStats();
+        tabKitEquipment();
+        tabVehicleCategory();
+        tabKits();
     }
 
     public void rewriteData() {
@@ -57,10 +57,10 @@ public class StatsTwoThird {
         reloadTabArmyStats();
         reloadTabMapStats();
         reloadTabTeamWork();
-//        reloadTabPlayerStats();
-//        reloadTabKitEquipment();
-//        reloadTabVehicleCategory();
-//        reloadKits();
+        reloadTabPlayerStats();
+        reloadTabKitEquipment();
+        reloadTabVehicleCategory();
+        reloadKits();
     }
 
     public void resize(Stage stage) {
@@ -180,7 +180,8 @@ public class StatsTwoThird {
     }
 
     private void tabMapStats() {
-        NodeTextEnum[] columnTitles = {NodeTextEnum.MAP_NAME, NodeTextEnum.WINS, NodeTextEnum.LOSSES, NodeTextEnum.TIME};
+        NodeTextEnum[] columnTitles = {NodeTextEnum.MAP_NAME, NodeTextEnum.WINS, NodeTextEnum.LOSSES,
+                NodeTextEnum.TIME};
         NodeTextEnum[] maps = {NodeTextEnum.MAP_0, NodeTextEnum.MAP_1, NodeTextEnum.MAP_2, NodeTextEnum.MAP_3,
                 NodeTextEnum.MAP_4, NodeTextEnum.MAP_5, NodeTextEnum.MAP_6, NodeTextEnum.MAP_10, NodeTextEnum.MAP_11,
                 NodeTextEnum.MAP_12, NodeTextEnum.MAP_100, NodeTextEnum.MAP_101, NodeTextEnum.MAP_102,
@@ -191,9 +192,9 @@ public class StatsTwoThird {
 
     private void tabTeamWork() {
         NodeTextEnum[] columnTitles = {NodeTextEnum.TEAM_ACTION, NodeTextEnum.SCORE};
-        NodeTextEnum[] teamActions = {NodeTextEnum.TEAM_WORK_SCORE, NodeTextEnum.CAPTURED_CP, NodeTextEnum.CAPTURE_ASSIST,
-                NodeTextEnum.DEFENDED_CP, NodeTextEnum.KILL_ASSISTS, NodeTextEnum.HEAL, NodeTextEnum.REVIVE, NodeTextEnum.SUPPORT,
-                NodeTextEnum.REPAIR, NodeTextEnum.DRIVER_SPECIAL};
+        NodeTextEnum[] teamActions = {NodeTextEnum.TEAM_WORK_SCORE, NodeTextEnum.CAPTURED_CP,
+                NodeTextEnum.CAPTURE_ASSIST, NodeTextEnum.DEFENDED_CP, NodeTextEnum.KILL_ASSISTS, NodeTextEnum.HEAL,
+                NodeTextEnum.REVIVE, NodeTextEnum.SUPPORT, NodeTextEnum.REPAIR, NodeTextEnum.DRIVER_SPECIAL};
         generateTab(TabPositionEnum.UP, NodeTextEnum.TEAM_WORK_TITLE, columnTitles, teamActions, 0);
         Tooltip tooltip = new Tooltip();
         tooltip.setText(NodeTextEnum.DRIVER_SPECIAL_TOOLTIP.getText(tooltip.textProperty()));
@@ -201,39 +202,39 @@ public class StatsTwoThird {
                 setTooltip(tooltip);
     }
 
-//    private void tabPlayerStats() {
-//        NodeTextEnum[] columnTitles = {NodeTextEnum.PLAYER_ACTION, NodeTextEnum.SCORE};
-//        NodeTextEnum[] playerActions = {NodeTextEnum.KILL_STREAK, NodeTextEnum.DEATH_STREAK, NodeTextEnum.DRIVER_ASSISTS,
-//                NodeTextEnum.CMD_SCORE, NodeTextEnum.CMD_TIME, NodeTextEnum.SQL_TIME, NodeTextEnum.SQM_TIME,
-//                NodeTextEnum.LW_TIME};
-//        generateTab(TabPositionEnum.UP, NodeTextEnum.PLAYER_STATS, columnTitles, playerActions, 0);
-//    }
-//
-//    private void tabKitEquipment() {
-//        NodeTextEnum[] columnTitles = {NodeTextEnum.OVERALL_ACCURACY, NodeTextEnum.ACCURACY, NodeTextEnum.KILLS_TEXT,
-//                NodeTextEnum.DEATHS_TEXT, NodeTextEnum.KILL_DEATH_RATIO, NodeTextEnum.TIME_USED};
-//        NodeTextEnum[] weapons = {NodeTextEnum.WEAPON_0, NodeTextEnum.WEAPON_1, NodeTextEnum.WEAPON_2, NodeTextEnum.WEAPON_3,
-//                NodeTextEnum.WEAPON_4, NodeTextEnum.WEAPON_5, NodeTextEnum.WEAPON_6, NodeTextEnum.WEAPON_7, NodeTextEnum.WEAPON_8,
-//                NodeTextEnum.WEAPON_9, NodeTextEnum.WEAPON_13, NodeTextEnum.WEAPON_EXPLOSIVES, NodeTextEnum.WEAPON_11,
-//                NodeTextEnum.RESULT};
-//        generateTab(TabPositionEnum.DOWN, NodeTextEnum.KIT_EQUIPMENT, columnTitles, weapons, 19);
-//    }
-//
-//    private void tabVehicleCategory() {
-//        NodeTextEnum[] columnTitles = {NodeTextEnum.EMPTY_STRING, NodeTextEnum.KILLS_TEXT, NodeTextEnum.ROAD_KILLS,
-//                NodeTextEnum.DEATHS_TEXT, NodeTextEnum.KILL_DEATH_RATIO, NodeTextEnum.TIME_USED};
-//        NodeTextEnum[] vehicles = {NodeTextEnum.VEHICLE_0, NodeTextEnum.VEHICLE_1, NodeTextEnum.VEHICLE_2, NodeTextEnum.VEHICLE_3,
-//                NodeTextEnum.VEHICLE_4, NodeTextEnum.VEHICLE_6};
-//        generateTab(TabPositionEnum.DOWN, NodeTextEnum.VEHICLE_CATEGORY, columnTitles, vehicles, 18);
-//    }
-//
-//    private void tabKits() {
-//        NodeTextEnum[] columnTitles = {NodeTextEnum.EMPTY_STRING, NodeTextEnum.KILLS_TEXT, NodeTextEnum.DEATHS_TEXT,
-//                NodeTextEnum.KILL_DEATH_RATIO, NodeTextEnum.TIME_USED};
-//        NodeTextEnum[] kits = {NodeTextEnum.KIT_0, NodeTextEnum.KIT_1, NodeTextEnum.KIT_2, NodeTextEnum.KIT_3, NodeTextEnum.KIT_4,
-//                NodeTextEnum.KIT_5, NodeTextEnum.KIT_6};
-//        generateTab(TabPositionEnum.DOWN, NodeTextEnum.KITS, columnTitles, kits, 19);
-//    }
+    private void tabPlayerStats() {
+        NodeTextEnum[] columnTitles = {NodeTextEnum.PLAYER_ACTION, NodeTextEnum.SCORE};
+        NodeTextEnum[] playerActions = {NodeTextEnum.KILL_STREAK, NodeTextEnum.DEATH_STREAK,
+                NodeTextEnum.DRIVER_ASSISTS, NodeTextEnum.CMD_SCORE, NodeTextEnum.CMD_TIME, NodeTextEnum.SQL_TIME,
+                NodeTextEnum.SQM_TIME, NodeTextEnum.LW_TIME};
+        generateTab(TabPositionEnum.UP, NodeTextEnum.PLAYER_STATS, columnTitles, playerActions, 0);
+    }
+
+    private void tabKitEquipment() {
+        NodeTextEnum[] columnTitles = {NodeTextEnum.OVERALL_ACCURACY, NodeTextEnum.ACCURACY, NodeTextEnum.KILLS_TEXT,
+                NodeTextEnum.DEATHS_TEXT, NodeTextEnum.KILL_DEATH_RATIO, NodeTextEnum.TIME_USED};
+        NodeTextEnum[] weapons = {NodeTextEnum.WEAPON_0, NodeTextEnum.WEAPON_1, NodeTextEnum.WEAPON_2,
+                NodeTextEnum.WEAPON_3, NodeTextEnum.WEAPON_4, NodeTextEnum.WEAPON_5, NodeTextEnum.WEAPON_6,
+                NodeTextEnum.WEAPON_7, NodeTextEnum.WEAPON_8, NodeTextEnum.WEAPON_9, NodeTextEnum.WEAPON_13,
+                NodeTextEnum.WEAPON_EXPLOSIVES, NodeTextEnum.WEAPON_11, NodeTextEnum.RESULT};
+        generateTab(TabPositionEnum.DOWN, NodeTextEnum.KIT_EQUIPMENT, columnTitles, weapons, 19);
+    }
+
+    private void tabVehicleCategory() {
+        NodeTextEnum[] columnTitles = {NodeTextEnum.EMPTY_STRING, NodeTextEnum.KILLS_TEXT, NodeTextEnum.ROAD_KILLS,
+                NodeTextEnum.DEATHS_TEXT, NodeTextEnum.KILL_DEATH_RATIO, NodeTextEnum.TIME_USED};
+        NodeTextEnum[] vehicles = {NodeTextEnum.VEHICLE_0, NodeTextEnum.VEHICLE_1, NodeTextEnum.VEHICLE_2, NodeTextEnum.VEHICLE_3,
+                NodeTextEnum.VEHICLE_4, NodeTextEnum.VEHICLE_6};
+        generateTab(TabPositionEnum.DOWN, NodeTextEnum.VEHICLE_CATEGORY, columnTitles, vehicles, 18);
+    }
+
+    private void tabKits() {
+        NodeTextEnum[] columnTitles = {NodeTextEnum.EMPTY_STRING, NodeTextEnum.KILLS_TEXT, NodeTextEnum.DEATHS_TEXT,
+                NodeTextEnum.KILL_DEATH_RATIO, NodeTextEnum.TIME_USED};
+        NodeTextEnum[] kits = {NodeTextEnum.KIT_0, NodeTextEnum.KIT_1, NodeTextEnum.KIT_2, NodeTextEnum.KIT_3, NodeTextEnum.KIT_4,
+                NodeTextEnum.KIT_5, NodeTextEnum.KIT_6};
+        generateTab(TabPositionEnum.DOWN, NodeTextEnum.KITS, columnTitles, kits, 19);
+    }
 
     private void reloadTabMostPlayedData() {
         Map<NamespaceEnum, String[]> data;
@@ -286,11 +287,11 @@ public class StatsTwoThird {
 
     private void reloadTabMapStats() {
         Map<NodeTextEnum, String[]> data = manager.getMapsStatsData();
-        NodeTextEnum[] maps = {NodeTextEnum.MAP_0, NodeTextEnum.MAP_1, NodeTextEnum.MAP_2, NodeTextEnum.MAP_3, NodeTextEnum.MAP_4,
-                NodeTextEnum.MAP_5, NodeTextEnum.MAP_6, NodeTextEnum.MAP_10, NodeTextEnum.MAP_11, NodeTextEnum.MAP_12,
-                NodeTextEnum.MAP_100, NodeTextEnum.MAP_101, NodeTextEnum.MAP_102, NodeTextEnum.MAP_103, NodeTextEnum.MAP_105,
-                NodeTextEnum.MAP_110, NodeTextEnum.MAP_200, NodeTextEnum.MAP_201, NodeTextEnum.MAP_202, NodeTextEnum.MAP_601,
-                NodeTextEnum.MAP_700};
+        NodeTextEnum[] maps = {NodeTextEnum.MAP_0, NodeTextEnum.MAP_1, NodeTextEnum.MAP_2, NodeTextEnum.MAP_3,
+                NodeTextEnum.MAP_4, NodeTextEnum.MAP_5, NodeTextEnum.MAP_6, NodeTextEnum.MAP_10, NodeTextEnum.MAP_11,
+                NodeTextEnum.MAP_12, NodeTextEnum.MAP_100, NodeTextEnum.MAP_101, NodeTextEnum.MAP_102,
+                NodeTextEnum.MAP_103, NodeTextEnum.MAP_105, NodeTextEnum.MAP_110, NodeTextEnum.MAP_200,
+                NodeTextEnum.MAP_201, NodeTextEnum.MAP_202, NodeTextEnum.MAP_601, NodeTextEnum.MAP_700};
         ObservableList<ObjectProperty<Object>[]> rowObject = tableMap.get(NodeTextEnum.MAP_STATS_TAB).getItems();
         for (int i = 0; i < rowObject.size(); i++) {
             String wins = NamespaceEnum.X_MARK.getText();
@@ -319,21 +320,21 @@ public class StatsTwoThird {
         generateTab(FXCollections.observableArrayList(manager.getTeamWorkData()), NodeTextEnum.TEAM_WORK_TITLE);
     }
 
-//    private void reloadTabPlayerStats() {
-//        generateTab(manager.getPlayerStatsData(), NodeTextEnum.PLAYER_STATS);
-//    }
-//
-//    private void reloadTabKitEquipment() {
-//        generateTab(manager.getKitEquipmentData(), NodeTextEnum.KIT_EQUIPMENT);
-//    }
-//
-//    private void reloadTabVehicleCategory() {
-//        generateTab(manager.getVehicleCategoryData(), NodeTextEnum.VEHICLE_CATEGORY);
-//    }
-//
-//    private void reloadKits() {
-//        generateTab(manager.getKitsData(), NodeTextEnum.KITS);
-//    }
+    private void reloadTabPlayerStats() {
+        generateTab(FXCollections.observableArrayList(manager.getPlayerStatsData()), NodeTextEnum.PLAYER_STATS);
+    }
+
+    private void reloadTabKitEquipment() {
+        generateTab(FXCollections.observableArrayList(manager.getKitEquipmentData()), NodeTextEnum.KIT_EQUIPMENT);
+    }
+
+    private void reloadTabVehicleCategory() {
+        generateTab(FXCollections.observableArrayList(manager.getVehicleCategoryData()), NodeTextEnum.VEHICLE_CATEGORY);
+    }
+
+    private void reloadKits() {
+        generateTab(FXCollections.observableArrayList(manager.getKitsData()), NodeTextEnum.KITS);
+    }
 
     private void generateTab(ObservableList<String[]> data, NodeTextEnum title) {
         ObservableList<ObjectProperty<Object>[]> rowObject = tableMap.get(title).getItems();
@@ -362,9 +363,9 @@ public class StatsTwoThird {
         }
     }
 
-    private Label generateNewLabel(NodeTextEnum NodeTextEnum) {
+    private Label generateNewLabel(NodeTextEnum nodeTextEnum) {
         Label label = new Label();
-        label.setText(NodeTextEnum.getText(label.textProperty()));
+        label.setText(nodeTextEnum.getText(label.textProperty()));
         return label;
     }
 

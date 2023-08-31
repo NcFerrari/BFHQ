@@ -32,7 +32,6 @@ public class AwardsDaoImpl extends EntityManager implements AwardsDao {
         return mapEntityToDto(entity);
     }
 
-    @Override
     public List<Awards> getAllAwards() {
         if (getSession() == null) {
             return new ArrayList<>();

@@ -3,8 +3,11 @@ package lp;
 import lombok.Getter;
 import lp.be.business.dto.Army;
 import lp.be.business.dto.Awards;
+import lp.be.business.dto.Kits;
 import lp.be.business.dto.Maps;
 import lp.be.business.dto.Player;
+import lp.be.business.dto.Vehicles;
+import lp.be.business.dto.Weapons;
 import lp.be.jpa.daoimpl.AwardsDaoImpl;
 import lp.be.jpa.daoimpl.MapsDaoImpl;
 import lp.be.jpa.daoimpl.PlayerDaoImpl;
@@ -81,6 +84,7 @@ public class Manager {
             awards.putIfAbsent(award.getId(), new ArrayList<>());
             awards.get(award.getId()).add(award);
         });
+        maps.clear();
         new MapsDaoImpl().getAllMaps().forEach(map -> {
             maps.putIfAbsent(map.getId(), new ArrayList<>());
             maps.get(map.getId()).add(map);
@@ -250,5 +254,132 @@ public class Manager {
             result.insert(i, NamespaceEnum.TEXT_POINT.getText());
         }
         return result.toString();
+    }
+
+    public List<String[]> getPlayerStatsData() {
+        List<String[]> result = new ArrayList<>();
+        result.add(new String[]{formatNumber(getSelectedPlayer().getKillstreak())});
+        result.add(new String[]{formatNumber(getSelectedPlayer().getDeathstreak())});
+        result.add(new String[]{formatNumber(getSelectedPlayer().getDriverassists())});
+        result.add(new String[]{formatNumber(getSelectedPlayer().getCmdscore())});
+        result.add(new String[]{longToTime(getSelectedPlayer().getCmdtime())});
+        result.add(new String[]{longToTime(getSelectedPlayer().getSqltime())});
+        result.add(new String[]{longToTime(getSelectedPlayer().getSqmtime())});
+        result.add(new String[]{longToTime(getSelectedPlayer().getLwtime())});
+        return result;
+    }
+
+    public List<String[]> getKitEquipmentData() {
+        List<String[]> result = new ArrayList<>();
+        Weapons weapon = getSelectedPlayer().getWeapons();
+        long explodesKills = weapon.getC4kills() + weapon.getClaymorekills() + weapon.getAtminekills();
+        long explodesDeaths = weapon.getC4deaths() + weapon.getClaymoredeaths() + weapon.getAtminedeaths();
+        long explodesHits = weapon.getC4hit() + weapon.getClaymorehit() + weapon.getAtminehit();
+        long explodesFired = weapon.getC4fired() + weapon.getClaymorefired() + weapon.getAtminefired();
+        long explodesTime = weapon.getC4time() + weapon.getClaymoretime() + weapon.getAtminetime();
+        Long[] sums = {0L, 0L, 0L, 0L, 0L};
+        Long[][] longs = {
+                {weapon.getKills0(), weapon.getDeaths0(), weapon.getHit0(), weapon.getFired0(), weapon.getTime0()},
+                {weapon.getKills1(), weapon.getDeaths1(), weapon.getHit1(), weapon.getFired1(), weapon.getTime1()},
+                {weapon.getKills2(), weapon.getDeaths2(), weapon.getHit2(), weapon.getFired2(), weapon.getTime2()},
+                {weapon.getKills3(), weapon.getDeaths3(), weapon.getHit3(), weapon.getFired3(), weapon.getTime3()},
+                {weapon.getKills4(), weapon.getDeaths4(), weapon.getHit4(), weapon.getFired4(), weapon.getTime4()},
+                {weapon.getKills5(), weapon.getDeaths5(), weapon.getHit5(), weapon.getFired5(), weapon.getTime5()},
+                {weapon.getKills6(), weapon.getDeaths6(), weapon.getHit6(), weapon.getFired6(), weapon.getTime6()},
+                {weapon.getKills7(), weapon.getDeaths7(), weapon.getHit7(), weapon.getFired7(), weapon.getTime7()},
+                {weapon.getKills8(), weapon.getDeaths8(), weapon.getHit8(), weapon.getFired8(), weapon.getTime8()},
+                {weapon.getKnifekills(), weapon.getKnifedeaths(), weapon.getKnifehit(), weapon.getKnifefired(),
+                        weapon.getKnifetime()},
+                {weapon.getShockpadkills(), weapon.getShockpaddeaths(), weapon.getShockpadhit(),
+                        weapon.getShockpadfired(), weapon.getShockpadtime()},
+                {explodesKills, explodesDeaths, explodesHits, explodesFired, explodesTime},
+                {weapon.getHandgrenadekills(), weapon.getHandgrenadedeaths(), weapon.getHandgrenadehit(),
+                        weapon.getHandgrenadefired(), weapon.getHandgrenadetime()}
+        };
+        for (Long[] data : longs) {
+            addToKitEquipmentResulList(result, data);
+            for (int i = 0; i < data.length; i++) {
+                sums[i] += data[i];
+            }
+        }
+        addToKitEquipmentResulList(result, sums);
+        return result;
+    }
+
+    private void addToKitEquipmentResulList(List<String[]> resultList, Long[] data) {
+        double accuracy = ((double) data[2] / (data[3] > 0 ? data[3] : 1)) * 100;
+        resultList.add(new String[]{String.format(NamespaceEnum.TWO_DIGITS_FORMAT.getText(), accuracy), formatNumber(data[0]),
+                formatNumber(data[1]), getKDRatio(data[0], data[1]), longToTime(data[4])}
+        );
+    }
+
+    private String getKDRatio(Long a, Long b) {
+        long nsd = lcm(a, b);
+        if (nsd == 0) {
+            return a + NamespaceEnum.COLON.getText() + b;
+        }
+        return (a / nsd) + NamespaceEnum.COLON.getText() + (b / nsd);
+    }
+
+    /**
+     * Least common multiple
+     *
+     * @return least common multiple (number)
+     */
+    private long lcm(long firstNumber, long secondNumber) {
+        if (firstNumber == 0 || secondNumber == 0) {
+            return 1;
+        }
+        firstNumber = Math.abs(firstNumber);
+        secondNumber = Math.abs(secondNumber);
+        while (secondNumber > 0) {
+            long c = firstNumber % secondNumber;
+            firstNumber = secondNumber;
+            secondNumber = c;
+        }
+        return firstNumber;
+    }
+
+    public List<String[]> getVehicleCategoryData() {
+        List<String[]> result = new ArrayList<>();
+        Vehicles vehicles = getSelectedPlayer().getVehicles();
+        result.add(addToResult(new Long[]{vehicles.getKills0(), vehicles.getRk0(), vehicles.getDeaths0(),
+                vehicles.getTime0()}));
+        result.add(addToResult(new Long[]{vehicles.getKills1(), vehicles.getRk1(), vehicles.getDeaths1(),
+                vehicles.getTime1()}));
+        result.add(addToResult(new Long[]{vehicles.getKills2(), vehicles.getRk2(), vehicles.getDeaths2(),
+                vehicles.getTime2()}));
+        result.add(addToResult(new Long[]{vehicles.getKills3(), vehicles.getRk3(), vehicles.getDeaths3(),
+                vehicles.getTime3()}));
+        result.add(addToResult(new Long[]{vehicles.getKills4(), vehicles.getRk4(), vehicles.getDeaths4(),
+                vehicles.getTime4()}));
+        result.add(addToResult(new Long[]{vehicles.getKills6(), vehicles.getRk5(), vehicles.getDeaths6(),
+                vehicles.getTime6()}));
+        return result;
+    }
+
+    public List<String[]> getKitsData() {
+        List<String[]> result = new ArrayList<>();
+        Kits kits = getSelectedPlayer().getKits();
+        result.add(new String[]{formatNumber(kits.getKills0()), formatNumber(kits.getDeaths0()),
+                getKDRatio(kits.getKills0(), kits.getDeaths0()), longToTime(kits.getTime0())});
+        result.add(new String[]{formatNumber(kits.getKills1()), formatNumber(kits.getDeaths1()),
+                getKDRatio(kits.getKills1(), kits.getDeaths1()), longToTime(kits.getTime1())});
+        result.add(new String[]{formatNumber(kits.getKills2()), formatNumber(kits.getDeaths2()),
+                getKDRatio(kits.getKills2(), kits.getDeaths2()), longToTime(kits.getTime2())});
+        result.add(new String[]{formatNumber(kits.getKills3()), formatNumber(kits.getDeaths3()),
+                getKDRatio(kits.getKills3(), kits.getDeaths3()), longToTime(kits.getTime3())});
+        result.add(new String[]{formatNumber(kits.getKills4()), formatNumber(kits.getDeaths4()),
+                getKDRatio(kits.getKills4(), kits.getDeaths4()), longToTime(kits.getTime4())});
+        result.add(new String[]{formatNumber(kits.getKills5()), formatNumber(kits.getDeaths5()),
+                getKDRatio(kits.getKills5(), kits.getDeaths5()), longToTime(kits.getTime5())});
+        result.add(new String[]{formatNumber(kits.getKills6()), formatNumber(kits.getDeaths6()),
+                getKDRatio(kits.getKills6(), kits.getDeaths6()), longToTime(kits.getTime6())});
+        return result;
+    }
+
+    private String[] addToResult(Long[] data) {
+        return new String[]{formatNumber(data[0]), formatNumber(data[1]), formatNumber(data[2]),
+                getKDRatio(data[0], data[1]), longToTime(data[3])};
     }
 }
