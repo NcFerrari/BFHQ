@@ -1,13 +1,18 @@
 package lp.fe.javafx.bf2components.awards;
 
-import javafx.scene.control.Button;
+import javafx.stage.Stage;
+import lp.be.business.dto.Player;
 import lp.fe.enums.NodeTextEnum;
 import lp.fe.javafx.bf2components.BF2Component;
+import org.jetbrains.annotations.NotNull;
 
 public class AwardsPane extends BF2Component {
 
+    private AwardTwoThird awardTwoThird;
+
     public AwardsPane() {
         super(NodeTextEnum.TAB_MENU_AWARDS);
+        awardTwoThird = new AwardTwoThird(getRightSidePart());
     }
 
     @Override
@@ -17,9 +22,16 @@ public class AwardsPane extends BF2Component {
 
     @Override
     public void rewriteData() {
-        getLeftSidePart().getLeftPane().getChildren().clear();
-        Button button = new Button();
-        button.setText(NodeTextEnum.WINS.getText(button.textProperty()));
-        getLeftSidePart().getLeftPane().getChildren().add(button);
+        Player player = manager.getSelectedPlayer();
+        if (player == null) {
+            return;
+        }
+        awardTwoThird.rewriteData();
+    }
+
+    @Override
+    public void resize(@NotNull Stage stage) {
+        super.resize(stage);
+        awardTwoThird.resize(stage);
     }
 }

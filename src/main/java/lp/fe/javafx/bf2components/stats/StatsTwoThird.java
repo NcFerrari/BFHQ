@@ -70,10 +70,10 @@ public class StatsTwoThird {
         upTabPane.setPrefHeight(stage.getHeight() / 2);
         downTabPane.setPrefHeight(stage.getHeight() / 2);
         double upTabWidth = twoThird / upTabPane.getTabs().size() - 30;
-        String upStyle = String.format(NamespaceEnum.PREF_WIDTH_STYLE.getText(), upTabWidth, upTabWidth / 7.57);
+        String upStyle = String.format(NamespaceEnum.PREF_WIDTH_STYLE.getText(), upTabWidth, upTabWidth / 8);
         upTabPane.getTabs().forEach(tab -> tab.setStyle(upStyle));
         double downTabWidth = twoThird / downTabPane.getTabs().size() - 30;
-        String downStyle = String.format(NamespaceEnum.PREF_WIDTH_STYLE.getText(), downTabWidth, downTabWidth / 7.57);
+        String downStyle = String.format(NamespaceEnum.PREF_WIDTH_STYLE.getText(), downTabWidth, downTabWidth / 14);
         downTabPane.getTabs().forEach(tab -> tab.setStyle(downStyle));
         tableMap.values().forEach(table -> table.getColumns().forEach(column ->
                 column.setPrefWidth((twoThird / table.getColumns().size()) - 30)));

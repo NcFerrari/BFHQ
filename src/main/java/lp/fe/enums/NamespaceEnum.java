@@ -50,6 +50,7 @@ public enum NamespaceEnum {
     X_MARK("x"),
     TEXT_POINT("."),
     COLON(":"),
+    UNDERSCORE("_"),
     DIALOG_BUTTON_YES_EN("Yes"),
     DIALOG_BUTTON_NO_EN("No"),
     DIALOG_BUTTON_YES_CZ("Ano"),

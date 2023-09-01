@@ -48,6 +48,10 @@ public class BF2Image {
         imageView.setFitHeight(height);
     }
 
+    public void setImageViewSize(double size) {
+        setImageViewSize(size, size);
+    }
+
     public void removeImage() {
         getImageView().setImage(null);
     }
