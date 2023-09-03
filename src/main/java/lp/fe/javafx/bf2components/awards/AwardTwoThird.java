@@ -36,6 +36,7 @@ public class AwardTwoThird {
         addPane(NodeTextEnum.MEDAL, medals, 10);
         addPane(NodeTextEnum.BADGE, badges, 10);
         addPane(NodeTextEnum.RIBBON, new Integer[18], 8);
+        resetImages();
     }
 
     public void resize(Stage stage) {
@@ -105,7 +106,6 @@ public class AwardTwoThird {
             }
             imagesGridPane.add(bf2Image.getImageView(), i - (i / columns) * columns, i / columns);
         }
-        resetImages();
     }
 
     private void resetImages() {
