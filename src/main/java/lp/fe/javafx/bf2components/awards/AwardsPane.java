@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class AwardsPane extends BF2Component {
 
-    private AwardTwoThird awardTwoThird;
+    private final AwardTwoThird awardTwoThird;
 
     public AwardsPane() {
         super(NodeTextEnum.TAB_MENU_AWARDS);

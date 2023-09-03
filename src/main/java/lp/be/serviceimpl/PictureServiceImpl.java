@@ -30,16 +30,6 @@ public class PictureServiceImpl implements PictureService {
     }
 
     @Override
-    public BF2Image getSmallRankBF2Image(int rank) {
-        return getImage(PictureSourceEnum.SMALL_RANKS, rank);
-    }
-
-    @Override
-    public BF2Image getAwardBF2Image(int imageId) {
-        return getAwardBF2Image(imageId, 1);
-    }
-
-    @Override
     public BF2Image getAwardBF2Image(int imageId, int level) {
         return getImage(PictureSourceEnum.getPictureSourceEnum(imageId, level), imageId);
     }
