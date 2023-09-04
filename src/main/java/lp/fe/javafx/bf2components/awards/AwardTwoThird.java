@@ -3,8 +3,10 @@ package lp.fe.javafx.bf2components.awards;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import lp.Manager;
@@ -15,6 +17,7 @@ import lp.fe.enums.NamespaceEnum;
 import lp.fe.enums.NodeTextEnum;
 import lp.fe.javafx.bf2components.RightSidePart;
 
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
 public class AwardTwoThird {
@@ -24,6 +27,7 @@ public class AwardTwoThird {
     private final PictureService pictureService = PictureServiceImpl.getInstance();
     private final ObservableMap<NodeTextEnum, GridPane> grids = FXCollections.observableMap(new HashMap<>());
     private final ObservableMap<Object, BF2Image> bf2Images = FXCollections.observableMap(new HashMap<>());
+    private final ObservableList<StackPane> stackPanes = FXCollections.observableArrayList();
     private final Manager manager = Manager.getInstance();
 
     public AwardTwoThird(RightSidePart rightSidePart) {
@@ -59,15 +63,20 @@ public class AwardTwoThird {
                 gridPane.setHgap(stage.getWidth() / 48);
             }
         });
+        stackPanes.forEach(stackPane -> stackPane.getChildren().get(1).setVisible(stage.getWidth() > 1200));
     }
 
     public void rewriteData() {
         resetImages();
+        int lastAwardNumber = 0;
         int ribbonNumber = 0;
-        for (int i = 0; i < FXCollections.observableArrayList(manager.getAwardsForSelectedPlayer(0)).size(); i++) {
-            BF2Image bf2Image = FXCollections.observableArrayList(manager.getAwardsForSelectedPlayer(0)).get(i);
-            if (i < grids.get(NodeTextEnum.LAST_AWARD).getColumnCount()) {
-                bf2Images.get(NodeTextEnum.LAST_AWARD.name() + i).updateData(bf2Image, manager.isShowToolkit());
+        for (BF2Image bf2Image : manager.getAwardsForSelectedPlayer(0)) {
+            if (lastAwardNumber < stackPanes.size()) {
+                bf2Images.get(NodeTextEnum.LAST_AWARD.name() + lastAwardNumber)
+                        .updateData(bf2Image, manager.isShowToolkit());
+                ((Label) stackPanes.get(lastAwardNumber).getChildren().get(1)).setText(bf2Image.getLastEarned()
+                        .format(DateTimeFormatter.ofPattern(NamespaceEnum.CZE_DATE_FORMAT.getText())));
+                lastAwardNumber++;
             }
             if (bf2Image.getNodeTextEnum().name().contains(NodeTextEnum.MEDAL.name())) {
                 pictureService.addColor(bf2Images.get(bf2Image.getNodeTextEnum()));
@@ -101,10 +110,21 @@ public class AwardTwoThird {
             if (imageNameIds[i] != null) {
                 bf2Image = pictureService.getSmallAwardBF2Image(imageNameIds[i]);
                 bf2Images.put(bf2Image.getNodeTextEnum(), bf2Image);
+                imagesGridPane.add(bf2Image.getImageView(), i - (i / columns) * columns, i / columns);
+            } else if (title.equals(NodeTextEnum.LAST_AWARD)) {
+                bf2Images.put(title.name() + i, bf2Image);
+                StackPane stackPane = new StackPane();
+                stackPane.setAlignment(Pos.BOTTOM_CENTER);
+                stackPane.getChildren().add(bf2Image.getImageView());
+                Label dateLabel = new Label();
+                dateLabel.setId(NamespaceEnum.DATE_STYLE.getText());
+                stackPane.getChildren().add(dateLabel);
+                stackPanes.add(stackPane);
+                imagesGridPane.add(stackPane, i - (i / columns) * columns, i / columns);
             } else {
                 bf2Images.put(title.name() + i, bf2Image);
+                imagesGridPane.add(bf2Image.getImageView(), i - (i / columns) * columns, i / columns);
             }
-            imagesGridPane.add(bf2Image.getImageView(), i - (i / columns) * columns, i / columns);
         }
     }
 
@@ -119,5 +139,7 @@ public class AwardTwoThird {
             }
             bf2Image.updateData(bf2Image, false);
         }));
+        stackPanes.forEach(stackPane ->
+                ((Label) stackPane.getChildren().get(1)).setText(NamespaceEnum.EMPTY_STRING.getText()));
     }
 }

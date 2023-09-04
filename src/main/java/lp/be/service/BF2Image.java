@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lp.fe.enums.NodeTextEnum;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
 public class BF2Image {
@@ -14,6 +16,9 @@ public class BF2Image {
     private final ImageView imageView;
     private final Tooltip tooltip;
     private NodeTextEnum nodeTextEnum;
+    private LocalDate firstEarned;
+    private LocalDate lastEarned;
+    private int level;
 
     public BF2Image() {
         this(null, null);

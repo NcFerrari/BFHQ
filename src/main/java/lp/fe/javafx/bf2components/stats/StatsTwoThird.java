@@ -4,6 +4,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -25,7 +26,6 @@ import lp.fe.enums.TabPositionEnum;
 import lp.fe.javafx.bf2components.RightSidePart;
 
 import java.util.EnumMap;
-import java.util.Map;
 
 @Getter
 public class StatsTwoThird {
@@ -35,7 +35,8 @@ public class StatsTwoThird {
     private final TabPane downTabPane = new TabPane();
     private final VBox rightPane;
     private final PictureService pictureService = PictureServiceImpl.getInstance();
-    private final Map<NodeTextEnum, TableView<ObjectProperty<Object>[]>> tableMap = new EnumMap<>(NodeTextEnum.class);
+    private final ObservableMap<NodeTextEnum, TableView<ObjectProperty<Object>[]>> tableMap =
+            FXCollections.observableMap(new EnumMap<>(NodeTextEnum.class));
     private final ObservableList<BF2Image> images = FXCollections.observableArrayList();
 
     public StatsTwoThird(RightSidePart rightSidePart) {
@@ -236,9 +237,9 @@ public class StatsTwoThird {
     }
 
     private void reloadTabMostPlayedData() {
-        Map<NamespaceEnum, String[]> data;
+        ObservableMap<NamespaceEnum, String[]> data;
         try {
-            data = manager.getMostPlayedData();
+            data = FXCollections.observableMap(manager.getMostPlayedData());
             NamespaceEnum[] categories = {NamespaceEnum.KIT, NamespaceEnum.VEHICLE,
                     NamespaceEnum.WEAPON, NamespaceEnum.MAP};
             ObservableList<ObjectProperty<Object>[]> rowObject = tableMap.get(NodeTextEnum.MOST_PLAYED_TAB).getItems();
@@ -273,7 +274,7 @@ public class StatsTwoThird {
     }
 
     private void reloadTabArmyStats() {
-        Map<NodeTextEnum, String[]> data = manager.getArmyStatsData();
+        ObservableMap<NodeTextEnum, String[]> data = FXCollections.observableMap(manager.getArmyStatsData());
         NodeTextEnum[] factions = {NodeTextEnum.FACTION_USMC, NodeTextEnum.FACTION_MEC, NodeTextEnum.FACTION_PLA,
                 NodeTextEnum.FACTION_EU};
         for (int i = 0; i < tableMap.get(NodeTextEnum.ARMY_STATS_TAB).getItems().size(); i++) {
@@ -285,7 +286,7 @@ public class StatsTwoThird {
     }
 
     private void reloadTabMapStats() {
-        Map<NodeTextEnum, String[]> data = manager.getMapsStatsData();
+        ObservableMap<NodeTextEnum, String[]> data = FXCollections.observableMap(manager.getMapsStatsData());
         NodeTextEnum[] maps = {NodeTextEnum.MAP_0, NodeTextEnum.MAP_1, NodeTextEnum.MAP_2, NodeTextEnum.MAP_3,
                 NodeTextEnum.MAP_4, NodeTextEnum.MAP_5, NodeTextEnum.MAP_6, NodeTextEnum.MAP_10, NodeTextEnum.MAP_11,
                 NodeTextEnum.MAP_12, NodeTextEnum.MAP_100, NodeTextEnum.MAP_101, NodeTextEnum.MAP_102,

@@ -22,6 +22,7 @@ import lp.fe.enums.NodeTextEnum;
 import lp.fe.javafx.MainApp;
 import lp.fe.javafx.bf2components.BF2Component;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.EnumMap;
@@ -135,8 +136,13 @@ public class Manager {
             return bf2Images;
         }
         for (int i = 0; i < playerAwards.size() && (limitOfAwards == 0 || i < limitOfAwards); i++) {
-            bf2Images.add(pictureService.getAwardBF2Image(playerAwards.get(i).getAwd(),
-                    playerAwards.get(i).getLevel().intValue()));
+            BF2Image bf2Image = pictureService.getAwardBF2Image(playerAwards.get(i).getAwd(),
+                    playerAwards.get(i).getLevel().intValue());
+            bf2Image.setLevel(playerAwards.get(i).getLevel().intValue());
+            bf2Image.setFirstEarned(LocalDate.ofEpochDay(playerAwards.get(i).getFirst() / 86_400));
+            bf2Image.setLastEarned(LocalDate.ofEpochDay(playerAwards.get(i).getEarned() / 86_400));
+            bf2Images.add(bf2Image);
+
         }
         return bf2Images;
     }

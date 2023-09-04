@@ -2,6 +2,7 @@ package lp.fe.javafx.bf2components.stats;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -22,14 +23,14 @@ import lp.fe.enums.NodeTextEnum;
 import lp.fe.javafx.bf2components.LeftSidePart;
 
 import java.util.EnumMap;
-import java.util.Map;
 
 @Getter
 public class StatsOneThird {
 
     private final double[] rankLimits = {0, 150, 500, 800, 2_500, 5_000, 8_000, 20_000, 20_000, 50_000, 50_000, 50_000,
             60_000, 75_000, 90_000, 11_500, 12_500, 15_000, 18_000, 18_000, 20_000, 20_000};
-    private final Map<NodeTextEnum, Label> personalInfoLabels = new EnumMap<>(NodeTextEnum.class);
+    private final ObservableMap<NodeTextEnum, Label> personalInfoLabels =
+            FXCollections.observableMap(new EnumMap<>(NodeTextEnum.class));
     private final ObservableList<BF2Image> lastThreeAwards = FXCollections.observableArrayList();
     private final PictureService pictureService = PictureServiceImpl.getInstance();
     private final Manager manager = Manager.getInstance();
