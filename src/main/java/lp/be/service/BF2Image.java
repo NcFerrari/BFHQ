@@ -19,13 +19,16 @@ public class BF2Image {
     private LocalDate firstEarned;
     private LocalDate lastEarned;
     private int level;
+    private Integer imageId;
+    private boolean enable;
 
     public BF2Image() {
-        this(null, null);
+        this(null, null, null);
     }
 
-    public BF2Image(Image image, NodeTextEnum nodeTextEnum) {
+    public BF2Image(Image image, Integer imageId, NodeTextEnum nodeTextEnum) {
         this.nodeTextEnum = nodeTextEnum;
+        this.imageId = imageId;
         imageView = new ImageView();
         tooltip = new Tooltip();
         imageView.setImage(image);
@@ -42,6 +45,7 @@ public class BF2Image {
             Tooltip.uninstall(imageView, tooltip);
         }
         imageView.setImage(bf2Image.getImage());
+        setEnable(true);
     }
 
     public Image getImage() {

@@ -42,7 +42,7 @@ public class Manager {
     private final PictureService pictureService = PictureServiceImpl.getInstance();
 
     private Player selectedPlayer;
-    private boolean showToolkit;
+    private boolean showTooltip;
 
     public static Manager getInstance() {
         if (manager == null) {
@@ -70,7 +70,7 @@ public class Manager {
     }
 
     public void switchShowingTooltips() {
-        showToolkit = !showToolkit;
+        showTooltip = !showTooltip;
         reloadableList.forEach(BF2Component::rewriteData);
     }
 

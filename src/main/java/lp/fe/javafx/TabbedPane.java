@@ -30,6 +30,7 @@ public class TabbedPane {
             tabPane.getTabs().add(bf2Components.get(observable.getFrom()).getTab());
         });
         fillTabs();
+        tabPane.getSelectionModel().selectLast();
     }
 
     public void resize(Stage stage) {

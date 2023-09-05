@@ -9,6 +9,7 @@ import lombok.Getter;
 import lp.Manager;
 import lp.fe.enums.NamespaceEnum;
 import lp.fe.enums.NodeTextEnum;
+import lp.fe.javafx.bf2components.awards.AwardsPane;
 import org.jetbrains.annotations.NotNull;
 
 @Getter
@@ -37,6 +38,10 @@ public class LeftSidePart {
         nameComboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
             manager.setSelectedPlayer(newValue);
             manager.getReloadableList().forEach(BF2Component::rewriteData);
+            manager.getReloadableList()
+                    .stream()
+                    .filter(AwardsPane.class::isInstance)
+                    .forEach(bf2Component -> ((AwardsPane) bf2Component).clearBigImage());
         });
         fillNameComboBox();
     }

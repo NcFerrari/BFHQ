@@ -200,7 +200,7 @@ public class StatsOneThird {
         resetAwardsImages();
         int i = 0;
         for (BF2Image bf2Image : manager.getAwardsForSelectedPlayer(3)) {
-            lastThreeAwards.get(i++).updateData(bf2Image, manager.isShowToolkit());
+            lastThreeAwards.get(i++).updateData(bf2Image, manager.isShowTooltip());
         }
 
         NodeTextEnum.getComponentsForTranslate().replace(lastAwardLabel.textProperty(),

@@ -93,6 +93,6 @@ public class PictureServiceImpl implements PictureService {
         if (inputStream == null) {
             return null;
         }
-        return new BF2Image(new Image(inputStream), NodeTextEnum.getNodeTextEnum(sourceEnum, pictureId));
+        return new BF2Image(new Image(inputStream), pictureId, NodeTextEnum.getNodeTextEnum(sourceEnum, pictureId));
     }
 }

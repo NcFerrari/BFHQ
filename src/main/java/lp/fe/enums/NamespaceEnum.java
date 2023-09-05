@@ -44,6 +44,7 @@ public enum NamespaceEnum {
     PREF_WIDTH_STYLE("-fx-pref-width: %f;-fx-font-size: %f;"),
     FONT_SIZE_STYLE("-fx-font-size: %f"),
     DATE_STYLE("date-label"),
+    BIG_IMAGE_STYLE("big-image"),
     DAYS_LETTER("d"),
     HOURS_LETTER("h"),
     MINUTES_LETTER("min"),

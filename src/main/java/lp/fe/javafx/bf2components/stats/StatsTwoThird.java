@@ -264,7 +264,7 @@ public class StatsTwoThird {
                         bf2image = null;
                 }
                 if (bf2image != null) {
-                    images.get(i).updateData(bf2image, manager.isShowToolkit());
+                    images.get(i).updateData(bf2image, manager.isShowTooltip());
                 }
                 ((Label) rowObject.get(2)[i].get()).setText(data.get(categories[i])[1]);
             }
