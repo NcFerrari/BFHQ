@@ -81,6 +81,10 @@ public class AwardTwoThird {
                 localBF2Image = bf2Images.get(NodeTextEnum.LAST_AWARD.name() + lastAwardNumber);
                 localBF2Image.updateData(bf2Image, manager.isShowTooltip());
                 localBF2Image.setImageId(bf2Image.getImageId());
+                localBF2Image.setNodeTextEnum(bf2Image.getNodeTextEnum());
+                localBF2Image.setLevel(bf2Image.getLevel());
+                localBF2Image.setFirstEarned(bf2Image.getFirstEarned());
+                localBF2Image.setLastEarned(bf2Image.getLastEarned());
                 ((Label) stackPanes.get(lastAwardNumber).getChildren().get(1)).setText(bf2Image.getLastEarned()
                         .format(DateTimeFormatter.ofPattern(NamespaceEnum.CZE_DATE_FORMAT.getText())));
                 localBF2Image.setImageId(bf2Image.getImageId());
@@ -90,15 +94,25 @@ public class AwardTwoThird {
                 pictureService.addColor(bf2Images.get(bf2Image.getNodeTextEnum().name()));
                 localBF2Image = bf2Images.get(bf2Image.getNodeTextEnum().name());
                 localBF2Image.updateData(bf2Image, manager.isShowTooltip());
+                localBF2Image.setLevel(bf2Image.getLevel());
+                localBF2Image.setFirstEarned(bf2Image.getFirstEarned());
+                localBF2Image.setLastEarned(bf2Image.getLastEarned());
             } else if (bf2Image.getNodeTextEnum().name().contains(NodeTextEnum.BADGE.name())) {
                 String key = bf2Image.getNodeTextEnum().name().replaceFirst(NamespaceEnum.NUMBER_REGEX.getText(),
                         NamespaceEnum.ONE.getText());
                 pictureService.addColor(bf2Images.get(key));
                 localBF2Image = bf2Images.get(key);
+                localBF2Image.setLevel(bf2Image.getLevel());
+                localBF2Image.setFirstEarned(bf2Image.getFirstEarned());
+                localBF2Image.setLastEarned(bf2Image.getLastEarned());
                 localBF2Image.updateData(bf2Image, manager.isShowTooltip());
             } else {
                 int ribbonId = Integer.parseInt(bf2Image.getNodeTextEnum().name().substring(7));
                 localBF2Image = bf2Images.get(NodeTextEnum.RIBBON.name() + ribbonNumber++);
+                localBF2Image.setNodeTextEnum(bf2Image.getNodeTextEnum());
+                localBF2Image.setLevel(bf2Image.getLevel());
+                localBF2Image.setFirstEarned(bf2Image.getFirstEarned());
+                localBF2Image.setLastEarned(bf2Image.getLastEarned());
                 localBF2Image.updateData(pictureService.getSmallAwardBF2Image(ribbonId), manager.isShowTooltip());
             }
             localBF2Image.setImageId(bf2Image.getImageId());

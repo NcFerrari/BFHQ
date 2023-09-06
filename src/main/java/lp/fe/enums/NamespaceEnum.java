@@ -45,6 +45,7 @@ public enum NamespaceEnum {
     FONT_SIZE_STYLE("-fx-font-size: %f"),
     DATE_STYLE("date-label"),
     BIG_IMAGE_STYLE("big-image"),
+    BIG_IMAGE_LABEL_STYLE("big-image-label"),
     DAYS_LETTER("d"),
     HOURS_LETTER("h"),
     MINUTES_LETTER("min"),
@@ -78,7 +79,13 @@ public enum NamespaceEnum {
     GET_DEATHS("getDeaths"),
     GET_HIT("getHit"),
     GET_FIRED("getFired"),
-    GET_RK("getRk");
+    GET_RK("getRk"),
+    TITLE_TEXT("title"),
+    STARS_COUNTER("starsCount"),
+    LAST_EARNED("lastEarned"),
+    LAST_EARNED_DATE("lastEarnedDate"),
+    FIRST_EARNED("firstEarned"),
+    FIRST_EARNED_DATE("firstEarnedDate");
 
     private final String text;
 

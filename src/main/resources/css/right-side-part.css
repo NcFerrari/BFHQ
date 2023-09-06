@@ -96,7 +96,7 @@
     -fx-font-size: 26px;
 }
 
-#date-label {
+#date-label, #big-image-label {
     -fx-text-fill: white;
     -fx-font-size: 14px;
     -fx-font-weight: bold;

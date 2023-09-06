@@ -85,6 +85,8 @@ public enum NodeTextEnum {
     RESULT("Result", "Celkově"),
     KIT_EQUIPMENT("KIT EQUIPMENT", "VÝBAVY"),
     ROAD_KILLS("ROAD KILLS", "PŘEJETÍ AUTEM"),
+    LAST_AWARDED("LAST AWARDED", "NAPOSLED ZÍSKÁNO"),
+    FIRST_AWARDED("FIRST AWARDED", "POPRVÉ ZÍSKÁNO"),
 
     FACTION_USMC("United States Marine Corps", "Námořní pěchota spojených Států"),
     FACTION_PLA("People's Liberation Army", "Lidová Osvobozenecká Armáda"),
@@ -330,7 +332,7 @@ public enum NodeTextEnum {
                 namespaceEnum = NamespaceEnum.RANK_PREFIX;
                 break;
             case KITS:
-                return NodeTextEnum.valueOf("KIT_" + pictureId);
+                return NodeTextEnum.valueOf(NamespaceEnum.KIT.getText() + pictureId);
             default:
                 return null;
         }
