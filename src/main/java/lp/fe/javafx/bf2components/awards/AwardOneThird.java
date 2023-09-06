@@ -117,5 +117,7 @@ public class AwardOneThird {
     public void clearBigImage() {
         bigImage.getImageView().setImage(null);
         labelMap.values().forEach(label -> label.setVisible(false));
+        key = null;
+        bf2Image = null;
     }
 }
