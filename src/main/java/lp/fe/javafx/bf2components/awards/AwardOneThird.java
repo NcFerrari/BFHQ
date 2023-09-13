@@ -33,10 +33,10 @@ public class AwardOneThird {
         paneForBigImage.setId(NamespaceEnum.BIG_IMAGE_STYLE.getText());
         paneForBigImage.getChildren().add(bigImage.getImageView());
         leftSidePart.getLeftTopPane().getChildren().add(new Pane(paneForBigImage));
-        initBorderPane();
+        initBigImagePart();
     }
 
-    private void initBorderPane() {
+    private void initBigImagePart() {
         BorderPane northPane = new BorderPane();
         northPane.setLeft(addLabel(NamespaceEnum.TITLE_TEXT, NodeTextEnum.EMPTY_STRING));
         northPane.setRight(addLabel(NamespaceEnum.STARS_COUNTER, null));
