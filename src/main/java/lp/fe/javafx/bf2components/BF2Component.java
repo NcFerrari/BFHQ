@@ -1,6 +1,5 @@
 package lp.fe.javafx.bf2components;
 
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -23,10 +22,7 @@ public abstract class BF2Component {
         tab.setText(title.getText(tab.textProperty()));
         tab.setClosable(false);
         tab.setContent(contentPane);
-        ScrollPane scrollPane = new ScrollPane(getLeftSidePart().getLeftPane());
-        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        contentPane.getChildren().add(scrollPane);
+        contentPane.getChildren().add(getLeftSidePart().getMainPane());
         contentPane.getChildren().add(getRightSidePart().getRightPane());
     }
 

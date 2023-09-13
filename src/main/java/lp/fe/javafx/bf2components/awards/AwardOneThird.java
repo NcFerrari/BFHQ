@@ -32,7 +32,7 @@ public class AwardOneThird {
     public AwardOneThird(@NotNull LeftSidePart leftSidePart) {
         paneForBigImage.setId(NamespaceEnum.BIG_IMAGE_STYLE.getText());
         paneForBigImage.getChildren().add(bigImage.getImageView());
-        leftSidePart.getLeftPane().getChildren().add(new Pane(paneForBigImage));
+        leftSidePart.getLeftTopPane().getChildren().add(new Pane(paneForBigImage));
         initBorderPane();
     }
 

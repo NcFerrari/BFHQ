@@ -59,7 +59,7 @@ public class StatsOneThird {
         Label rankTitle = new Label();
         rankTitle.setText(NodeTextEnum.RANK_TITLE.getText(rankTitle.textProperty()));
         rankTitle.setId(NamespaceEnum.SUB_TITLE_STYLE.getText());
-        leftSidePart.getLeftPane().getChildren().add(rankTitle);
+        leftSidePart.getLeftBottomPane().getChildren().add(rankTitle);
     }
 
     private void initRankDataAndImage() {
@@ -72,7 +72,7 @@ public class StatsOneThird {
         addLabel(rankDataPane, NodeTextEnum.EMPTY_STRING, false);
         HBox rankPane = new HBox();
         rankPane.getChildren().add(rankDataPane);
-        leftSidePart.getLeftPane().getChildren().add(rankPane);
+        leftSidePart.getLeftBottomPane().getChildren().add(rankPane);
 
         imagePane = new StackPane();
         rankImage = new BF2Image();
@@ -101,14 +101,14 @@ public class StatsOneThird {
         progressBar = new ProgressBar();
         progressBar.setId(NamespaceEnum.PROGRESS_BAR_STYLE.getText());
         progressPane.setRight(progressBar);
-        leftSidePart.getLeftPane().getChildren().add(progressPane);
+        leftSidePart.getLeftBottomPane().getChildren().add(progressPane);
     }
 
     private void initPersonalInfoPane() {
         Label personalInfoTitle = new Label();
         personalInfoTitle.setText(NodeTextEnum.PERSONAL_INFO.getText(personalInfoTitle.textProperty()));
         personalInfoTitle.setId(NamespaceEnum.SUB_TITLE_STYLE.getText());
-        leftSidePart.getLeftPane().getChildren().add(personalInfoTitle);
+        leftSidePart.getLeftBottomPane().getChildren().add(personalInfoTitle);
 
         addBorderLine(NodeTextEnum.GLOBAL_SCORE);
         addBorderLine(NodeTextEnum.TIME);
@@ -124,7 +124,7 @@ public class StatsOneThird {
         if (personalInfoLabels.size() % 2 == 0) {
             borderPane.setId(NamespaceEnum.BORDER_LIGHT_STYLE.getText());
         }
-        leftSidePart.getLeftPane().getChildren().add(borderPane);
+        leftSidePart.getLeftBottomPane().getChildren().add(borderPane);
 
         Label textLabel = new Label();
         textLabel.setText(nodeTextEnum.getText(textLabel.textProperty()));
@@ -141,13 +141,13 @@ public class StatsOneThird {
         Label lastThreeAwardsTitle = new Label();
         lastThreeAwardsTitle.setText(NodeTextEnum.LAST_THREE_AWARDS_TITLE.getText(lastThreeAwardsTitle.textProperty()));
         lastThreeAwardsTitle.setId(NamespaceEnum.SUB_TITLE_STYLE.getText());
-        leftSidePart.getLeftPane().getChildren().add(lastThreeAwardsTitle);
+        leftSidePart.getLeftBottomPane().getChildren().add(lastThreeAwardsTitle);
 
         HBox lastThreeAwardsPane = new HBox();
         lastThreeAwardsPane.setAlignment(Pos.CENTER);
         lastThreeAwardsPane.setSpacing(20);
         lastThreeAwardsPane.setId(NamespaceEnum.LAST_THREE_AWARDS_PANE_STYLE.getText());
-        leftSidePart.getLeftPane().getChildren().add(lastThreeAwardsPane);
+        leftSidePart.getLeftBottomPane().getChildren().add(lastThreeAwardsPane);
 
         for (int i = 0; i < 3; i++) {
             lastThreeAwards.add(new BF2Image());
