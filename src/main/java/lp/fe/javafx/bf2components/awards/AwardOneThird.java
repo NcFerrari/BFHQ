@@ -2,7 +2,9 @@ package lp.fe.javafx.bf2components.awards;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -25,15 +27,19 @@ public class AwardOneThird {
     private final StackPane paneForBigImage = new StackPane();
     private final BF2Image bigImage = new BF2Image();
     private final ObservableMap<NamespaceEnum, Label> labelMap = FXCollections.observableMap(new HashMap<>());
+    private final ObservableMap<NodeTextEnum, CheckBox> checkboxMap = FXCollections.observableMap(new HashMap<>());
+    private final LeftSidePart leftSidePart;
     private boolean enableLabels = true;
     private String key;
     private BF2Image bf2Image;
 
     public AwardOneThird(@NotNull LeftSidePart leftSidePart) {
+        this.leftSidePart = leftSidePart;
         paneForBigImage.setId(NamespaceEnum.BIG_IMAGE_STYLE.getText());
         paneForBigImage.getChildren().add(bigImage.getImageView());
         leftSidePart.getLeftTopPane().getChildren().add(new Pane(paneForBigImage));
         initBigImagePart();
+        initCheckList();
     }
 
     private void initBigImagePart() {
@@ -58,6 +64,26 @@ public class AwardOneThird {
         paneForBigImage.getChildren().add(imageBorderPane);
     }
 
+    private void initCheckList() {
+        NodeTextEnum.getAwards().forEach(this::addCheckBox);
+    }
+
+    private void addCheckBox(NodeTextEnum nodeTextEnum) {
+        CheckBox checkbox = new CheckBox();
+        checkbox.setText(nodeTextEnum.getText(checkbox.textProperty()));
+        if (checkboxMap.size() % 2 == 0) {
+            checkbox.setId(NamespaceEnum.CHECK_BOX_STYLE.getText());
+        } else {
+            checkbox.setId(NamespaceEnum.CHECK_BOX_LIGHT_STYLE.getText());
+        }
+        leftSidePart.getLeftBottomPane().getChildren().add(checkbox);
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText(NodeTextEnum.valueOf(
+                NamespaceEnum.TOOLTIP.getText() + nodeTextEnum.name()).getText(tooltip.textProperty()));
+        Tooltip.install(checkbox, tooltip);
+        checkboxMap.put(nodeTextEnum, checkbox);
+    }
+
     private @NotNull Label addLabel(NamespaceEnum key, NodeTextEnum textEnum) {
         Label label = new Label();
         label.setId(NamespaceEnum.BIG_IMAGE_LABEL_STYLE.getText());
@@ -77,6 +103,7 @@ public class AwardOneThird {
         bigImage.setImageViewSize(oneFifth);
         enableLabels = stage.getWidth() > 1200;
         showBigImage(key, bf2Image);
+        checkboxMap.values().forEach(checkBox -> checkBox.setPrefWidth(oneThird));
     }
 
     public void showBigImage(String key, BF2Image bf2Image) {

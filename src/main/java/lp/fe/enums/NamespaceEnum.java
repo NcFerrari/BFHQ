@@ -46,6 +46,8 @@ public enum NamespaceEnum {
     DATE_STYLE("date-label"),
     BIG_IMAGE_STYLE("big-image"),
     BIG_IMAGE_LABEL_STYLE("big-image-label"),
+    CHECK_BOX_STYLE("check-box"),
+    CHECK_BOX_LIGHT_STYLE("check-box-light"),
     DAYS_LETTER("d"),
     HOURS_LETTER("h"),
     MINUTES_LETTER("min"),
@@ -85,7 +87,8 @@ public enum NamespaceEnum {
     LAST_EARNED("lastEarned"),
     LAST_EARNED_DATE("lastEarnedDate"),
     FIRST_EARNED("firstEarned"),
-    FIRST_EARNED_DATE("firstEarnedDate");
+    FIRST_EARNED_DATE("firstEarnedDate"),
+    TOOLTIP("TOOLTIP_");
 
     private final String text;
 
