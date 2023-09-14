@@ -99,9 +99,8 @@ public class AwardOneThird {
     }
 
     public void rewriteData() {
-        Manager.getInstance().getAwardsForSelectedPlayer(0).forEach(bf2Image -> {
-            checkboxMap.get(bf2Image.getNodeTextEnum()).setSelected(true);
-        });
+        Manager.getInstance().getAwardsForSelectedPlayer(0).forEach(award ->
+                checkboxMap.get(award.getNodeTextEnum()).setSelected(true));
     }
 
     public void resize(@NotNull Stage stage) {
