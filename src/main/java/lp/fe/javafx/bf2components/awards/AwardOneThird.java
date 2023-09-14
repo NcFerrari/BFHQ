@@ -4,12 +4,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import lp.Manager;
 import lp.be.service.BF2Image;
 import lp.be.service.PictureService;
 import lp.be.serviceimpl.PictureServiceImpl;
@@ -65,6 +67,7 @@ public class AwardOneThird {
     }
 
     private void initCheckList() {
+        leftSidePart.getScrollPane().setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
         NodeTextEnum.getAwards().forEach(this::addCheckBox);
     }
 
@@ -93,6 +96,12 @@ public class AwardOneThird {
         }
         labelMap.put(key, label);
         return label;
+    }
+
+    public void rewriteData() {
+        Manager.getInstance().getAwardsForSelectedPlayer(0).forEach(bf2Image -> {
+            checkboxMap.get(bf2Image.getNodeTextEnum()).setSelected(true);
+        });
     }
 
     public void resize(@NotNull Stage stage) {
@@ -146,5 +155,6 @@ public class AwardOneThird {
         labelMap.values().forEach(label -> label.setVisible(false));
         key = null;
         bf2Image = null;
+        checkboxMap.values().forEach(checkBox -> checkBox.setSelected(false));
     }
 }

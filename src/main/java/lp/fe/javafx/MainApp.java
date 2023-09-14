@@ -80,7 +80,6 @@ public class MainApp extends Application {
     private void loadCssStyles(Scene scene) {
         addCSS(scene, NamespaceEnum.PANES_STYLE);
         addCSS(scene, NamespaceEnum.BUTTONS_STYLE);
-        addCSS(scene, NamespaceEnum.TABLE_STYLE);
         addCSS(scene, NamespaceEnum.TAB_PANE_STYLE);
         addCSS(scene, NamespaceEnum.RIGHT_SIDE_STYLE);
     }

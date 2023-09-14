@@ -29,6 +29,7 @@ public class AwardsPane extends BF2Component {
     public void rewriteData() {
         Player player = manager.getSelectedPlayer();
         if (player != null) {
+            awardOneThird.rewriteData();
             awardTwoThird.rewriteData();
         }
     }

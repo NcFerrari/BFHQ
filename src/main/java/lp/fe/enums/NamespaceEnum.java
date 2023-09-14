@@ -12,7 +12,6 @@ public enum NamespaceEnum {
     CALL_COUNT("Count of call: %d"),
     PANES_STYLE("css/panes.css"),
     BUTTONS_STYLE("css/buttons.css"),
-    TABLE_STYLE("css/table.css"),
     TAB_PANE_STYLE("css/tab-pane.css"),
     RIGHT_SIDE_STYLE("css/right-side-part.css"),
     TEMPORARY_CSS_FILE("file:///C://temp/temporary.css"),

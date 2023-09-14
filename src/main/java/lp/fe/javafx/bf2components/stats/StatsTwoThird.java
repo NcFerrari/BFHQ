@@ -88,8 +88,8 @@ public class StatsTwoThird {
         }
     }
 
-    private void createTable(TabPositionEnum tabContainer, NodeTextEnum tabTitle,
-                             NodeTextEnum[] columns, int rowCounts) {
+    private void createTable(TabPositionEnum tabContainer, NodeTextEnum tabTitle, NodeTextEnum[] columns,
+                             int rowCounts) {
         TableView<ObjectProperty<Object>[]> table = new TableView<>();
         addTabToTabPane(tabContainer, tabTitle, table);
         tableMap.put(tabTitle, table);

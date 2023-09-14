@@ -24,9 +24,10 @@ public class LeftSidePart {
     private final VBox leftBottomPane = new VBox();
     private final Label playerNameTitle = new Label();
     private final ComboBox<String> nameComboBox = new ComboBox<>();
+    private final ScrollPane scrollPane;
 
     public LeftSidePart() {
-        ScrollPane scrollPane = new ScrollPane(leftBottomPane);
+        scrollPane = new ScrollPane(leftBottomPane);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         mainPane.getChildren().add(new BorderPane(scrollPane, leftTopPane, null, null, null));
@@ -47,11 +48,11 @@ public class LeftSidePart {
         });
         nameComboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
             manager.setSelectedPlayer(newValue);
-            manager.getReloadableList().forEach(BF2Component::rewriteData);
             manager.getReloadableList()
                     .stream()
                     .filter(AwardsPane.class::isInstance)
                     .forEach(bf2Component -> ((AwardsPane) bf2Component).clearBigImage());
+            manager.getReloadableList().forEach(BF2Component::rewriteData);
         });
         fillNameComboBox();
     }
