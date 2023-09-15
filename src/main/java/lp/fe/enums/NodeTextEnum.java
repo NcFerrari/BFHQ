@@ -275,107 +275,231 @@ public enum NodeTextEnum {
     RANK_20("Lieutenant General", "Generálporučík"),
     RANK_21("General", "Generál"),
 
-    TOOLTIP_BADGE_1_1031105("", "10 zabití v jednom kole jako Inženýr"),
-    TOOLTIP_BADGE_1_1031109("", "10 zabití v jednom kole jako Odstřelovač"),
-    TOOLTIP_BADGE_1_1031113("", "10 zabití v jednom kole jako Zdravotník"),
-    TOOLTIP_BADGE_1_1031115("", "5 zabití v jednom kole jako Speciální jednotka"),
-    TOOLTIP_BADGE_1_1031119("", "5 zabití v jednom kole jako Pěšák"),
-    TOOLTIP_BADGE_1_1031120("", "10 zabití v jednom kole jako Bazukář"),
-    TOOLTIP_BADGE_1_1031121("", "10 zabití v jednom kole jako Kulometčík"),
-    TOOLTIP_BADGE_1_1031406("", "7 zabití v jednom kole s nožem"),
-    TOOLTIP_BADGE_1_1031619("", "5 zabití v jednom kole s pistolí"),
-    TOOLTIP_BADGE_1_1031923("", "5 minut v jednom kole v TOW nebo nemobilním těžkém kulometu"),
-    TOOLTIP_BADGE_1_1032415("", "5 zabití v jednom kole použitím miny, C4 nebo claymore (v jakékoliv kombinaci)"),
-    TOOLTIP_BADGE_1_1190304("", "40 bodů jako commander v jednom kole"),
-    TOOLTIP_BADGE_1_1190507("", "5 bodů za opravy v jednom kole"),
-    TOOLTIP_BADGE_1_1190601("", "5 bodů za uzdravování v jednom kole (ne za oživení!)"),
-    TOOLTIP_BADGE_1_1191819("", "5 bodů za doplňování munice v jednom kole"),
-    TOOLTIP_BADGE_1_1220104("", "10 minut v jednom kole v protiletadlovém autě nebo stroji"),
-    TOOLTIP_BADGE_1_1220118("", "10 minut v jednom kole v tanku nebo APC (jako řidič nebo střelec)"),
-    TOOLTIP_BADGE_1_1220122("", "10 minut v jednom kole v letadle (bombardéru či stíhačce) (jako pilot nebo střelec)"),
-    TOOLTIP_BADGE_1_1220803("", "15 minut v jednom kole v helikoptéře (útočné či transp.) (jako pilot, střelec či pasažér)"),
-    TOOLTIP_BADGE_1_1222016("", "10 minut v jednom kole v autě nebo člunu (jako řidič, střelec či spolujezdec)"),
+    TOOLTIP_BADGE_1_1031105("10 Kills as an Engineer in a Round", "10 zabití v jednom kole jako Inženýr"),
+    TOOLTIP_BADGE_1_1031109("10 Kills as a Sniper in a Round", "10 zabití v jednom kole jako Odstřelovač"),
+    TOOLTIP_BADGE_1_1031113("10 Kills as a Medic in a Round", "10 zabití v jednom kole jako Zdravotník"),
+    TOOLTIP_BADGE_1_1031115("5 Kills as a Spec Ops in a Round", "5 zabití v jednom kole jako Speciální jednotka"),
+    TOOLTIP_BADGE_1_1031119("5 Kills with Assault in a Round", "5 zabití v jednom kole jako Pěšák"),
+    TOOLTIP_BADGE_1_1031120("10 Kills as Anti-Tank in a Round", "10 zabití v jednom kole jako Bazukář"),
+    TOOLTIP_BADGE_1_1031121("10 Kills as Support in a Round", "10 zabití v jednom kole jako Kulometčík"),
+    TOOLTIP_BADGE_1_1031406("7 Kills with a Knife in a Round", "7 zabití v jednom kole s nožem"),
+    TOOLTIP_BADGE_1_1031619("5 Kills with a Pistol in a Round", "5 zabití v jednom kole s pistolí"),
+    TOOLTIP_BADGE_1_1031923("5 Minutes in TOW or Mounted Machine Gun", "5 minut v jednom kole v TOW nebo nemobilním" +
+            " těžkém kulometu"),
+    TOOLTIP_BADGE_1_1032415("5 Kills with any combination of AT Mine, C4, or Claymore in a Round", "5 zabití v jednom" +
+            " kole použitím miny, C4 nebo claymore (v jakékoliv kombinaci)"),
+    TOOLTIP_BADGE_1_1190304("40 Command Points in a Round", "40 bodů jako commander v jednom kole"),
+    TOOLTIP_BADGE_1_1190507("5 Repair Points in a Round", "5 bodů za opravy v jednom kole"),
+    TOOLTIP_BADGE_1_1190601("5 Heal Points in a Round", "5 bodů za uzdravování v jednom kole (ne za oživení!)"),
+    TOOLTIP_BADGE_1_1191819("5 Ammo Points in a Round", "5 bodů za doplňování munice v jednom kole"),
+    TOOLTIP_BADGE_1_1220104("10 Minutes on Stinger or AA Vehicle in a Round", "10 minut v jednom kole v" +
+            " protiletadlovém autě nebo stroji"),
+    TOOLTIP_BADGE_1_1220118("10 Minutes in Armor in a Round", "10 minut v jednom kole v tanku nebo APC (jako řidič" +
+            " nebo střelec)"),
+    TOOLTIP_BADGE_1_1220122("10 Minutes in Air Vehicles in a Round", "10 minut v jednom kole v letadle (bombardéru" +
+            " či stíhačce) (jako pilot nebo střelec)"),
+    TOOLTIP_BADGE_1_1220803("15 Minutes in a Helicopter in a Round", "15 minut v jednom kole v helikoptéře (útočné" +
+            " či transp.) (jako pilot, střelec či pasažér)"),
+    TOOLTIP_BADGE_1_1222016("10 Minutes in a Transport Vehicle in a Round", "10 minut v jednom kole v autě nebo člunu" +
+            " (jako řidič, střelec či spolujezdec)"),
 
-    TOOLTIP_BADGE_2_1031105("", "-Základní práce inženýra\n-Celkově 15 hodin jako Inženýr\n-20 zabití v jednom kole jako Inženýr"),
-    TOOLTIP_BADGE_2_1031109("", "-Základní práce odstřelovače\n-Celkově 15 hodin jako Odstřelovač\n-15 zabití v jednom kole jako Odstřelovač"),
-    TOOLTIP_BADGE_2_1031113("", "-Základní práce zdravotníka\n-Celkově 15 hodin jako Zdravotník\n-20 zabití v jednom kole jako Zdravotník"),
-    TOOLTIP_BADGE_2_1031115("", "-Základní práce spec. jednotek\n-Celkově 15 hodin jako Speciální jednotka\n-20 zabití v jednom kole jako spec. jednotka"),
-    TOOLTIP_BADGE_2_1031119("", "-Základní boj\n-Celkově 15 hodin jako Pěšák\n-20 zabití v jednom kole jako Pěšák"),
-    TOOLTIP_BADGE_2_1031120("", "-Proti tankový boj\n-Celkově 15 hodin jako Bazukář\n-20 zabití v jednom kole jako Bazukář"),
-    TOOLTIP_BADGE_2_1031121("", "-Základní práce kulometčíka\n-Celkově 15 hodin jako Kulometčík\n-20 zabití v jednom kole jako Kulometčík"),
-    TOOLTIP_BADGE_2_1031406("", "-Základní boj s nožem\n-50 celkových zabití s nožem"),
-    TOOLTIP_BADGE_2_1031619("", "-Základní boj s pistolí\n-50 celkových zabití s pistolí\n-7 zabití v jednom kole s pistolí"),
-    TOOLTIP_BADGE_2_1031923("", "-Základní pozemní obrana\n-10 zabití v jednom kole s TOW nebo nemobilním těžkém kulometu"),
-    TOOLTIP_BADGE_2_1032415("", "-Základní práce s výbušninami\n-50 celkových zabití s výbušninami\n-20 zabití v jednom kole použitím miny, C4 nebo claymore (v jakékoliv kombinaci) (je potřeba mít 50 bodů z výbušnin před tímto bodem)"),
-    TOOLTIP_BADGE_2_1190304("", "-Základní rozkazy\n-Celkově 1.000 bodů velitele\n-25 minut v jednom kole jako velitel"),
-    TOOLTIP_BADGE_2_1190507("", "-Inženýr-začátečník\n-Celkově 15 hodin jako Inženýr\n-10 bodů za opravy v jednom kole"),
-    TOOLTIP_BADGE_2_1190601("", "-První pomoc\n-Celkově 15 hodin jako Zdravotník\n-10 bodů za uzdravování v jednom kole (ne za oživení!)"),
-    TOOLTIP_BADGE_2_1191819("", "-Doplňování zásob\n-Celkově 15 hodin jako Kulometčík\n-10 bodů za doplňování munice v jednom kole"),
-    TOOLTIP_BADGE_2_1220104("", "-Základní protivzdušná obrana\n-10 zabití v jednom kole v protiletadlovém autě nebo stroji"),
-    TOOLTIP_BADGE_2_1220118("", "-Základní obrn. jednotky\n-Celkově 100 hodin v tanku nebo APC\n-12 zabití v jednom kole tankem nebo APC"),
-    TOOLTIP_BADGE_2_1220122("", "-Pilot-začátečník\n-Celkově 50 hodin v letadle\n-12 zabití v jednom kole v letadle"),
-    TOOLTIP_BADGE_2_1220803("", "-Pilot vrtulníku-začátečník\n-Celkově 50 hodin v helikoptéře\n-12 zabití v jednom kole v helikoptéře"),
-    TOOLTIP_BADGE_2_1222016("", "-Základní transport\n-Celkově 25 hodin v autě nebo člunu\n-200 speciálních dovedností (poznámka dole)\n-5 přejetím v jednom kole autem"),
+    TOOLTIP_BADGE_2_1031105("-Basic Engineer Combat Badge\n-15 Hours as Engineer\n-20 Kills as Engineer in a Round",
+            "-Základní práce inženýra\n-Celkově 15 hodin jako Inženýr\n-20 zabití v jednom kole jako Inženýr"),
+    TOOLTIP_BADGE_2_1031109("-Basic Sniper Combat Badge\n-15 Hours as Sniper\n-15 Kills as a Sniper in a Round",
+            "-Základní práce odstřelovače\n-Celkově 15 hodin jako Odstřelovač\n-15 zabití v jednom kole jako" +
+                    " Odstřelovač"),
+    TOOLTIP_BADGE_2_1031113("-Basic Medic Combat Badge\n-15 Hours as a Medic\n-20 Kills as a Medic in a Round",
+            "-Základní práce zdravotníka\n-Celkově 15 hodin jako Zdravotník\n-20 zabití v jednom kole jako Zdravotník"),
+    TOOLTIP_BADGE_2_1031115("-Basic Spec Ops Combat Badge\n-15 Hours as Spec Ops\n-20 Kills as a Spec Ops in a Round",
+            "-Základní práce spec. jednotek\n-Celkově 15 hodin jako Speciální jednotka\n-20 zabití v jednom kole" +
+                    " jako spec. jednotka"),
+    TOOLTIP_BADGE_2_1031119("-Basic Assault Combat Badge\n-15 Hours as Assault\n-20 Kills with Assault in a Round",
+            "-Základní boj\n-Celkově 15 hodin jako Pěšák\n-20 zabití v jednom kole jako Pěšák"),
+    TOOLTIP_BADGE_2_1031120("-Basic Anti-Tank Combat Badge\n-15 Hours as Anti-Tank\n-20 Kills as Anti-Tank in a Round",
+            "-Proti tankový boj\n-Celkově 15 hodin jako Bazukář\n-20 zabití v jednom kole jako Bazukář"),
+    TOOLTIP_BADGE_2_1031121("-Basic Support Combat Badge\n-15 Hours as Support\n-20 Kills as Support in a Round",
+            "-Základní práce kulometčíka\n-Celkově 15 hodin jako Kulometčík\n-20 zabití v jednom kole jako Kulometčík"),
+    TOOLTIP_BADGE_2_1031406("-Basic Knife Combat Badge\n-50 Kills with a Knife", "-Základní boj s nožem\n-50" +
+            " celkových zabití s nožem"),
+    TOOLTIP_BADGE_2_1031619("-Basic Pistol Combat Badge\n-50 Kills with Pistols\n-7 Kills with a Pistol in a Round",
+            "-Základní boj s pistolí\n-50 celkových zabití s pistolí\n-7 zabití v jednom kole s pistolí"),
+    TOOLTIP_BADGE_2_1031923("-Basic Ground Defense Badge\n-10 Kills With TOW or Mounted Machine Gun", "-Základní" +
+            " pozemní obrana\n-10 zabití v jednom kole s TOW nebo nemobilním těžkém kulometu"),
+    TOOLTIP_BADGE_2_1032415("-Basic Explosive Ordinance Badge\n-50 Kills with Explosives\n-20 Kills with any" +
+            " combination of AT Mine, C4, or Claymore in a Round", "-Základní práce s výbušninami\n-50 celkových" +
+            " zabití s výbušninami\n-20 zabití v jednom kole použitím miny, C4 nebo claymore (v jakékoliv kombinaci)" +
+            " (je potřeba mít 50 bodů z výbušnin před tímto bodem)"),
+    TOOLTIP_BADGE_2_1190304("-Basic Command Badge\n-1000 Command Points\n-25 Minutes as Commander in a Round",
+            "-Základní rozkazy\n-Celkově 1.000 bodů velitele\n-25 minut v jednom kole jako velitel"),
+    TOOLTIP_BADGE_2_1190507("-Basic Engineer Badge\n-5 Repair Points in a Round",
+            "-Inženýr-začátečník\n-Celkově 15 hodin jako Inženýr\n-10 bodů za opravy v jednom kole"),
+    TOOLTIP_BADGE_2_1190601("-Basic First Aid Badge\n-15 Hours as Medic\n-10 Heal Points in a Round",
+            "-První pomoc\n-Celkově 15 hodin jako Zdravotník\n-10 bodů za uzdravování v jednom kole (ne za oživení!)"),
+    TOOLTIP_BADGE_2_1191819("-Basic Resupply Badge\n-15 Hours as Support\n-10 Ammo Points in a Round",
+            "-Doplňování zásob\n-Celkově 15 hodin jako Kulometčík\n-10 bodů za doplňování munice v jednom kole"),
+    TOOLTIP_BADGE_2_1220104("-Basic Air Defense Badge\n-10 Kills With Stinger or AA Vehicle in a Round",
+            "-Základní protivzdušná obrana\n-10 zabití v jednom kole v protiletadlovém autě nebo stroji"),
+    TOOLTIP_BADGE_2_1220118("-Basic Armor Badge\n-100 Hours in Armor\n-12 Kills With Armor in a Round",
+            "-Základní obrn. jednotky\n-Celkově 100 hodin v tanku nebo APC\n-12 zabití v jednom kole tankem nebo APC"),
+    TOOLTIP_BADGE_2_1220122("-Basic Aviator Badge\n-50 Hours in Air Vehicles\n-12 Kills With Air Vehicles in a Round",
+            "-Pilot-začátečník\n-Celkově 50 hodin v letadle\n-12 zabití v jednom kole v letadle"),
+    TOOLTIP_BADGE_2_1220803("-Basic Helicopter Badge\n-50 Hours in a Helicopter\n-12 Kills With a" +
+            " Helicopter in a Round",
+            "-Pilot vrtulníku-začátečník\n-Celkově 50 hodin v helikoptéře\n-12 zabití v jednom kole v helikoptéře"),
+    TOOLTIP_BADGE_2_1222016("-Basic Transport Badge\n-25 Hours in a Transport Vehicle\n-200 Driver Special Ability" +
+            " Points\n-5 Road Kills in a Transport Vehicle in a Round", "-Základní transport\n-Celkově 25 hodin v" +
+            " autě nebo člunu\n-200 speciálních dovedností\n-5 přejetím v jednom kole autem"),
 
-    TOOLTIP_BADGE_3_1031105("", "-Veterán-práce Inženýra\n-Celkově 100 hodin jako Inženýr\n-40 zabití v jednom kole jako Inženýr"),
-    TOOLTIP_BADGE_3_1031109("", "-Veterán-Odstřelovač\n-Celkově 100 hodin jako Odstřelovač\n-35 zabití v jednom kole jako Odstřelovač"),
-    TOOLTIP_BADGE_3_1031113("", "-Veterán-Zdravotník\n-Celkově 100 hodin jako Zdravotník\n-40 zabití v jednom kole jako Zdravotník"),
-    TOOLTIP_BADGE_3_1031115("", "-Veterán-Sepciálních jednotek\n-Celkově 100 hodin jako Speciální jednotka\n-40 zabití v jednom kole jako Spec. jednotka"),
-    TOOLTIP_BADGE_3_1031119("", "-Veterán-Pozemní boj\n-Celkově 100 hodin jako Pěšák\n-40 zabití v jednom kole jako Pěšák"),
-    TOOLTIP_BADGE_3_1031120("", "-Veterán-proti-tankový-boj\n-Celkově 100 hodin jako Bazukář\n-40 zabití v jednom kole jako Bazukář"),
-    TOOLTIP_BADGE_3_1031121("", "-Veterán-Kulometčík\n-Celkově 100 hodin jako Kulometčík\n-40 zabití v jednom kole jako Kulometčík"),
-    TOOLTIP_BADGE_3_1031406("", "-Veterán-boj s nožem\n-100 celkových zabití s nožem"),
-    TOOLTIP_BADGE_3_1031619("", "-Veterán-boj s pistolí\n-500 celkových zabití s pistolí\n-18 zabití v jednom kole s pistolí"),
-    TOOLTIP_BADGE_3_1031923("", "-Veterán-pozemní obrana\n-20 zabití v jednom kole s TOW nebo nemobilním těžkém kulometu"),
-    TOOLTIP_BADGE_3_1032415("", "-Veterán-práce s výbušninami\n-300 celkových zabití s výbušninami\n-30 zabití v jednom kole použitím miny, C4 nebo claymore (v jakékoliv kombinaci) (je potřeba mít 300 bodů z výbušnin před tímto bodem)"),
-    TOOLTIP_BADGE_3_1190304("", "-Veterán-rozkazy\n-Celkově 10.000 bodů velitele\n-30 minut v jednom kole jako velitel"),
-    TOOLTIP_BADGE_3_1190507("", "-Veterán-inženýr\n-Celkově 100 hodin jako Inženýr\n-250 celkových bodů za opravy\n-20 bodů za opravy v jednom kole"),
-    TOOLTIP_BADGE_3_1190601("", "-Veterán-první pomoc\n-Celkově 100 hodin jako Zdravotník\n-750 celkových bodů za uzdravování\n-20 bodů za uzdravování v jednom kole"),
-    TOOLTIP_BADGE_3_1191819("", "-Veterán-zásobování\n-Celkově 100 hodin jako Kulometčík\n-500 celkových bodů za doplňování munice\n-25 bodů za doplňování munice v jednom kole"),
-    TOOLTIP_BADGE_3_1220104("", "-Veterán-protivzdušná obrana\n-20 zabití v jednom kole v protiletadlovém autě nebo stroji"),
-    TOOLTIP_BADGE_3_1220118("", "-Veterán-obránce\n-Celkově 400 hodin (16 dní) v tanku nebo APC\n-24 zabití v jednom kole tankem nebo APC"),
-    TOOLTIP_BADGE_3_1220122("", "-Veterán-pilot\n-Celkově 150 hodin v letadle\n-24 zabití v jednom kole v letadle"),
-    TOOLTIP_BADGE_3_1220803("", "-Veterán-helikoptéra\n-Celkově 150 hodin v helikoptéře\n-24 zabití v jednom kole v helikoptéře"),
-    TOOLTIP_BADGE_3_1222016("", "-Veterán-transport\n-Celkově 75 hodin v autě nebo člunu\n-2000 speciálních dovedností\n-11 přejetím v jednom kole autem"),
+    TOOLTIP_BADGE_3_1031105("-Veteran Engineer Combat Badge\n-100 Hours as Engineer\n-40 Kills as Engineer in a Round",
+            "-Veterán-práce Inženýra\n-Celkově 100 hodin jako Inženýr\n-40 zabití v jednom kole jako Inženýr"),
+    TOOLTIP_BADGE_3_1031109("-Veteran Sniper Combat Badge\n-100 Hours as Sniper\n-35 Kills as a Sniper in a Round",
+            "-Veterán-Odstřelovač\n-Celkově 100 hodin jako Odstřelovač\n-35 zabití v jednom kole jako Odstřelovač"),
+    TOOLTIP_BADGE_3_1031113("-Veteran Medic Combat Badge\n-100 Hours as a Medic\n-40 Kills as a Medic in a Round",
+            "-Veterán-Zdravotník\n-Celkově 100 hodin jako Zdravotník\n-40 zabití v jednom kole jako Zdravotník"),
+    TOOLTIP_BADGE_3_1031115("-Veteran Spec Ops Combat Badge\n-100 Hours as Spec Ops\n" +
+            "-40 Kills as a Spec Ops in a Round", "-Veterán-Sepciálních jednotek\n-Celkově 100 hodin jako Speciální" +
+            " jednotka\n-40 zabití v jednom kole jako Spec. jednotka"),
+    TOOLTIP_BADGE_3_1031119("-Veteran Assault Combat Badge\n-100 Hours as Assault\n-40 Kills with Assault in a Round",
+            "-Veterán-Pozemní boj\n-Celkově 100 hodin jako Pěšák\n-40 zabití v jednom kole jako Pěšák"),
+    TOOLTIP_BADGE_3_1031120("-Veteran Anti-Tank Combat Badge\n-100 Hours as Anti-Tank\n-40 Kills as" +
+            " Anti-Tank in a Round", "-Veterán-proti-tankový-boj\n-Celkově 100 hodin jako Bazukář\n-40 zabití v" +
+            " jednom kole jako Bazukář"),
+    TOOLTIP_BADGE_3_1031121("-Veteran Support Combat Badge\n-100 Hours as Support\n-40 Kills as Support",
+            "-Veterán-Kulometčík\n-Celkově 100 hodin jako Kulometčík\n-40 zabití v jednom kole jako Kulometčík"),
+    TOOLTIP_BADGE_3_1031406("-Veteran Knife Combat Badge\n-100 Kills with a Knife", "-Veterán-boj s nožem\n-100" +
+            " celkových zabití s nožem"),
+    TOOLTIP_BADGE_3_1031619("-Veteran Pistol Combat Badge\n-500 Kills with Pistols\n-18 Kills with a Pistol in a Round",
+            "-Veterán-boj s pistolí\n-500 celkových zabití s pistolí\n-18 zabití v jednom kole s pistolí"),
+    TOOLTIP_BADGE_3_1031923("-Veteran Ground Defense Badge\n-20 Kills With TOW or Mounted Machine Gun",
+            "-Veterán-pozemní obrana\n-20 zabití v jednom kole s TOW nebo nemobilním těžkém kulometu"),
+    TOOLTIP_BADGE_3_1032415("-Veteran Explosive Ordinance Badge\n-300 Kills with Explosives\n-30 Kills with any" +
+            " combination of AT Mine, C4, or Claymroe in a Round", "-Veterán-práce s výbušninami\n-300 celkových" +
+            " zabití s výbušninami\n-30 zabití v jednom kole použitím miny, C4 nebo claymore (v jakékoliv kombinaci)" +
+            " (je potřeba mít 300 bodů z výbušnin před tímto bodem)"),
+    TOOLTIP_BADGE_3_1190304("-Veteran Command Badge\n-10.000 Command Points\n-30 Minutes as Commander in a Round",
+            "-Veterán-rozkazy\n-Celkově 10.000 bodů velitele\n-30 minut v jednom kole jako velitel"),
+    TOOLTIP_BADGE_3_1190507("-Veteran Engineer Badge\n-100 Hours as Engineer\n-250 Repair Points\n-20 Repair Point in" +
+            " a Round", "-Veterán-inženýr\n-Celkově 100 hodin jako Inženýr\n-250 celkových bodů za opravy\n-20 bodů" +
+            " za opravy v jednom kole"),
+    TOOLTIP_BADGE_3_1190601("-Veteran First Aid Badge\n-100 Hours as Medic\n-750 Heals\n-20 Heal Points in a Round",
+            "-Veterán-první pomoc\n-Celkově 100 hodin jako Zdravotník\n-750 celkových bodů za uzdravování\n-20 bodů" +
+                    " za uzdravování v jednom kole"),
+    TOOLTIP_BADGE_3_1191819("-Veteran Resupply Badge\n-100 Hours as Support\n-500 Resupply Points\n-25 Ammo Points in" +
+            " a Round", "-Veterán-zásobování\n-Celkově 100 hodin jako Kulometčík\n-500 celkových bodů za doplňování" +
+            " munice\n-25 bodů za doplňování munice v jednom kole"),
+    TOOLTIP_BADGE_3_1220104("-Veteran Air Defense Badge\n-20 Kills With Stinger or AA Vehicle in a Round",
+            "-Veterán-protivzdušná obrana\n-20 zabití v jednom kole v protiletadlovém autě nebo stroji"),
+    TOOLTIP_BADGE_3_1220118("-Veteran Armor Badge\n-400 Hours in Armor\n-24 Kills With Armor in a Round",
+            "-Veterán-obránce\n-Celkově 400 hodin (16 dní) v tanku nebo APC\n-24 zabití v jednom kole tankem nebo APC"),
+    TOOLTIP_BADGE_3_1220122("-Veteran Aviator Badge\n-150 Hours in Air Vehicles\n-24 Kills With Air" +
+            " Vehicles in a Round", "-Veterán-pilot\n-Celkově 150 hodin v letadle\n-24 zabití v jednom kole v letadle"),
+    TOOLTIP_BADGE_3_1220803("-Veteran Helicopter Badge\n-150 Hours in a Helicopter\n-24 Kills With a Helicopter in a" +
+            " Round", "-Veterán-helikoptéra\n-Celkově 150 hodin v helikoptéře\n-24 zabití v jednom kole v helikoptéře"),
+    TOOLTIP_BADGE_3_1222016("-Veteran Transport Badge\n-75 Hours in a Transport Vehicle\n-2.000 Driver Special" +
+            " Ability Points\n-11 Road Kills in a Transport Vehicle", "-Veterán-transport\n-Celkově 75 hodin v autě" +
+            " nebo člunu\n-2.000 speciálních dovedností\n-11 přejetím v jednom kole autem"),
 
-    TOOLTIP_MEDAL_2020419("", "-Celkově 100 hodin jako velitel týmu\n-Celkově 100 hodin jako tým leader\n-Celkově 100 hodin jako člen týmu\n-45 týmových bodů v jednom kole"),
-    TOOLTIP_MEDAL_2020719("", "-Celkově 100 hodin hrát za blízkovýchodní koalici\n-Celkově 100x vyhrát za blízkovýchodní koalici\n-Mít aspoň 100 skóre za blízkovýchodní koalici v jednom kole"),
-    TOOLTIP_MEDAL_2020903("", "-Celkově hrát 200 hodin\n-9 základních odznaků (za 7 zbraní + pistole + nůž)\npozn.: Pokud získáte nejdřív odznaky a až pak dovršíte 200 hodin herní doby, tak dotstanete medajli až v následující hře"),
-    TOOLTIP_MEDAL_2020913("", "-Celkově hrát 300 hodin\n-9 odznaků veterána (za 7 zbraní + pistole + nůž)\npozn.: Pokud získáte nejdřív odznaky a až pak dovršíte 300 hodin herní doby, tak dotstanete medajli až v následující hře"),
-    TOOLTIP_MEDAL_2020919("", "-Celkově hrát 400 hodin\n-9 expertních odznaků (za 7 zbraní + pistole + nůž)\npozn.: Pokud získáte nejdřív odznaky a až pak dovršíte 400 hodin herní doby, tak dotstanete medajli až v následující hře"),
-    TOOLTIP_MEDAL_2021322("", "-Celkově hrát 250 hodin\n-Celkově 5.000 speciálních schopností v autě\n-Celkově 30.000 týmových bodů\n-Celkově 1.000 bodů za ubránění vlajky\npozn.: Tuto medajli dostanete v další hře po splnění výše uvedených kritérií"),
-    TOOLTIP_MEDAL_2021403("", "-Celkově 100 hodin hrát za američany\n-Celkově 100x vyhrát za američany\n-Mít aspoň 100 skóre za američany v jednom kole"),
-    TOOLTIP_MEDAL_2021613("", "-Celkově 100 hodin hrát za číňany\n-Celkově 100x vyhrát za číňany\n-Mít aspoň 100 skóre za číňany v jednom kole"),
-    TOOLTIP_MEDAL_2051902("", "Mít 3. největší skóre z obou týmů na konci kola"),
-    TOOLTIP_MEDAL_2051907("", "Mít 1. největší skóre z obou týmů na konci kola"),
-    TOOLTIP_MEDAL_2051919("", "Mít 2. největší skóre z obou týmů na konci kola"),
-    TOOLTIP_MEDAL_2190303("", "-Celkově hrát 250 hodin\n-Celkově 25.000 zabití\n-25 zabití po sobě bez smrti (killstreak)\n-Hrát 33 minut v jednom kole"),
-    TOOLTIP_MEDAL_2190308("", "-Celkově 100 hodin být v helikoptéře\n-Celkově 5.000 zabití helikoptérou\n-30 zabití helikoptérou v jednom kole"),
-    TOOLTIP_MEDAL_2190309("", "-Celkově 100 hodin být v letadle\n-Celkově 5.000 zabití letadlem\n-25 zabití letadlem v jednom kole"),
-    TOOLTIP_MEDAL_2190318("", "-Celkově 100 hodin být v tanku nebo v APC\n-Celkově 5.000 zabití tankem nebo APC\n-25 zabití tankem nebo APC v jednom kole"),
-    TOOLTIP_MEDAL_2190703("", "-Celkově hrát 250 hodin\n-24 zabití v jednom kole\n-NESMÍTE ZABÍT ANI ZRANIT SPOLUHRÁČE V TOMTO KOLE (ani poškodit vozidlo)"),
-    TOOLTIP_MEDAL_2191319("", "-Celkově hrát 250 hodin\n-Celkově 1.000 bodů za uzdravení\n-Celkově 1.000 bodů za opravy\n-Celkově 1.000 bodů za doplňování munice\npozn.: Tuto medajli dostanete v další hře po splnění výše uvedených kritérií"),
-    TOOLTIP_MEDAL_2191608("", "Získat body zabití:smrt v poměru 1:4 s minimálním poměrem 5:20 v jednom kole"),
-    TOOLTIP_MEDAL_3270519("", "-Celkově 50 hodin hrát za evropskou unii\n-Celkově 100x vyhrát za evropskou unii\n-Mít aspoň 100 skóre za evropskou unii v jednom kole"),
+    TOOLTIP_MEDAL_2020419("-100 Hours as Commander\n-100 Hours as Squad Leader\n-100 Hours as Squad Member\n-Team" +
+            " Score of 45 in a Round", "-Celkově 100 hodin jako velitel týmu\n-Celkově 100 hodin jako tým" +
+            " leader\n-Celkově 100 hodin jako člen týmu\n-45 týmových bodů v jednom kole"),
+    TOOLTIP_MEDAL_2020719("-Play 100 Hours as MEC\n-100 Wins as MEC\n-100 score as MEC in a Round", "-Celkově 100" +
+            " hodin hrát za blízkovýchodní koalici\n-Celkově 100x vyhrát za blízkovýchodní koalici\n-Mít aspoň 100" +
+            " skóre za blízkovýchodní koalici v jednom kole"),
+    TOOLTIP_MEDAL_2020903("-200 Hours Played\n-9 basic badges (7 weapons + pistole + knife)", "-Celkově hrát 200" +
+            " hodin\n-9 základních odznaků (za 7 zbraní + pistole + nůž)\npozn.: Pokud získáte nejdřív odznaky a až" +
+            " pak dovršíte 200 hodin herní doby, tak dotstanete medajli až v následující hře"),
+    TOOLTIP_MEDAL_2020913("-300 Hours Played\n-9 veteran badges (7 weapons + pistole + knife)", "-Celkově hrát 300" +
+            " hodin\n-9 odznaků veterána (za 7 zbraní + pistole + nůž)\npozn.: Pokud získáte nejdřív odznaky a až" +
+            " pak dovršíte 300 hodin herní doby, tak dotstanete medajli až v následující hře"),
+    TOOLTIP_MEDAL_2020919("-400 Hours Played\n-9 expert badges (7 weapons + pistole + knife)", "-Celkově hrát 400" +
+            " hodin\n-9 expertních odznaků (za 7 zbraní + pistole + nůž)\npozn.: Pokud získáte nejdřív odznaky a až" +
+            " pak dovršíte 400 hodin herní doby, tak dotstanete medajli až v následující hře"),
+    TOOLTIP_MEDAL_2021322("-250 Hours Played\n-5.000 Driver Special Ability Points\n-30.000 Team Points\n-1.000 Flag" +
+            " Defense Points", "-Celkově hrát 250 hodin\n-Celkově 5.000 speciálních schopností v autě\n-Celkově" +
+            " 30.000 týmových bodů\n-Celkově 1.000 bodů za ubránění vlajky\npozn.: Tuto medajli dostanete v další" +
+            " hře po splnění výše uvedených kritérií"),
+    TOOLTIP_MEDAL_2021403("-Play 100 Hours as USMC\n-Win 100 Rounds as USMC\n-100 score as USMC in a Round\n",
+            "-Celkově 100 hodin hrát za američany\n-Celkově 100x vyhrát za američany\n-Mít aspoň 100 skóre za" +
+                    " američany v jednom kole"),
+    TOOLTIP_MEDAL_2021613("-Play 100 Hours as PLA\n-100 Wins as PLA\n-100 score as PLA in a Round", "-Celkově 100" +
+            " hodin hrát za číňany\n-Celkově 100x vyhrát za číňany\n-Mít aspoň 100 skóre za číňany v jednom kole"),
+    TOOLTIP_MEDAL_2051902("Third Place in a Round", "Mít 3. největší skóre z obou týmů na konci kola"),
+    TOOLTIP_MEDAL_2051907("First Place in a Round", "Mít 1. největší skóre z obou týmů na konci kola"),
+    TOOLTIP_MEDAL_2051919("Second Place in a Round", "Mít 2. největší skóre z obou týmů na konci kola"),
+    TOOLTIP_MEDAL_2190303("-250 Hours Played\n-25.000 Kills\n-25 Kills Streak\n-Play for 33 Minutes in a Round",
+            "-Celkově hrát 250 hodin\n-Celkově 25.000 zabití\n-25 zabití po sobě bez smrti (killstreak)\n-Hrát 33" +
+                    " minut v jednom kole"),
+    TOOLTIP_MEDAL_2190308("-100 Hours in Helicopters\n-5.000 Kills With Helicopters\n-30 Kills with Helicopters in a" +
+            " Round", "-Celkově 100 hodin být v helikoptéře\n-Celkově 5.000 zabití helikoptérou\n-30 zabití" +
+            " helikoptérou v jednom kole"),
+    TOOLTIP_MEDAL_2190309("-100 Hours in Air Vehicles\n-5.000 Kills With Air Vehicles\n-25 Kills with Air Vehicle" +
+            " in a Round", "-Celkově 100 hodin být v letadle\n-Celkově 5.000 zabití letadlem\n-25 zabití letadlem v" +
+            " jednom kole"),
+    TOOLTIP_MEDAL_2190318("-100 Hours in Armored Vehicles\n-5.000 Kills With Armored Vehicles\n-25 Kills in an" +
+            " Armored Vehicle in a Round", "-Celkově 100 hodin být v tanku nebo v APC\n-Celkově 5.000 zabití tankem" +
+            " nebo APC\n-25 zabití tankem nebo APC v jednom kole"),
+    TOOLTIP_MEDAL_2190703("-250 Hours Played\n-27 Kills with No Team Kills or Damage to Friendly Vehicles in a Round",
+            "-Celkově hrát 250 hodin\n-27 zabití v jednom kole\n-NESMÍTE ZABÍT ANI ZRANIT SPOLUHRÁČE V TOMTO KOLE" +
+                    " (ani poškodit vozidlo)"),
+    TOOLTIP_MEDAL_2191319("-250 Hours Played\n-1.000 Heal Points\n-1.000 Repair Points\n-1.000 Resupply Points",
+            "-Celkově hrát 250 hodin\n-Celkově 1.000 bodů za uzdravení\n-Celkově 1.000 bodů za opravy\n-Celkově" +
+                    " 1.000 bodů za doplňování munice\npozn.: Tuto medajli dostanete v další hře po splnění výše" +
+                    " uvedených kritérií"),
+    TOOLTIP_MEDAL_2191608("Obtain a K/D of 1:4 With a Minimum of 5 Kills/20 Deaths in a Round",
+            "Získat body zabití:smrt v poměru 1:4 s minimálním poměrem 5:20 v jednom kole"),
+    TOOLTIP_MEDAL_3270519("-50 Hours as European Union\n-Win 100 Rounds as European Union in a Round",
+            "-Celkově 50 hodin hrát za evropskou unii\n-Celkově 100x vyhrát za evropskou unii\n-Mít aspoň 100 skóre" +
+                    " za evropskou unii v jednom kole"),
 
-    TOOLTIP_RIBBON_3040109("", "-3 minuty v AA autě nebo stroji v jednom kole\n-11 zabití s AA autem nebo strojem v jednom kole"),
-    TOOLTIP_RIBBON_3040718("", "-3 minuty v TOW nebo nemobilním těžkém kulometu v jednom kole\n-5 zabití s TOW nebo nemobilním těžkém kulometu v jednom kole"),
-    TOOLTIP_RIBBON_3150914("", "-Celkově 250 týmových bodů\n-25 minut jako tým leader v jednom kole"),
-    TOOLTIP_RIBBON_3151920("", "-28 minut být velitelem týmu v jednom kole\n-50 velitelských bodů v jednom kole"),
-    TOOLTIP_RIBBON_3190105("", "-15 minut být v letadle (bombardér nebo stíhačka) (pilot nebo střelec) v jednom kole\n-19 zabití letadlem (bombardérem nebo stíhačkou) v jednom kole"),
-    TOOLTIP_RIBBON_3190118("", "-20 minut být v tanku nebo APC v jednom kole\n-19 zabití tankem nebo APC v jednom kole"),
-    TOOLTIP_RIBBON_3190318("", "-5 zabití v jednom kole\n-13 asistencí zabití v autě v jednom kole\n-1 bod speciální dovednosti v autě v jednom kole"),
-    TOOLTIP_RIBBON_3190409("", "-Celkově 10 hodin jako velitel týmů\n-Celkově 10 hodin jako team leader\n-Celkově 10 hodin jako člen týmu\n-15 týmových bodů v jednom kole"),
-    TOOLTIP_RIBBON_3190605("", "-Zahrát si mapu Daqing Oilfields\n-Zahrát si mapu Dalian Plant\n-Zahrát si mapu Dragon Valley\n-Zahrát si mapu FuShe Pass\n-Zahrát si mapu Songhua Stalemate\n-Zahrát si mapu Wake Island 2007"),
-    TOOLTIP_RIBBON_3190803("", "-15 minut být v helikoptéře (jako pilot, střelec nebo pasažér) v jednom kole\n-19 zabití helikoptérou (pilotem nebo střelcem) v jednom kole"),
-    TOOLTIP_RIBBON_3191305("", "-Zahrát si mapu Kubra Dam\n-Zahrát si mapu Mashtuur City\n-Zahrát si mapu Operation Clean Sweep\n-Zahrát si mapu Zatar Wetlands\n-Zahrát si mapu Strike at Karkand\n-Zahrát si mapu Sharqi Peninsula\n-Zahrát si mapu Gulf of Oman"),
-    TOOLTIP_RIBBON_3211305("", "-26 minut být členem nějakého týmu v jednom kole\n-40 týmových bodů v jednom kole"),
-    TOOLTIP_RIBBON_3212201("", "-Celkově 25 hodin jako team leader\n-Celkově 25 hodin jako člen týmu\n-45 týmových bodů v jednom kole"),
-    TOOLTIP_RIBBON_3240102("", "10 sekund padat padákem v jednom kole"),
-    TOOLTIP_RIBBON_3240301("", "-10 zabití po sobě bez smrti (killstreak)\n-18 zabití (až v dalším kole)\npozn.: Tato stuha je na dvě kola - v prvním kole killstreak, ve druhém zabití"),
-    TOOLTIP_RIBBON_3240703("", "-Celkově 50 hodin hraní\n-14 zabití v jednom kole\npozn.: NESMÍTE ZABÍT ANI ZRANIT SPOLUHRÁČE V TOMTO KOLE (ani poškodit vozidlo)"),
-    TOOLTIP_RIBBON_3241213("", "-Celkově 200 hodin hraní\n-10 zabití po sobě bez smrti (killstreak)\n-8 smrtí po sobě bez zabití (deathstreak)\n-50 týmových bodů v jednom kole"),
-    TOOLTIP_RIBBON_3242303("", "-Celkově 25.000 velitelských bodů\n-Celkově 100 hodin jako velitel\n-Celkově 200 vítězství\npozn.: Tuto stužku dostanete při připojení do další hry, až splníte všechna 3 kritéria");
+    TOOLTIP_RIBBON_3040109("-3 Minutes in SAM or AA Vehicle in a Round\n-11 Kills With SAM or AA Vehicle in a Round",
+            "-3 minuty v AA autě nebo stroji v jednom kole\n-11 zabití s AA autem nebo strojem v jednom kole"),
+    TOOLTIP_RIBBON_3040718("-3 Minutes in TOW or Mounted Machine Gun in a Round\n-5 Kills in TOW or Mounted Machine" +
+            " Gun in a Round", "-3 minuty v TOW nebo nemobilním těžkém kulometu v jednom kole\n-5 zabití s TOW nebo" +
+            " nemobilním těžkém kulometu v jednom kole"),
+    TOOLTIP_RIBBON_3150914("-250 Team Points\n-25 Minutes as Squad Leader in a Round", "-Celkově 250 týmových" +
+            " bodů\n-25 minut jako tým leader v jednom kole"),
+    TOOLTIP_RIBBON_3151920("-28 Minutes as Commander in a Round\n-50 Command Points in a Round", "-28 minut být" +
+            " velitelem týmu v jednom kole\n-50 velitelských bodů v jednom kole"),
+    TOOLTIP_RIBBON_3190105("-15 Minutes in Air Vehicles in a Round\n-19 Kills in With Air Vehicles in a Round",
+            "-15 minut být v letadle (bombardér nebo stíhačka) (pilot nebo střelec) v jednom kole\n-19 zabití" +
+                    " letadlem (bombardérem nebo stíhačkou) v jednom kole"),
+    TOOLTIP_RIBBON_3190118("-20 Minutes in Armored Vehicle in a Round\n-19 Kills with Armored Vehicles in a Round",
+            "-20 minut být v tanku nebo APC v jednom kole\n-19 zabití tankem nebo APC v jednom kole"),
+    TOOLTIP_RIBBON_3190318("-5 Kills in a Round\n-13 Driver Kill Assists in a Round\n-1 Driver Special Ability Point" +
+            " in a Round", "-5 zabití v jednom kole\n-13 asistencí zabití v autě v jednom kole\n-1 bod speciální" +
+            " dovednosti v autě v jednom kole"),
+    TOOLTIP_RIBBON_3190409("-10 Hours as Commander\n-10 Hours as Squad Leader\n-10 Hours as Squad Member\n-15 Team" +
+            " Points in a Round", "-Celkově 10 hodin jako velitel týmů\n-Celkově 10 hodin jako team leader\n-Celkově" +
+            " 10 hodin jako člen týmu\n-15 týmových bodů v jednom kole"),
+    TOOLTIP_RIBBON_3190605("-Play on Daqing Oilfields\n-Play on Dalian Plant\n-Play on Dragon Valley\n-Play on FuShe" +
+            " Pass\n-Play on Songhua Stalemate\n-Play on Wake Island 2007", "-Zahrát si mapu Daqing Oilfields\n" +
+            "-Zahrát si mapu Dalian Plant\n-Zahrát si mapu Dragon Valley\n-Zahrát si mapu FuShe Pass\n-Zahrát si" +
+            " mapu Songhua Stalemate\n-Zahrát si mapu Wake Island 2007"),
+    TOOLTIP_RIBBON_3190803("-15 Minutes in Helicopter in a Round\n-19 Kills with Helicopter in a Round",
+            "-15 minut být v helikoptéře (jako pilot, střelec nebo pasažér) v jednom kole\n-19 zabití helikoptérou" +
+                    " (pilotem nebo střelcem) v jednom kole"),
+    TOOLTIP_RIBBON_3191305("-Play on Kubra Dam\n-Play on Mashtuur City\n-Play on Operation Clean Sweep\n-Play on" +
+            " Zatar Wetlands\n-Play on Strike at Karkand\n-Play on Sharqi Peninsula\n-Play on Gulf of Oman",
+            "-Zahrát si mapu Kubra Dam\n-Zahrát si mapu Mashtuur City\n-Zahrát si mapu Operation Clean Sweep\n" +
+                    "-Zahrát si mapu Zatar Wetlands\n-Zahrát si mapu Strike at Karkand\n-Zahrát si mapu Sharqi" +
+                    " Peninsula\n-Zahrát si mapu Gulf of Oman"),
+    TOOLTIP_RIBBON_3211305("-26 Minutes in a Squad in a Round\n-40 Team Points in a Round", "-26 minut být členem" +
+            " nějakého týmu v jednom kole\n-40 týmových bodů v jednom kole"),
+    TOOLTIP_RIBBON_3212201("-25 Hours as Squad Leader\n-25 Hours in Squad\n-45 Team Points in a Round",
+            "-Celkově 25 hodin jako team leader\n-Celkově 25 hodin jako člen týmu\n-45 týmových bodů v jednom kole"),
+    TOOLTIP_RIBBON_3240102("10 Seconds Using Parachute in a Round", "10 sekund padat padákem v jednom kole"),
+    TOOLTIP_RIBBON_3240301("-10 Killstreak\n-18 Kills in a Round", "-10 zabití po sobě bez smrti (killstreak)\n-18" +
+            " zabití (až v dalším kole)\npozn.: Tato stuha je na dvě kola - v prvním kole killstreak," +
+            " ve druhém zabití"),
+    TOOLTIP_RIBBON_3240703("-50 Hours Played\n-14 Kills in a Round\nnote: No Team Kills or Damage to Friendly" +
+            " Vehicles in a Round", "-Celkově 50 hodin hraní\n-14 zabití v jednom kole\npozn.: NESMÍTE ZABÍT ANI" +
+            " ZRANIT SPOLUHRÁČE V TOMTO KOLE (ani poškodit vozidlo)"),
+    TOOLTIP_RIBBON_3241213("-200 Hours Played\n-10 Kill Streak\n-8 Death Streak\n-50 Team Points in a Round",
+            "-Celkově 200 hodin hraní\n-10 zabití po sobě bez smrti (killstreak)\n-8 smrtí po sobě bez zabití" +
+                    " (deathstreak)\n-50 týmových bodů v jednom kole"),
+    TOOLTIP_RIBBON_3242303("-25.000 Command Points\n-100 Hours as Commander\n-200 Wins", "-Celkově 25.000" +
+            " velitelských bodů\n-Celkově 100 hodin jako velitel\n-Celkově 200 vítězství\npozn.: Tuto stužku" +
+            " dostanete při připojení do další hry, až splníte všechna 3 kritéria");
 
     private static final ObservableMap<StringProperty, NodeTextEnum> COMPONENTS_FOR_TRANSLATE =
             FXCollections.observableMap(new HashMap<>());
