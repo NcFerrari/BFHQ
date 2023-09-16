@@ -89,6 +89,7 @@ public enum NodeTextEnum {
     ROAD_KILLS("ROAD KILLS", "PŘEJETÍ AUTEM"),
     LAST_AWARDED("LAST AWARDED", "NAPOSLED ZÍSKÁNO"),
     FIRST_AWARDED("FIRST AWARDED", "POPRVÉ ZÍSKÁNO"),
+    CATEGORY_TITLE("CATEGORY", "KATEGORIE"),
 
     FACTION_USMC("United States Marine Corps", "Námořní pěchota spojených Států"),
     FACTION_PLA("People's Liberation Army", "Lidová Osvobozenecká Armáda"),

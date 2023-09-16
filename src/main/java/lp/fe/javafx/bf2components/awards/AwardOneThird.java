@@ -154,6 +154,9 @@ public class AwardOneThird {
         labelMap.values().forEach(label -> label.setVisible(false));
         key = null;
         bf2Image = null;
+    }
+
+    public void resetCheckBoxes() {
         checkboxMap.values().forEach(checkBox -> checkBox.setSelected(false));
     }
 }

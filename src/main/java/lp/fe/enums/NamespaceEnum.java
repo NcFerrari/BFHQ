@@ -26,7 +26,6 @@ public enum NamespaceEnum {
     TITLE_STYLE("title"),
     LEFT_SIDE_PART_STYLE("left-side-part"),
     RIGHT_SIDE_PART_STYLE("right-side-part"),
-    NAME_COMBO_BOX_STYLE("name-combo-box"),
     PROGRESS_BAR_STYLE("progress-bar"),
     BORDER_LIGHT_STYLE("border-light"),
     BORDER_DARK_STYLE("border-dark"),

@@ -37,7 +37,6 @@ public class LeftSidePart {
         leftBottomPane.setId(NamespaceEnum.LEFT_SIDE_PART_STYLE.getText());
         leftTopPane.getChildren().add(playerNameTitle);
         leftTopPane.getChildren().add(nameComboBox);
-        nameComboBox.setId(NamespaceEnum.NAME_COMBO_BOX_STYLE.getText());
         nameComboBox.setEditable(true);
         nameComboBox.getEditor().setOnKeyPressed(evt -> {
             if (evt.getCode().equals(KeyCode.UP)) {
@@ -51,7 +50,7 @@ public class LeftSidePart {
             manager.getReloadableList()
                     .stream()
                     .filter(AwardsPane.class::isInstance)
-                    .forEach(bf2Component -> ((AwardsPane) bf2Component).clearBigImage());
+                    .forEach(bf2Component -> ((AwardsPane) bf2Component).resetAwardLeftPart());
             manager.getReloadableList().forEach(BF2Component::rewriteData);
         });
         fillNameComboBox();

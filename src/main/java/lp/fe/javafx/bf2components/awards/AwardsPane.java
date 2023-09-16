@@ -45,7 +45,8 @@ public class AwardsPane extends BF2Component {
         getAwardOneThird().showBigImage(key, bf2Image);
     }
 
-    public void clearBigImage() {
+    public void resetAwardLeftPart() {
         awardOneThird.clearBigImage();
+        awardOneThird.resetCheckBoxes();
     }
 }
