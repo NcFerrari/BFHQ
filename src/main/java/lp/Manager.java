@@ -21,6 +21,7 @@ import lp.fe.enums.NamespaceEnum;
 import lp.fe.enums.NodeTextEnum;
 import lp.fe.javafx.MainApp;
 import lp.fe.javafx.bf2components.BF2Component;
+import lp.fe.javafx.bf2components.leaderboard.LeaderBoardPane;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Getter
 public class Manager {
@@ -67,6 +69,15 @@ public class Manager {
     public void setLanguage(LangEnum language) {
         langService.setSelectedLanguage(language);
         NodeTextEnum.reloadTexts();
+    }
+
+    public void refreshLeaderBoardComboBox() {
+        Optional<LeaderBoardPane> possibleLeaderBuilder = reloadableList
+                .stream()
+                .filter(LeaderBoardPane.class::isInstance)
+                .map(LeaderBoardPane.class::cast)
+                .findFirst();
+        possibleLeaderBuilder.ifPresent(LeaderBoardPane::refreshComboBox);
     }
 
     public void switchShowingTooltips() {
