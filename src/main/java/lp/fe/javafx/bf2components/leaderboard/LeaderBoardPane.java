@@ -14,6 +14,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import lombok.Getter;
+import lp.be.business.dto.Awards;
 import lp.be.service.BF2Image;
 import lp.be.service.PictureService;
 import lp.be.serviceimpl.PictureServiceImpl;
@@ -23,6 +24,7 @@ import lp.fe.javafx.bf2components.BF2Component;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Comparator;
+import java.util.List;
 
 @Getter
 public class LeaderBoardPane extends BF2Component {
@@ -64,7 +66,7 @@ public class LeaderBoardPane extends BF2Component {
         addColumn(NodeTextEnum.NAME_TITLE, NamespaceEnum.NAME);
         addColumn(NodeTextEnum.RANK_TITLE_2, NamespaceEnum.RANK);
         addColumn(NodeTextEnum.SORT_BY_SCORE, NamespaceEnum.SCORE);
-        addColumn(NodeTextEnum.EMPTY_STRING, NamespaceEnum.VALUE);
+        addColumn(null, NamespaceEnum.VALUE);
         playerTable.getColumns().get(0).setSortable(true);
         ((BorderPane) getLeftSidePart().getMainPane().getChildren().get(0)).setCenter(playerTable);
         rewriteData();
@@ -72,7 +74,9 @@ public class LeaderBoardPane extends BF2Component {
 
     private void addColumn(NodeTextEnum nodeTextEnum, NamespaceEnum attribute) {
         TableColumn<PlayerForSorting, Integer> column = new TableColumn<>();
-        column.setText(nodeTextEnum.getText(column.textProperty()));
+        if (nodeTextEnum != null) {
+            column.setText(nodeTextEnum.getText(column.textProperty()));
+        }
         column.setSortable(false);
         column.setReorderable(false);
         column.setResizable(false);
@@ -157,6 +161,12 @@ public class LeaderBoardPane extends BF2Component {
                     playerForSorting.setSortingValue(player.getDeaths().intValue());
                     break;
                 case 3:
+                    List<Awards> list = manager.getAwards().get(player.getId());
+                    if (list != null) {
+                        playerForSorting.setSortingValue(list.size());
+                    } else {
+                        playerForSorting.setSortingValue(0);
+                    }
                     break;
                 case 4:
                     playerForSorting.setSortingValue(player.getTime().intValue());
