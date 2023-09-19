@@ -4,6 +4,8 @@ public interface PictureService {
 
     BF2Image getRankBF2Image(int rank);
 
+    BF2Image getSmallRankBF2Image(int rank);
+
     BF2Image getAwardBF2Image(int imageId, int level);
 
     BF2Image getSmallAwardBF2Image(int imageId);

@@ -223,16 +223,16 @@ public class StatsTwoThird {
     private void tabVehicleCategory() {
         NodeTextEnum[] columnTitles = {NodeTextEnum.EMPTY_STRING, NodeTextEnum.KILLS_TEXT, NodeTextEnum.ROAD_KILLS,
                 NodeTextEnum.DEATHS_TEXT, NodeTextEnum.KILL_DEATH_RATIO, NodeTextEnum.TIME_USED};
-        NodeTextEnum[] vehicles = {NodeTextEnum.VEHICLE_0, NodeTextEnum.VEHICLE_1, NodeTextEnum.VEHICLE_2, NodeTextEnum.VEHICLE_3,
-                NodeTextEnum.VEHICLE_4, NodeTextEnum.VEHICLE_6};
+        NodeTextEnum[] vehicles = {NodeTextEnum.VEHICLE_0, NodeTextEnum.VEHICLE_1, NodeTextEnum.VEHICLE_2,
+                NodeTextEnum.VEHICLE_3, NodeTextEnum.VEHICLE_4, NodeTextEnum.VEHICLE_6};
         generateTab(TabPositionEnum.DOWN, NodeTextEnum.VEHICLE_CATEGORY, columnTitles, vehicles, 18);
     }
 
     private void tabKits() {
         NodeTextEnum[] columnTitles = {NodeTextEnum.EMPTY_STRING, NodeTextEnum.KILLS_TEXT, NodeTextEnum.DEATHS_TEXT,
                 NodeTextEnum.KILL_DEATH_RATIO, NodeTextEnum.TIME_USED};
-        NodeTextEnum[] kits = {NodeTextEnum.KIT_0, NodeTextEnum.KIT_1, NodeTextEnum.KIT_2, NodeTextEnum.KIT_3, NodeTextEnum.KIT_4,
-                NodeTextEnum.KIT_5, NodeTextEnum.KIT_6};
+        NodeTextEnum[] kits = {NodeTextEnum.KIT_0, NodeTextEnum.KIT_1, NodeTextEnum.KIT_2, NodeTextEnum.KIT_3,
+                NodeTextEnum.KIT_4, NodeTextEnum.KIT_5, NodeTextEnum.KIT_6};
         generateTab(TabPositionEnum.DOWN, NodeTextEnum.KITS, columnTitles, kits, 19);
     }
 

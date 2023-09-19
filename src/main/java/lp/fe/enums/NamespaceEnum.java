@@ -86,7 +86,11 @@ public enum NamespaceEnum {
     LAST_EARNED_DATE("lastEarnedDate"),
     FIRST_EARNED("firstEarned"),
     FIRST_EARNED_DATE("firstEarnedDate"),
-    TOOLTIP("TOOLTIP_");
+    TOOLTIP("TOOLTIP_"),
+    ORDER("order"),
+    NAME("name"),
+    RANK("rank"),
+    VALUE("value");
 
     private final String text;
 
