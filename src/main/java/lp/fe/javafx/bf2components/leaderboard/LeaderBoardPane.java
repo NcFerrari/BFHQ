@@ -12,7 +12,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import lombok.Getter;
 import lp.be.service.BF2Image;
@@ -90,6 +89,9 @@ public class LeaderBoardPane extends BF2Component {
         addComboBoxItem(NodeTextEnum.SORT_BY_SCORE);
         addComboBoxItem(NodeTextEnum.SORT_BY_WINS);
         addComboBoxItem(NodeTextEnum.SORT_BY_LOSSES);
+        addComboBoxItem(NodeTextEnum.SORT_BY_TEAM_KILLING);
+        addComboBoxItem(NodeTextEnum.SORT_BY_TEAM_PLAYER_SCORE);
+        addComboBoxItem(NodeTextEnum.SORT_BY_KILL_STREAK);
     }
 
     private void addComboBoxItem(NodeTextEnum nodeTextEnum) {
@@ -136,7 +138,7 @@ public class LeaderBoardPane extends BF2Component {
     public void rewriteData() {
         playerTable.getItems().clear();
         PlayerForSorting.restartCounter();
-        playerTable.getColumns().get(3).setText(sortCategoriesComboBox.getValue());
+        playerTable.getColumns().get(4).setText(sortCategoriesComboBox.getValue());
         ObservableList<PlayerForSorting> playerForSortingList = FXCollections.observableArrayList();
         manager.getPlayers().values().forEach(player -> {
             PlayerForSorting playerForSorting = new PlayerForSorting();
@@ -168,6 +170,15 @@ public class LeaderBoardPane extends BF2Component {
                 case 7:
                     playerForSorting.setSortingValue(player.getLosses().intValue());
                     break;
+                case 8:
+                    playerForSorting.setSortingValue(player.getTeamkills().intValue());
+                    break;
+                case 9:
+                    playerForSorting.setSortingValue(player.getTeamscore().intValue());
+                    break;
+                case 10:
+                    playerForSorting.setSortingValue(player.getKillstreak().intValue());
+                    break;
                 default:
             }
             playerForSortingList.add(playerForSorting);
@@ -181,7 +192,7 @@ public class LeaderBoardPane extends BF2Component {
                         playerForSorting.setValueText(NodeTextEnum
                                 .getRankTitleFromInt(playerForSorting.getSortingValue()).getSelectedText());
                         playerForSorting.getValue().wrappingWidthProperty()
-                                .bind(playerTable.getColumns().get(3).widthProperty());
+                                .bind(playerTable.getColumns().get(4).widthProperty());
                     } else if (sortCategoriesComboBox.getSelectionModel().getSelectedIndex() == 4) {
                         playerForSorting.setValueText(manager.longToTime((long) playerForSorting.getSortingValue()));
                     } else if (sortCategoriesComboBox.getSelectionModel().getSelectedIndex() > -1) {
