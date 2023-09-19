@@ -14,7 +14,7 @@ public class PlayerForSorting {
     private int value;
 
     public void setOrder() {
-        order = totalOrder++;
+        order++;
     }
 
     public static void restartCounter() {
