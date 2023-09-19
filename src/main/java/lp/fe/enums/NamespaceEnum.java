@@ -90,7 +90,8 @@ public enum NamespaceEnum {
     ORDER("order"),
     NAME("name"),
     RANK("rank"),
-    VALUE("value");
+    VALUE("value"),
+    SCORE("score");
 
     private final String text;
 

@@ -12,6 +12,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import lombok.Getter;
 import lp.be.service.BF2Image;
@@ -63,6 +64,7 @@ public class LeaderBoardPane extends BF2Component {
         addColumn(NodeTextEnum.ORDER_TITLE, NamespaceEnum.ORDER);
         addColumn(NodeTextEnum.NAME_TITLE, NamespaceEnum.NAME);
         addColumn(NodeTextEnum.RANK_TITLE_2, NamespaceEnum.RANK);
+        addColumn(NodeTextEnum.SORT_BY_SCORE, NamespaceEnum.SCORE);
         addColumn(NodeTextEnum.EMPTY_STRING, NamespaceEnum.VALUE);
         playerTable.getColumns().get(0).setSortable(true);
         ((BorderPane) getLeftSidePart().getMainPane().getChildren().get(0)).setCenter(playerTable);
@@ -111,11 +113,13 @@ public class LeaderBoardPane extends BF2Component {
         sortCategoriesComboBox.setPrefWidth(oneThird);
         playerTable.getColumns().get(0).setPrefWidth(oneThird / 6.5);
         playerTable.getColumns().get(2).setPrefWidth(oneThird / 6.5);
-        playerTable.getColumns().get(3).setPrefWidth(oneThird / 4);
+        playerTable.getColumns().get(3).setPrefWidth(oneThird / 6.5);
+        playerTable.getColumns().get(4).setPrefWidth(oneThird / 4);
         playerTable.getColumns().get(1).setPrefWidth(oneThird
                 - playerTable.getColumns().get(0).getWidth()
                 - playerTable.getColumns().get(2).getWidth()
                 - playerTable.getColumns().get(3).getWidth()
+                - playerTable.getColumns().get(4).getWidth()
                 - oneThird / 20);
         for (PlayerForSorting playerForSorting : playerTable.getItems()) {
             playerForSorting.getRank().setFitWidth(oneThird / 10);
@@ -137,25 +141,52 @@ public class LeaderBoardPane extends BF2Component {
         manager.getPlayers().values().forEach(player -> {
             PlayerForSorting playerForSorting = new PlayerForSorting();
             playerForSorting.setName(player.getName());
+            playerForSorting.setScore(player.getScore().intValue());
             BF2Image bf2Image = pictureService.getSmallRankBF2Image(player.getRank());
             playerForSorting.setRank(bf2Image.getImageView());
             switch (sortCategoriesComboBox.getSelectionModel().getSelectedIndex()) {
-                case 0: playerForSorting.setValue(player.getRank());break;
-                case 1: playerForSorting.setValue(player.getKills().intValue());break;
-                case 2: playerForSorting.setValue(player.getDeaths().intValue());break;
-                case 3: break;
-                case 4: playerForSorting.setValue(player.getTime().intValue());break;
-                case 5: playerForSorting.setValue(player.getScore().intValue());break;
-                case 6: playerForSorting.setValue(player.getWins().intValue());break;
-                case 7: playerForSorting.setValue(player.getLosses().intValue());break;
+                case 0:
+                    playerForSorting.setSortingValue(player.getRank());
+                    break;
+                case 1:
+                    playerForSorting.setSortingValue(player.getKills().intValue());
+                    break;
+                case 2:
+                    playerForSorting.setSortingValue(player.getDeaths().intValue());
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    playerForSorting.setSortingValue(player.getTime().intValue());
+                    break;
+                case 5:
+                    playerForSorting.setSortingValue(player.getScore().intValue());
+                    break;
+                case 6:
+                    playerForSorting.setSortingValue(player.getWins().intValue());
+                    break;
+                case 7:
+                    playerForSorting.setSortingValue(player.getLosses().intValue());
+                    break;
                 default:
             }
             playerForSortingList.add(playerForSorting);
         });
         playerForSortingList
                 .stream()
-                .sorted(Comparator.comparingInt(PlayerForSorting::getValue).reversed())
+                .sorted(Comparator.comparingInt(PlayerForSorting::getScore).reversed())
+                .sorted(Comparator.comparingInt(PlayerForSorting::getSortingValue).reversed())
                 .forEach(playerForSorting -> {
+                    if (sortCategoriesComboBox.getSelectionModel().getSelectedIndex() == 0) {
+                        playerForSorting.setValueText(NodeTextEnum
+                                .getRankTitleFromInt(playerForSorting.getSortingValue()).getSelectedText());
+                        playerForSorting.getValue().wrappingWidthProperty()
+                                .bind(playerTable.getColumns().get(3).widthProperty());
+                    } else if (sortCategoriesComboBox.getSelectionModel().getSelectedIndex() == 4) {
+                        playerForSorting.setValueText(manager.longToTime((long) playerForSorting.getSortingValue()));
+                    } else if (sortCategoriesComboBox.getSelectionModel().getSelectedIndex() > -1) {
+                        playerForSorting.setValueText(String.valueOf(playerForSorting.getSortingValue()));
+                    }
                     playerForSorting.setOrder();
                     playerTable.getItems().add(playerForSorting);
                 });

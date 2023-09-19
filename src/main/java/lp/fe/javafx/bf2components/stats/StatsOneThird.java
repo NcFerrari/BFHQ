@@ -176,10 +176,10 @@ public class StatsOneThird {
     public void rewriteData(Player player) {
         int rank = player.getRank();
         NodeTextEnum.getComponentsForTranslate().replace(currentRank.textProperty(),
-                NodeTextEnum.valueOf(NamespaceEnum.RANK_PREFIX.getText() + rank));
+                NodeTextEnum.getRankTitleFromInt(rank));
         if (rank < 21) {
             NodeTextEnum.getComponentsForTranslate().replace(nextRank.textProperty(),
-                    NodeTextEnum.valueOf(NamespaceEnum.RANK_PREFIX.getText() + (rank + 1)));
+                    NodeTextEnum.getRankTitleFromInt(rank + 1));
             progressBar.setProgress((player.getScore() - rankLimits[rank]) / (rankLimits[rank + 1] - rankLimits[rank]));
         } else {
             NodeTextEnum.getComponentsForTranslate().replace(nextRank.textProperty(), NodeTextEnum.EMPTY_STRING);

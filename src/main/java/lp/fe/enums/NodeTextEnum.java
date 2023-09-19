@@ -90,7 +90,7 @@ public enum NodeTextEnum {
     LAST_AWARDED("LAST AWARDED", "NAPOSLED ZÍSKÁNO"),
     FIRST_AWARDED("FIRST AWARDED", "POPRVÉ ZÍSKÁNO"),
     CATEGORY_TITLE("CATEGORY", "KATEGORIE"),
-    SORT_BY_RANK("Ranks", "Hodnost"),
+    SORT_BY_RANK("Ranks", "Hodnosti"),
     SORT_BY_KILLS("Kills", "Zabití"),
     SORT_BY_DEATHS("Deaths", "Smrti"),
     SORT_BY_COUNT_OF_AWARDS("Awards count", "Počet ocenění"),
@@ -577,6 +577,10 @@ public enum NodeTextEnum {
                 return null;
         }
         return NodeTextEnum.valueOf(namespaceEnum.getText() + pictureId);
+    }
+
+    public static NodeTextEnum getRankTitleFromInt(int rank) {
+        return NodeTextEnum.valueOf(NamespaceEnum.RANK_PREFIX.getText() + rank);
     }
 
     public static List<NodeTextEnum> getAwards() {
