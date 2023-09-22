@@ -89,9 +89,19 @@ public enum NamespaceEnum {
     TOOLTIP("TOOLTIP_"),
     ORDER("order"),
     NAME("name"),
-    RANK("rank"),
+    RANK("rankImage"),
     VALUE("value"),
-    SCORE("score");
+    SCORE("score"),
+    GET_RANK("getRank"),
+    GET_COUNT_OF_AWARDS("getCountOfAwards"),
+    GET_SCORE("getScore"),
+    GET_WINS("getWins"),
+    GET_LOSSES("getLosses"),
+    GET_TEAM_KILLING("getTeamKilling"),
+    GET_TEAM_PLAYER_SCORE("getTeamPlayerScore"),
+    GET_KILL_STREAK("getKillStreak"),
+    SORT_BY("SORT_BY_"),
+    GET_PREFIX("GET_");
 
     private final String text;
 

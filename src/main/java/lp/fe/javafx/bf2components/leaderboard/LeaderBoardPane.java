@@ -25,6 +25,7 @@ public class LeaderBoardPane extends BF2Component {
     @Override
     public void reloadData() {
         getLeftSidePart().fillNameComboBox();
+        leaderBoardOneThird.reloadData();
     }
 
     @Override

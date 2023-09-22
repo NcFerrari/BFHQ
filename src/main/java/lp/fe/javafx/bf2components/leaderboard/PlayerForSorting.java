@@ -6,6 +6,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import lombok.Data;
+import lp.Manager;
+import lp.fe.enums.NamespaceEnum;
+import lp.fe.enums.NodeTextEnum;
 
 @Data
 public class PlayerForSorting {
@@ -14,9 +17,19 @@ public class PlayerForSorting {
 
     private int order;
     private Text name;
-    private ImageView rank;
-    private int sortingValue;
+    private ImageView rankImage;
+    private int rank;
+    private int kills;
+    private int deaths;
+    private int countOfAwards;
+    private int time;
     private int score;
+    private int wins;
+    private int losses;
+    private int teamKilling;
+    private int teamPlayerScore;
+    private int killStreak;
+
     private final Text value;
 
     private static void increaseTotalOrder() {
@@ -41,11 +54,21 @@ public class PlayerForSorting {
         increaseTotalOrder();
     }
 
-    public void setValueText(String text) {
-        value.setText(text);
-    }
-
     public void setName(String name) {
         this.name.setText(name);
+    }
+
+    public void prepareValue(String methodName) {
+        if (NamespaceEnum.GET_RANK.getText().equals(methodName)) {
+            getValue().setText(NodeTextEnum.getRankTitleFromInt(getRank()).getSelectedText());
+        } else if (NamespaceEnum.GET_TIME.getText().equals(methodName)) {
+            getValue().setText(Manager.getInstance().longToTime((long) getTime()));
+        } else if (methodName != null) {
+            try {
+                getValue().setText(String.valueOf(getClass().getMethod(methodName).invoke(this)));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

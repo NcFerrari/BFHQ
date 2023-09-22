@@ -15,7 +15,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import lp.Manager;
 import lp.be.business.dto.Awards;
-import lp.be.service.BF2Image;
 import lp.be.service.PictureService;
 import lp.be.serviceimpl.PictureServiceImpl;
 import lp.fe.enums.NamespaceEnum;
@@ -29,10 +28,16 @@ import java.util.List;
 public class LeaderBoardOneThird {
 
     private final Manager manager = Manager.getInstance();
+    private final ObservableList<PlayerForSorting> playerForSortingList = FXCollections.observableArrayList();
     private final ComboBox<String> sortCategoriesComboBox = new ComboBox<>();
     private final ObservableList<StringProperty> items = FXCollections.observableArrayList();
     private final TableView<PlayerForSorting> playerTable = new TableView<>();
     private final PictureService pictureService = PictureServiceImpl.getInstance();
+    private final NamespaceEnum[] methods = {NamespaceEnum.GET_RANK, NamespaceEnum.GET_KILLS,
+            NamespaceEnum.GET_DEATHS, NamespaceEnum.GET_COUNT_OF_AWARDS, NamespaceEnum.GET_TIME,
+            NamespaceEnum.GET_SCORE, NamespaceEnum.GET_WINS, NamespaceEnum.GET_LOSSES,
+            NamespaceEnum.GET_TEAM_KILLING, NamespaceEnum.GET_TEAM_PLAYER_SCORE,
+            NamespaceEnum.GET_KILL_STREAK};
     private Label categoryLabel;
     private Stage stage;
 
@@ -67,11 +72,11 @@ public class LeaderBoardOneThird {
             c.next();
             sortCategoriesComboBox.getItems().add(items.get(c.getFrom()).get());
         });
-        NodeTextEnum[] comboBoxItems = {NodeTextEnum.SORT_BY_RANK, NodeTextEnum.SORT_BY_KILLS,
-                NodeTextEnum.SORT_BY_DEATHS, NodeTextEnum.SORT_BY_COUNT_OF_AWARDS, NodeTextEnum.SORT_BY_TIME,
-                NodeTextEnum.SORT_BY_SCORE, NodeTextEnum.SORT_BY_WINS, NodeTextEnum.SORT_BY_LOSSES,
-                NodeTextEnum.SORT_BY_TEAM_KILLING, NodeTextEnum.SORT_BY_TEAM_PLAYER_SCORE,
-                NodeTextEnum.SORT_BY_KILL_STREAK};
+        NodeTextEnum[] comboBoxItems = new NodeTextEnum[methods.length];
+        for (int i = 0; i < methods.length; i++) {
+            comboBoxItems[i] = NodeTextEnum.valueOf(
+                    NamespaceEnum.SORT_BY.getText() + methods[i].name().split(NamespaceEnum.GET_PREFIX.getText())[1]);
+        }
         Arrays.asList(comboBoxItems).forEach(this::addComboBoxItem);
     }
 
@@ -108,79 +113,56 @@ public class LeaderBoardOneThird {
         items.forEach(stringProperty -> sortCategoriesComboBox.getItems().add(stringProperty.get()));
     }
 
+    public void reloadData() {
+        playerForSortingList.clear();
+        manager.getPlayers().values().forEach(player -> {
+            PlayerForSorting playerForSorting = new PlayerForSorting();
+            playerForSorting.setName(player.getName());
+            playerForSorting.setRankImage(pictureService.getSmallRankBF2Image(player.getRank()).getImageView());
+            playerForSorting.setRank(player.getRank());
+            playerForSorting.setKills(player.getKills().intValue());
+            playerForSorting.setDeaths(player.getDeaths().intValue());
+            List<Awards> awardList = manager.getAwards().get(player.getId());
+            playerForSorting.setCountOfAwards(awardList != null ? awardList.size() : 0);
+            playerForSorting.setTime(player.getTime().intValue());
+            playerForSorting.setScore(player.getScore().intValue());
+            playerForSorting.setWins(player.getWins().intValue());
+            playerForSorting.setLosses(player.getLosses().intValue());
+            playerForSorting.setTeamKilling(player.getTeamkills().intValue());
+            playerForSorting.setTeamPlayerScore(player.getTeamscore().intValue());
+            playerForSorting.setKillStreak(player.getKillstreak().intValue());
+            playerForSortingList.add(playerForSorting);
+        });
+        sortCategoriesComboBox.getSelectionModel().clearSelection();
+        rewriteData();
+    }
+
     public void rewriteData() {
         PlayerForSorting.restartCounter();
         playerTable.getItems().clear();
         playerTable.getColumns().get(4).setText(sortCategoriesComboBox.getValue());
-        ObservableList<PlayerForSorting> playerForSortingList = FXCollections.observableArrayList();
-        manager.getPlayers().values().forEach(player -> {
-            PlayerForSorting playerForSorting = new PlayerForSorting();
-            playerForSorting.setName(player.getName());
-            playerForSorting.setScore(player.getScore().intValue());
-            BF2Image bf2Image = pictureService.getSmallRankBF2Image(player.getRank());
-            playerForSorting.setRank(bf2Image.getImageView());
-            switch (sortCategoriesComboBox.getSelectionModel().getSelectedIndex()) {
-                case 0:
-                    playerForSorting.setSortingValue(player.getRank());
-                    break;
-                case 1:
-                    playerForSorting.setSortingValue(player.getKills().intValue());
-                    break;
-                case 2:
-                    playerForSorting.setSortingValue(player.getDeaths().intValue());
-                    break;
-                case 3:
-                    List<Awards> list = manager.getAwards().get(player.getId());
-                    if (list != null) {
-                        playerForSorting.setSortingValue(list.size());
-                    } else {
-                        playerForSorting.setSortingValue(0);
-                    }
-                    break;
-                case 4:
-                    playerForSorting.setSortingValue(player.getTime().intValue());
-                    break;
-                case 5:
-                    playerForSorting.setSortingValue(player.getScore().intValue());
-                    break;
-                case 6:
-                    playerForSorting.setSortingValue(player.getWins().intValue());
-                    break;
-                case 7:
-                    playerForSorting.setSortingValue(player.getLosses().intValue());
-                    break;
-                case 8:
-                    playerForSorting.setSortingValue(player.getTeamkills().intValue());
-                    break;
-                case 9:
-                    playerForSorting.setSortingValue(player.getTeamscore().intValue());
-                    break;
-                case 10:
-                    playerForSorting.setSortingValue(player.getKillstreak().intValue());
-                    break;
-                default:
-            }
-            playerForSortingList.add(playerForSorting);
-        });
-        sortAndAddNewListToTable(playerForSortingList);
+        String methodName = null;
+        if (!sortCategoriesComboBox.getSelectionModel().isEmpty()) {
+            methodName = methods[sortCategoriesComboBox.getSelectionModel().getSelectedIndex()].getText();
+        }
+        sortAndShowPlayers(methodName);
     }
 
-    private void sortAndAddNewListToTable(ObservableList<PlayerForSorting> playerForSortingList) {
+    private void sortAndShowPlayers(String methodName) {
         playerForSortingList
                 .stream()
                 .sorted(Comparator.comparingInt(PlayerForSorting::getScore).reversed())
-                .sorted(Comparator.comparingInt(PlayerForSorting::getSortingValue).reversed())
-                .forEach(playerForSorting -> {
-                    if (sortCategoriesComboBox.getSelectionModel().getSelectedIndex() == 0) {
-                        playerForSorting.setValueText(NodeTextEnum
-                                .getRankTitleFromInt(playerForSorting.getSortingValue()).getSelectedText());
-                        playerForSorting.getValue().wrappingWidthProperty()
-                                .bind(playerTable.getColumns().get(4).widthProperty());
-                    } else if (sortCategoriesComboBox.getSelectionModel().getSelectedIndex() == 4) {
-                        playerForSorting.setValueText(manager.longToTime((long) playerForSorting.getSortingValue()));
-                    } else if (sortCategoriesComboBox.getSelectionModel().getSelectedIndex() > -1) {
-                        playerForSorting.setValueText(String.valueOf(playerForSorting.getSortingValue()));
+                .sorted((obj1, obj2) -> {
+                    try {
+                        return Integer.compare(
+                                (Integer) obj2.getClass().getMethod(methodName).invoke(obj2),
+                                (Integer) obj1.getClass().getMethod(methodName).invoke(obj1));
+                    } catch (Exception e) {
+                        return 0;
                     }
+                })
+                .forEach(playerForSorting -> {
+                    playerForSorting.prepareValue(methodName);
                     playerForSorting.setOrder();
                     playerTable.getItems().add(playerForSorting);
                 });
@@ -205,8 +187,11 @@ public class LeaderBoardOneThird {
                 - playerTable.getColumns().get(4).getWidth()
                 - oneThird / 20);
         for (PlayerForSorting playerForSorting : playerTable.getItems()) {
-            playerForSorting.getRank().setFitWidth(oneThird / 10);
-            playerForSorting.getRank().setFitHeight(oneThird / 10);
+            playerForSorting.getRankImage().setFitWidth(oneThird / 10);
+            playerForSorting.getRankImage().setFitHeight(oneThird / 10);
         }
+        playerTable.getItems().forEach(playerForSorting ->
+                playerForSorting.getValue().wrappingWidthProperty()
+                        .bind(playerTable.getColumns().get(4).widthProperty()));
     }
 }
