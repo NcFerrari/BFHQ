@@ -104,6 +104,8 @@ public enum NodeTextEnum {
     ORDER_TITLE("Order", "Pořadí"),
     NAME_TITLE("Name", "Jméno"),
     RANK_TITLE_2("Rank", "Hodnost"),
+    SHOW_LEADERBOARD("Show leaderboard", "Zobrazit žebříčky"),
+    SHOW_KILLING("Show kills", "Zobrazit zabití"),
 
     FACTION_USMC("United States Marine Corps", "Námořní pěchota spojených Států"),
     FACTION_PLA("People's Liberation Army", "Lidová Osvobozenecká Armáda"),

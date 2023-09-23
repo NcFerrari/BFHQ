@@ -1,18 +1,18 @@
-#right-side-part .tab-pane {
+#inner-tab-pane {
     -fx-border-color: rgb(140, 140, 48);
 }
 
-#right-side-part .tab-pane .tab {
+#inner-tab-pane .tab {
     -fx-padding: 0;
     -fx-border-color: #7a7a40;
     -fx-pref-height: 50;
 }
 
-#right-side-part .tab-pane .tab:selected {
+#inner-tab-pane .tab:selected {
     -fx-background-color: linear-gradient(to top, black 0%, black 15%, silver 50%, silver 100%);
 }
 
-#right-side-part .tab-pane .tab-header-background {
+#inner-tab-pane .tab-header-background {
     -fx-background-color: transparent;
 }
 
@@ -104,4 +104,8 @@
 
 .table-view > .virtual-flow > .scroll-bar {
     -fx-font-size: 10pt;
+}
+
+#left_pane_main_pane {
+    -fx-background-color: #2b2b2b;
 }

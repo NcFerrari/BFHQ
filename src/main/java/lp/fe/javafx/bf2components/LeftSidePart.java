@@ -31,6 +31,7 @@ public class LeftSidePart {
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         mainPane.getChildren().add(new BorderPane(scrollPane, leftTopPane, null, null, null));
+        mainPane.setId(NamespaceEnum.LEFT_PANE_MAIN_PANE_STYLE.getText());
         playerNameTitle.setText(NodeTextEnum.PLAYER_NAME_TITLE.getText(playerNameTitle.textProperty()));
         playerNameTitle.setId(NamespaceEnum.TITLE_STYLE.getText());
         leftTopPane.setId(NamespaceEnum.LEFT_SIDE_PART_STYLE.getText());

@@ -42,6 +42,8 @@ public class StatsTwoThird {
     public StatsTwoThird(RightSidePart rightSidePart) {
         this.rightPane = rightSidePart.getRightPane();
         rightPane.getChildren().addAll(upTabPane, downTabPane);
+        upTabPane.setId(NamespaceEnum.INNER_TAB_PANE_STYLE.getText());
+        downTabPane.setId(NamespaceEnum.INNER_TAB_PANE_STYLE.getText());
 
         tabMostPlayed();
         tabArmyStats();

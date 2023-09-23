@@ -71,4 +71,8 @@ public class PlayerForSorting {
             }
         }
     }
+
+    public void clearValue() {
+        getValue().setText(NamespaceEnum.EMPTY_STRING.getText());
+    }
 }

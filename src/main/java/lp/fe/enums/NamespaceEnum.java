@@ -46,6 +46,8 @@ public enum NamespaceEnum {
     BIG_IMAGE_LABEL_STYLE("big-image-label"),
     CHECK_BOX_STYLE("check-box"),
     CHECK_BOX_LIGHT_STYLE("check-box-light"),
+    INNER_TAB_PANE_STYLE("inner-tab-pane"),
+    LEFT_PANE_MAIN_PANE_STYLE("left_pane_main_pane"),
     DAYS_LETTER("d"),
     HOURS_LETTER("h"),
     MINUTES_LETTER("min"),

@@ -7,6 +7,8 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -31,6 +33,7 @@ public class LeaderBoardOneThird {
     private final ObservableList<PlayerForSorting> playerForSortingList = FXCollections.observableArrayList();
     private final ComboBox<String> sortCategoriesComboBox = new ComboBox<>();
     private final ObservableList<StringProperty> items = FXCollections.observableArrayList();
+    private final TabPane tabPane = new TabPane();
     private final TableView<PlayerForSorting> playerTable = new TableView<>();
     private final PictureService pictureService = PictureServiceImpl.getInstance();
     private final NamespaceEnum[] methods = {NamespaceEnum.GET_RANK, NamespaceEnum.GET_KILLS,
@@ -45,9 +48,24 @@ public class LeaderBoardOneThird {
         initCategoryLabel();
         initCategoryComboBox();
         leftSidePart.getLeftTopPane().getChildren().addAll(categoryLabel, sortCategoriesComboBox);
-        ((BorderPane) leftSidePart.getMainPane().getChildren().get(0)).setCenter(playerTable);
+        ((BorderPane) leftSidePart.getMainPane().getChildren().get(0)).setCenter(tabPane);
+        tabPane.setId(NamespaceEnum.INNER_TAB_PANE_STYLE.getText());
+        addTabs();
         createAndAddColumnsToTable();
         rewriteData();
+    }
+
+    private void addTabs() {
+        Tab showLeaderBoardTab = new Tab();
+        showLeaderBoardTab.setText(NodeTextEnum.SHOW_LEADERBOARD.getText(showLeaderBoardTab.textProperty()));
+        showLeaderBoardTab.setContent(playerTable);
+        showLeaderBoardTab.setClosable(false);
+
+        Tab showKillsTab = new Tab();
+        showKillsTab.setText(NodeTextEnum.SHOW_KILLING.getText(showKillsTab.textProperty()));
+        showKillsTab.setContent(null);
+        showKillsTab.setClosable(false);
+        tabPane.getTabs().addAll(showLeaderBoardTab, showKillsTab);
     }
 
     private void initCategoryLabel() {
@@ -140,6 +158,7 @@ public class LeaderBoardOneThird {
     public void rewriteData() {
         PlayerForSorting.restartCounter();
         playerTable.getItems().clear();
+        playerForSortingList.forEach(PlayerForSorting::clearValue);
         playerTable.getColumns().get(4).setText(sortCategoriesComboBox.getValue());
         String methodName = null;
         if (!sortCategoriesComboBox.getSelectionModel().isEmpty()) {
@@ -176,6 +195,9 @@ public class LeaderBoardOneThird {
         double oneThird = stage.getWidth() / 3;
         categoryLabel.setPrefWidth(oneThird);
         sortCategoriesComboBox.setPrefWidth(oneThird);
+        double tabWidth = oneThird / tabPane.getTabs().size() - 30;
+        String tabStyle = String.format(NamespaceEnum.PREF_WIDTH_STYLE.getText(), tabWidth, tabWidth / 8);
+        tabPane.getTabs().forEach(tab -> tab.setStyle(tabStyle));
         playerTable.getColumns().get(0).setPrefWidth(oneThird / 6.5);
         playerTable.getColumns().get(2).setPrefWidth(oneThird / 6.5);
         playerTable.getColumns().get(3).setPrefWidth(oneThird / 6.5);
