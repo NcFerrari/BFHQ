@@ -14,6 +14,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import lp.Manager;
 import lp.be.business.dto.Awards;
@@ -47,7 +49,6 @@ public class LeaderBoardOneThird {
     public LeaderBoardOneThird(LeftSidePart leftSidePart) {
         initCategoryLabel();
         initCategoryComboBox();
-        leftSidePart.getLeftTopPane().getChildren().addAll(categoryLabel, sortCategoriesComboBox);
         ((BorderPane) leftSidePart.getMainPane().getChildren().get(0)).setCenter(tabPane);
         tabPane.setId(NamespaceEnum.INNER_TAB_PANE_STYLE.getText());
         addTabs();
@@ -58,7 +59,10 @@ public class LeaderBoardOneThird {
     private void addTabs() {
         Tab showLeaderBoardTab = new Tab();
         showLeaderBoardTab.setText(NodeTextEnum.SHOW_LEADERBOARD.getText(showLeaderBoardTab.textProperty()));
-        showLeaderBoardTab.setContent(playerTable);
+        BorderPane borderPane = new BorderPane();
+        borderPane.setTop(new VBox(categoryLabel, sortCategoriesComboBox));
+        borderPane.setCenter(playerTable);
+        showLeaderBoardTab.setContent(borderPane);
         showLeaderBoardTab.setClosable(false);
 
         Tab showKillsTab = new Tab();
