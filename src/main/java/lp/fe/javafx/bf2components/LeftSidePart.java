@@ -16,8 +16,6 @@ import lp.fe.javafx.bf2components.awards.AwardsPane;
 import lp.fe.javafx.bf2components.leaderboard.LeaderBoardPane;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
-
 @Getter
 public class LeftSidePart {
 
