@@ -103,7 +103,11 @@ public enum NamespaceEnum {
     GET_TEAM_PLAYER_SCORE("getTeamPlayerScore"),
     GET_KILL_STREAK("getKillStreak"),
     SORT_BY("SORT_BY_"),
-    GET_PREFIX("GET_");
+    GET_PREFIX("GET_"),
+    NAME_OF_KILLED_PLAYER("nameOfKilledPlayer"),
+    COUNT_OF_KILLS_ANOTHER_PLAYER("countOfKillsAnotherPlayer"),
+    NAME_OF_PLAYER_WHO_KILLED("nameOfPlayerWhoKilled"),
+    COUNT_OF_KILLS_BY_ANOTHER_PLAYER("countOfKillsByAnotherPlayer");
 
     private final String text;
 

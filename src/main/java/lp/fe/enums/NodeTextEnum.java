@@ -106,6 +106,10 @@ public enum NodeTextEnum {
     RANK_TITLE_2("Rank", "Hodnost"),
     SHOW_LEADERBOARD("Show leaderboard", "Zobrazit žebříčky"),
     SHOW_KILLING("Show kills", "Zobrazit zabití"),
+    PLAYER_KILLS_COUNT("Player killed count", "Počet zabití hráče"),
+    KILLS_BY_PLAYER_COUNT("Killed by player count", "Počet zabití od hráče"),
+    COUNT("Count", "Počet"),
+    SHOW_KILLS_BUTTON_TITLE("Show kills data", "Zobraz data zabití"),
 
     FACTION_USMC("United States Marine Corps", "Námořní pěchota spojených Států"),
     FACTION_PLA("People's Liberation Army", "Lidová Osvobozenecká Armáda"),

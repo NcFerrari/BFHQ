@@ -13,7 +13,10 @@ import lp.Manager;
 import lp.fe.enums.NamespaceEnum;
 import lp.fe.enums.NodeTextEnum;
 import lp.fe.javafx.bf2components.awards.AwardsPane;
+import lp.fe.javafx.bf2components.leaderboard.LeaderBoardPane;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 @Getter
 public class LeftSidePart {
@@ -49,9 +52,16 @@ public class LeftSidePart {
         nameComboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
             manager.setSelectedPlayer(newValue);
             manager.getReloadableList()
-                    .stream()
-                    .filter(AwardsPane.class::isInstance)
-                    .forEach(bf2Component -> ((AwardsPane) bf2Component).resetAwardLeftPart());
+                    .forEach(bf2Component -> {
+                        if (bf2Component instanceof AwardsPane) {
+                            ((AwardsPane) bf2Component).resetAwardLeftPart();
+                        } else if (bf2Component instanceof LeaderBoardPane
+                                && oldValue != null
+                                && newValue != null
+                                && !oldValue.equals(newValue)) {
+                            ((LeaderBoardPane) bf2Component).resetKillsTab();
+                        }
+                    });
             manager.getReloadableList().forEach(BF2Component::rewriteData);
         });
         fillNameComboBox();

@@ -3,12 +3,14 @@ package lp;
 import lombok.Getter;
 import lp.be.business.dto.Army;
 import lp.be.business.dto.Awards;
+import lp.be.business.dto.KillsForPlayer;
 import lp.be.business.dto.Kits;
 import lp.be.business.dto.Maps;
 import lp.be.business.dto.Player;
 import lp.be.business.dto.Vehicles;
 import lp.be.business.dto.Weapons;
 import lp.be.jpa.daoimpl.AwardsDaoImpl;
+import lp.be.jpa.daoimpl.KillsDaoImpl;
 import lp.be.jpa.daoimpl.MapsDaoImpl;
 import lp.be.jpa.daoimpl.PlayerDaoImpl;
 import lp.be.service.BF2Image;
@@ -403,5 +405,9 @@ public class Manager {
     private String[] addToResult(Long[] data) {
         return new String[]{formatNumber(data[0]), formatNumber(data[1]), formatNumber(data[2]),
                 getKDRatio(data[0], data[1]), longToTime(data[3])};
+    }
+
+    public List<KillsForPlayer> getKillsForSelectedPlayer() {
+        return new KillsDaoImpl().getDataForPlayer(getSelectedPlayer().getId());
     }
 }

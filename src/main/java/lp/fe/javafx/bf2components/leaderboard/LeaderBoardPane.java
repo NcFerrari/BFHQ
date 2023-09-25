@@ -36,4 +36,8 @@ public class LeaderBoardPane extends BF2Component {
     public void refreshComboBox() {
         leaderBoardOneThird.refreshComboBox();
     }
+
+    public void resetKillsTab() {
+        leaderBoardOneThird.resetKillsTab();
+    }
 }

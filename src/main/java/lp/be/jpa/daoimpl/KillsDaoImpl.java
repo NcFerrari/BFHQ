@@ -1,13 +1,16 @@
 package lp.be.jpa.daoimpl;
 
 import lp.be.business.dto.Kills;
+import lp.be.business.dto.KillsForPlayer;
 import lp.be.jpa.EntityManager;
 import lp.be.jpa.dao.KillsDao;
 import lp.be.jpa.entity.KillsEntity;
 import org.hibernate.query.Query;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class KillsDaoImpl extends EntityManager implements KillsDao {
 
@@ -65,6 +68,41 @@ public class KillsDaoImpl extends EntityManager implements KillsDao {
         query.setParameter("id", id);
         query.executeUpdate();
         getSession().getTransaction().commit();
+    }
+
+    @Override
+    public List<KillsForPlayer> getDataForPlayer(Integer id) {
+        if (getSession() == null) {
+            return null;
+        }
+        getSession().beginTransaction();
+        List<Object[]> entities = getSession().createNativeQuery(
+                "SELECT p.name AS 'name'," +
+                        "victims.count AS 'killed'," +
+                        "attackers.count AS 'killed_by' " +
+                        "FROM player p " +
+                        "JOIN (SELECT victim , count FROM kills where attacker=:id) victims " +
+                        "ON p.id=victims.victim " +
+                        "JOIN (SELECT attacker, count from kills where victim=:id) attackers " +
+                        "ON p.id=attackers.attacker " +
+                        "ORDER BY victims.count DESC, p.name ASC").setParameter("id", id).list();
+        getSession().getTransaction().commit();
+
+        List<Object[]> entities2 = entities
+                .stream()
+                .sorted(Comparator.comparing(o -> ((String) o[0])))
+                .sorted((o1, o2) -> ((Integer) o2[2]).compareTo((Integer) o1[2]))
+                .collect(Collectors.toList());
+        List<KillsForPlayer> killsForPlayerList = new ArrayList<>();
+        for (int i = 0; i < entities.size(); i++) {
+            KillsForPlayer killsForPlayer = new KillsForPlayer();
+            killsForPlayer.setNameOfKilledPlayer((String) entities.get(i)[0]);
+            killsForPlayer.setCountOfKillsAnotherPlayer((Integer) entities.get(i)[1]);
+            killsForPlayer.setNameOfPlayerWhoKilled((String) entities2.get(i)[0]);
+            killsForPlayer.setCountOfKillsByAnotherPlayer((Integer) entities2.get(i)[2]);
+            killsForPlayerList.add(killsForPlayer);
+        }
+        return killsForPlayerList;
     }
 
     private Kills mapEntityToDto(KillsEntity entity) {
