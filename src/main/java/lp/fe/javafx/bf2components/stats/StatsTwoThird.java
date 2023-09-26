@@ -33,15 +33,15 @@ public class StatsTwoThird {
     private final Manager manager = Manager.getInstance();
     private final TabPane upTabPane = new TabPane();
     private final TabPane downTabPane = new TabPane();
-    private final VBox rightPane;
+    private final VBox content = new VBox();
     private final PictureService pictureService = PictureServiceImpl.getInstance();
     private final ObservableMap<NodeTextEnum, TableView<ObjectProperty<Object>[]>> tableMap =
             FXCollections.observableMap(new EnumMap<>(NodeTextEnum.class));
     private final ObservableList<BF2Image> images = FXCollections.observableArrayList();
 
     public StatsTwoThird(RightSidePart rightSidePart) {
-        this.rightPane = rightSidePart.getRightPane();
-        rightPane.getChildren().addAll(upTabPane, downTabPane);
+        rightSidePart.getRightPane().setCenter(content);
+        content.getChildren().addAll(upTabPane, downTabPane);
         upTabPane.setId(NamespaceEnum.INNER_TAB_PANE_STYLE.getText());
         downTabPane.setId(NamespaceEnum.INNER_TAB_PANE_STYLE.getText());
 
@@ -68,8 +68,8 @@ public class StatsTwoThird {
 
     public void resize(Stage stage) {
         double twoThird = 2 * stage.getWidth() / 3 - 18;
-        rightPane.setMinWidth(twoThird);
-        rightPane.setMaxSize(rightPane.getMinWidth(), rightPane.getMinHeight());
+        content.setMinWidth(twoThird);
+        content.setMaxSize(content.getMinWidth(), content.getMinHeight());
         upTabPane.setPrefHeight(stage.getHeight() / 2);
         downTabPane.setPrefHeight(stage.getHeight() / 2);
         double upTabWidth = twoThird / upTabPane.getTabs().size() - 30;

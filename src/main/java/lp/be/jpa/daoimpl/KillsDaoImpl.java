@@ -8,8 +8,11 @@ import lp.be.jpa.entity.KillsEntity;
 import org.hibernate.query.Query;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class KillsDaoImpl extends EntityManager implements KillsDao {
@@ -36,16 +39,25 @@ public class KillsDaoImpl extends EntityManager implements KillsDao {
     }
 
     @Override
-    public List<Kills> getAllKills() {
+    public Map<String, Map<String, Integer>> getAllKills() {
         if (getSession() == null) {
-            return new ArrayList<>();
+            return Collections.emptyMap();
         }
         getSession().beginTransaction();
-        List<KillsEntity> entities = getSession().createQuery("FROM KillsEntity").getResultList();
+        List<Object[]> entities = getSession().createNativeQuery(
+                "SELECT p.name AS 'attacker', p2.name as 'victim', k.count AS 'count'" +
+                        "FROM kills k " +
+                        "JOIN player p " +
+                        "ON k.attacker=p.id " +
+                        "JOIN player p2 " +
+                        "ON k.victim =p2.id").list();
         getSession().getTransaction().commit();
-        List<Kills> dtos = new ArrayList<>();
-        entities.forEach(entity -> dtos.add(mapEntityToDto(entity)));
-        return dtos;
+        Map<String, Map<String, Integer>> resultMap = new HashMap<>();
+        entities.forEach(objects -> {
+            resultMap.putIfAbsent((String) objects[0], new HashMap<>());
+            resultMap.get(String.valueOf(objects[0])).put(String.valueOf(objects[1]), (Integer) objects[2]);
+        });
+        return resultMap;
     }
 
     @Override
@@ -73,7 +85,7 @@ public class KillsDaoImpl extends EntityManager implements KillsDao {
     @Override
     public List<KillsForPlayer> getDataForPlayer(Integer id) {
         if (getSession() == null) {
-            return null;
+            return Collections.emptyList();
         }
         getSession().beginTransaction();
         List<Object[]> entities = getSession().createNativeQuery(
@@ -85,7 +97,7 @@ public class KillsDaoImpl extends EntityManager implements KillsDao {
                         "ON p.id=victims.victim " +
                         "JOIN (SELECT attacker, count from kills where victim=:id) attackers " +
                         "ON p.id=attackers.attacker " +
-                        "ORDER BY victims.count DESC, p.name ASC").setParameter("id", id).list();
+                        "ORDER BY victims.count DESC, p.name").setParameter("id", id).list();
         getSession().getTransaction().commit();
 
         List<Object[]> entities2 = entities

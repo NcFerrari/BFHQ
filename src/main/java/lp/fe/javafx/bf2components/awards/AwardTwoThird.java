@@ -22,7 +22,7 @@ import java.util.HashMap;
 
 public class AwardTwoThird {
 
-    private final VBox rightPane;
+    private final VBox content = new VBox();
     private final ObservableList<Label> titles = FXCollections.observableArrayList();
     private final PictureService pictureService = PictureServiceImpl.getInstance();
     private final ObservableMap<NodeTextEnum, GridPane> grids = FXCollections.observableMap(new HashMap<>());
@@ -31,7 +31,7 @@ public class AwardTwoThird {
     private final Manager manager = Manager.getInstance();
 
     public AwardTwoThird(RightSidePart rightSidePart, AwardsPane awardsPane) {
-        this.rightPane = rightSidePart.getRightPane();
+        rightSidePart.getRightPane().setCenter(content);
         Integer[] medals = {2020419, 2020719, 2020903, 2020913, 2020919, 2021322, 2021403, 2021613, 2051902,
                 2051907, 2051919, 2190303, 2190308, 2190309, 2190318, 2190703, 2191319, 2191608, 3270519};
         Integer[] badges = {1031105, 1031109, 1031113, 1031115, 1031119, 1031120, 1031121, 1031406, 1031619,
@@ -50,7 +50,7 @@ public class AwardTwoThird {
 
     public void resize(Stage stage) {
         double twoThirdWidth = 2 * stage.getWidth() / 3 - 25;
-        rightPane.setPrefWidth(twoThirdWidth);
+        content.setPrefWidth(twoThirdWidth);
         titles.forEach(title -> title.setMinWidth(twoThirdWidth));
 
         bf2Images.forEach((key, bf2Image) -> {
@@ -124,10 +124,10 @@ public class AwardTwoThird {
         label.setText(title.getText(label.textProperty()));
         label.setId(NamespaceEnum.TITLE_STYLE.getText());
         titles.add(label);
-        rightPane.getChildren().add(label);
+        content.getChildren().add(label);
 
         GridPane imagesGridPane = new GridPane();
-        rightPane.getChildren().add(imagesGridPane);
+        content.getChildren().add(imagesGridPane);
         grids.put(title, imagesGridPane);
 
         for (int i = 0; i < imageNameIds.length; i++) {

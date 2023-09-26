@@ -48,6 +48,8 @@ public enum NamespaceEnum {
     CHECK_BOX_LIGHT_STYLE("check-box-light"),
     INNER_TAB_PANE_STYLE("inner-tab-pane"),
     LEFT_PANE_MAIN_PANE_STYLE("left_pane_main_pane"),
+    CROSS_TABLE_STYLE("cross-table"),
+    YELLOW_X_MARK_STYLE("x-yellow"),
     DAYS_LETTER("d"),
     HOURS_LETTER("h"),
     MINUTES_LETTER("min"),

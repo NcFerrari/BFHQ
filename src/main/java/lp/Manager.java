@@ -4,6 +4,7 @@ import lombok.Getter;
 import lp.be.business.dto.Army;
 import lp.be.business.dto.Awards;
 import lp.be.business.dto.KillsForPlayer;
+import lp.be.business.dto.KillsForTable;
 import lp.be.business.dto.Kits;
 import lp.be.business.dto.Maps;
 import lp.be.business.dto.Player;
@@ -409,5 +410,16 @@ public class Manager {
 
     public List<KillsForPlayer> getKillsForSelectedPlayer() {
         return new KillsDaoImpl().getDataForPlayer(getSelectedPlayer().getId());
+    }
+
+    public List<KillsForTable> getKillsForAllPlayers() {
+        List<KillsForTable> resultList = new ArrayList<>();
+        new KillsDaoImpl().getAllKills().forEach((name, map) -> {
+            KillsForTable killsForTable = new KillsForTable();
+            killsForTable.setName(name);
+            killsForTable.setEnemyKills(map);
+            resultList.add(killsForTable);
+        });
+        return resultList;
     }
 }

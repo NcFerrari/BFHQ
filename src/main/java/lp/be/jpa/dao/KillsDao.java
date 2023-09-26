@@ -4,6 +4,7 @@ import lp.be.business.dto.Kills;
 import lp.be.business.dto.KillsForPlayer;
 
 import java.util.List;
+import java.util.Map;
 
 public interface KillsDao {
 
@@ -11,7 +12,7 @@ public interface KillsDao {
 
     Kills getKills(int id);
 
-    List<Kills> getAllKills();
+    Map<String, Map<String, Integer>> getAllKills();
 
     void deleteKills(Kills kills);
 

@@ -87,6 +87,10 @@
     -fx-text-fill: #6e6969;
 }
 
+#x-yellow {
+    -fx-text-fill: yellow;
+}
+
 #center-right .cell {
     -fx-alignment: CENTER-RIGHT;
 }
@@ -108,4 +112,12 @@
 
 #left_pane_main_pane {
     -fx-background-color: #2b2b2b;
+}
+
+#cross-table .table-column {
+    -fx-alignment: CENTER;
+}
+
+#cross-table #first-column {
+    -fx-alignment: CENTER-LEFT;
 }

@@ -1,6 +1,6 @@
 package lp.fe.javafx.bf2components;
 
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import lombok.Getter;
 import lp.fe.enums.NamespaceEnum;
@@ -8,7 +8,7 @@ import lp.fe.enums.NamespaceEnum;
 @Getter
 public class RightSidePart {
 
-    private final VBox rightPane = new VBox();
+    private final BorderPane rightPane = new BorderPane();
 
     public RightSidePart() {
         rightPane.setId(NamespaceEnum.RIGHT_SIDE_PART_STYLE.getText());

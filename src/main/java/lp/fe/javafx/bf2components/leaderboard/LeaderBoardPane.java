@@ -10,16 +10,19 @@ import org.jetbrains.annotations.NotNull;
 public class LeaderBoardPane extends BF2Component {
 
     private final LeaderBoardOneThird leaderBoardOneThird;
+    private final LeaderBoardTwoThird leaderBoardTwoThird;
 
     public LeaderBoardPane() {
         super(NodeTextEnum.TAB_MENU_LEADERBOARDS);
         leaderBoardOneThird = new LeaderBoardOneThird(getLeftSidePart());
+        leaderBoardTwoThird = new LeaderBoardTwoThird(getRightSidePart());
     }
 
     @Override
     public void resize(@NotNull Stage stage) {
         super.resize(stage);
         leaderBoardOneThird.resize(stage);
+        leaderBoardTwoThird.resize(stage);
     }
 
     @Override
