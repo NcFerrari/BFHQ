@@ -18,17 +18,17 @@ public class LeaderBoardTwoThird {
 
     private final TableView<KillsForTable> crossTable = new TableView<>();
     private final Manager manager = Manager.getInstance();
+    private final Button showCrossTableButton = new Button();
 
     public LeaderBoardTwoThird(RightSidePart rightSidePart) {
-        Button showCrossTableButton = new Button();
         showCrossTableButton.setText(NodeTextEnum.SHOW_CROSS_TABLE.getText(showCrossTableButton.textProperty()));
         rightSidePart.getRightPane().setCenter(showCrossTableButton);
         showCrossTableButton.setOnAction(evt -> rightSidePart.getRightPane().setCenter(crossTable));
         crossTable.setId(NamespaceEnum.CROSS_TABLE_STYLE.getText());
-        loadTableData();
+        loadTableData(rightSidePart);
     }
 
-    private void loadTableData() {
+    private void loadTableData(RightSidePart rightSidePart) {
         crossTable.getItems().clear();
         crossTable.getColumns().clear();
         ObservableList<KillsForTable> data = FXCollections.observableArrayList(manager.getKillsForAllPlayers());
@@ -41,6 +41,9 @@ public class LeaderBoardTwoThird {
         nameColumn.setSortable(false);
         nameColumn.setReorderable(false);
         nameColumn.setId(NamespaceEnum.FIRST_COLUMN_STYLE.getText());
+        Button closeButton = new Button(NamespaceEnum.X_MARK.getText());
+        closeButton.setOnAction(evt -> rightSidePart.getRightPane().setCenter(showCrossTableButton));
+        nameColumn.setGraphic(closeButton);
         crossTable.getColumns().add(nameColumn);
 
         for (KillsForTable datum : data) {
