@@ -29,11 +29,13 @@ import lp.fe.javafx.bf2components.leaderboard.LeaderBoardPane;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Getter
 public class Manager {
@@ -420,6 +422,9 @@ public class Manager {
             killsForTable.setEnemyKills(map);
             resultList.add(killsForTable);
         });
-        return resultList;
+        return resultList
+                .stream()
+                .sorted(Comparator.comparing(KillsForTable::getName))
+                .collect(Collectors.toList());
     }
 }
