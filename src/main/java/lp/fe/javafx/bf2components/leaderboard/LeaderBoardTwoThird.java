@@ -23,9 +23,7 @@ public class LeaderBoardTwoThird {
         Button showCrossTableButton = new Button();
         showCrossTableButton.setText(NodeTextEnum.SHOW_CROSS_TABLE.getText(showCrossTableButton.textProperty()));
         rightSidePart.getRightPane().setCenter(showCrossTableButton);
-        showCrossTableButton.setOnAction(evt -> {
-            rightSidePart.getRightPane().setCenter(crossTable);
-        });
+        showCrossTableButton.setOnAction(evt -> rightSidePart.getRightPane().setCenter(crossTable));
         crossTable.setId(NamespaceEnum.CROSS_TABLE_STYLE.getText());
         loadTableData();
     }
