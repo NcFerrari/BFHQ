@@ -36,7 +36,7 @@ public class LeaderBoardTwoThird {
         TableColumn<KillsForTable, String> nameColumn = new TableColumn<>();
         nameColumn.setText(NodeTextEnum.NAME_TITLE.getText(nameColumn.textProperty()));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>(NamespaceEnum.NAME.getText()));
-        nameColumn.setStyle("-fx-font-size: 12");
+        nameColumn.setStyle(String.format(NamespaceEnum.FONT_SIZE_STYLE.getText(), 12f));
         nameColumn.setResizable(false);
         nameColumn.setSortable(false);
         nameColumn.setReorderable(false);
@@ -56,7 +56,7 @@ public class LeaderBoardTwoThird {
                 }
                 return new SimpleObjectProperty<>(0);
             });
-            column.setStyle("-fx-font-size: 12");
+            column.setStyle(String.format(NamespaceEnum.FONT_SIZE_STYLE.getText(), 12f));
             column.setResizable(false);
             column.setSortable(false);
             column.setReorderable(false);
