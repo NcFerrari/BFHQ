@@ -87,8 +87,8 @@
     -fx-text-fill: #6e6969;
 }
 
-#x-yellow {
-    -fx-text-fill: yellow;
+#x-style {
+    -fx-text-fill: red;
 }
 
 #center-right .cell {
@@ -120,4 +120,8 @@
 
 #cross-table #first-column {
     -fx-alignment: CENTER-LEFT;
+}
+
+#cross-table .table-row-cell:selected .text {
+    -fx-fill: yellow;
 }

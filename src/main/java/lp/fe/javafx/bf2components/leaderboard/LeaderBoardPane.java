@@ -22,7 +22,6 @@ public class LeaderBoardPane extends BF2Component {
     public void resize(@NotNull Stage stage) {
         super.resize(stage);
         leaderBoardOneThird.resize(stage);
-        leaderBoardTwoThird.resize(stage);
     }
 
     @Override

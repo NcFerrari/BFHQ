@@ -3,11 +3,11 @@ package lp.fe.javafx.bf2components.leaderboard;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import lp.Manager;
 import lp.be.business.dto.KillsForTable;
 import lp.fe.enums.NamespaceEnum;
@@ -20,7 +20,12 @@ public class LeaderBoardTwoThird {
     private final Manager manager = Manager.getInstance();
 
     public LeaderBoardTwoThird(RightSidePart rightSidePart) {
-        rightSidePart.getRightPane().setCenter(crossTable);
+        Button showCrossTableButton = new Button();
+        showCrossTableButton.setText(NodeTextEnum.SHOW_CROSS_TABLE.getText(showCrossTableButton.textProperty()));
+        rightSidePart.getRightPane().setCenter(showCrossTableButton);
+        showCrossTableButton.setOnAction(evt -> {
+            rightSidePart.getRightPane().setCenter(crossTable);
+        });
         crossTable.setId(NamespaceEnum.CROSS_TABLE_STYLE.getText());
         loadTableData();
     }
@@ -33,6 +38,7 @@ public class LeaderBoardTwoThird {
         TableColumn<KillsForTable, String> nameColumn = new TableColumn<>();
         nameColumn.setText(NodeTextEnum.NAME_TITLE.getText(nameColumn.textProperty()));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>(NamespaceEnum.NAME.getText()));
+        nameColumn.setStyle("-fx-font-size: 12");
         nameColumn.setResizable(false);
         nameColumn.setSortable(false);
         nameColumn.setReorderable(false);
@@ -44,7 +50,7 @@ public class LeaderBoardTwoThird {
             column.setCellValueFactory(cellData -> {
                 if (column.getText().equals(cellData.getValue().getName())) {
                     Label xLabel = new Label(NamespaceEnum.X_MARK.getText());
-                    xLabel.setId(NamespaceEnum.YELLOW_X_MARK_STYLE.getText());
+                    xLabel.setId(NamespaceEnum.X_MARK_STYLE.getText());
                     return new SimpleObjectProperty<>(xLabel);
                 }
                 if (cellData.getValue().getEnemyKills().containsKey(column.getText())) {
@@ -52,16 +58,12 @@ public class LeaderBoardTwoThird {
                 }
                 return new SimpleObjectProperty<>(0);
             });
+            column.setStyle("-fx-font-size: 12");
             column.setResizable(false);
             column.setSortable(false);
             column.setReorderable(false);
             crossTable.getColumns().add(column);
         }
         crossTable.setItems(data);
-    }
-
-    public void resize(Stage stage) {
-        double twoThird = 2 * stage.getWidth() / 3;
-        crossTable.getColumns().forEach(column -> column.setPrefWidth(twoThird / 8));
     }
 }

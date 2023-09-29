@@ -49,7 +49,7 @@ public enum NamespaceEnum {
     INNER_TAB_PANE_STYLE("inner-tab-pane"),
     LEFT_PANE_MAIN_PANE_STYLE("left_pane_main_pane"),
     CROSS_TABLE_STYLE("cross-table"),
-    YELLOW_X_MARK_STYLE("x-yellow"),
+    X_MARK_STYLE("x-style"),
     DAYS_LETTER("d"),
     HOURS_LETTER("h"),
     MINUTES_LETTER("min"),
