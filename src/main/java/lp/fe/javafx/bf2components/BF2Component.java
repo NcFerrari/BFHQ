@@ -32,7 +32,11 @@ public abstract class BF2Component {
         rightSidePart.resize(stage);
     }
 
-    public abstract void reloadData();
+    public void reloadData() {
 
-    public abstract void rewriteData();
+    }
+
+    public void rewriteData() {
+
+    }
 }

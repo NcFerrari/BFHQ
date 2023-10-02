@@ -24,6 +24,7 @@ public enum NodeTextEnum {
     TAB_MENU_STATS("STATS", "STATISTIKY"),
     TAB_MENU_LEADERBOARDS("LEADERBOARDS", "ŽEBŘÍČKY"),
     TAB_MENU_AWARDS("AWARDS", "ODMĚNY"),
+    TAB_MENU_MAP_INFO("MAP INFO", "INFORMACE O MAPÁCH"),
     RANK_TITLE("RANK", "HODNOST"),
     CURRENT_RANK("Current rank", "Aktuální hodnost"),
     EMPTY_STRING("", ""),
@@ -611,5 +612,11 @@ public enum NodeTextEnum {
                 RIBBON_3190318, RIBBON_3190409, RIBBON_3190605, RIBBON_3190803, RIBBON_3191305, RIBBON_3211305,
                 RIBBON_3212201, RIBBON_3240102, RIBBON_3240301, RIBBON_3240703, RIBBON_3241213, RIBBON_3242303,};
         return Arrays.asList(awards);
+    }
+
+    public static List<NodeTextEnum> getMaps() {
+        NodeTextEnum[] maps = {MAP_0, MAP_1, MAP_2, MAP_3, MAP_4, MAP_5, MAP_6, MAP_10, MAP_11, MAP_12, MAP_100,
+                MAP_101, MAP_102, MAP_103, MAP_105, MAP_110, MAP_200, MAP_201, MAP_202, MAP_601, MAP_700};
+        return Arrays.asList(maps);
     }
 }

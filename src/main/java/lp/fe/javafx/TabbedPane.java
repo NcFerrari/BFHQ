@@ -12,6 +12,7 @@ import lp.fe.enums.NamespaceEnum;
 import lp.fe.javafx.bf2components.BF2Component;
 import lp.fe.javafx.bf2components.awards.AwardsPane;
 import lp.fe.javafx.bf2components.leaderboard.LeaderBoardPane;
+import lp.fe.javafx.bf2components.mapinfo.MapInfo;
 import lp.fe.javafx.bf2components.stats.StatsPane;
 
 public class TabbedPane {
@@ -31,7 +32,7 @@ public class TabbedPane {
             tabPane.getTabs().add(bf2Components.get(observable.getFrom()).getTab());
         });
         fillTabs();
-        tabPane.getSelectionModel().selectNext();
+        tabPane.getSelectionModel().selectLast();
     }
 
     public void resize(Stage stage) {
@@ -45,6 +46,7 @@ public class TabbedPane {
         bf2Components.add(new StatsPane());
         bf2Components.add(new LeaderBoardPane());
         bf2Components.add(new AwardsPane());
+        bf2Components.add(new MapInfo());
     }
 
     private void keyList(KeyEvent evt) {
