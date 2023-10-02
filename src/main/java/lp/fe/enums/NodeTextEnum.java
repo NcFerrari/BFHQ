@@ -112,6 +112,11 @@ public enum NodeTextEnum {
     COUNT("Count", "Počet"),
     SHOW_KILLS_BUTTON_TITLE("Show kills data", "Zobraz data zabití"),
     SHOW_CROSS_TABLE("Show cross table", "Zobraz křížovou tabulku"),
+    TEXT_FOR_RIBBON_3190605("This map is needed to obtain: Far-East Service Ribbon",
+            "Tuto mapu je potřeba si zahrát k získání stužky: Čínská služební stuha"),
+    TEXT_FOR_RIBBON_3191305("This map is needed to obtain: Middle East Service Ribbon",
+            "Tuto mapu je potřeba si zahrát k získání stužky: Středovýchodní služební stuha"),
+    TEXT_FOR_RIBBON_NULL("You get no ribbon for this map.", "Za tuto mapu nezískáte žádnou stužku."),
 
     FACTION_USMC("United States Marine Corps", "Námořní pěchota spojených Států"),
     FACTION_PLA("People's Liberation Army", "Lidová Osvobozenecká Armáda"),

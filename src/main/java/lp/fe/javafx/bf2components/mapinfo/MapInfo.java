@@ -1,11 +1,14 @@
 package lp.fe.javafx.bf2components.mapinfo;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import lp.be.service.BF2Image;
 import lp.be.service.PictureService;
@@ -21,9 +24,11 @@ public class MapInfo extends BF2Component {
     private final ListView<Label> mapList = new ListView<>();
     private final PictureService pictureService = PictureServiceImpl.getInstance();
     private final BorderPane teamFlags = new BorderPane();
-    private final Label firstTeam;
-    private final Label secondTeam;
-    private final Label title;
+    private final Label firstTeam = new Label();
+    private final Label secondTeam = new Label();
+    private final Label title = new Label();
+    private final Label mapNeedForRibbonLabel = new Label();
+    private final ImageView ribbonImageView = new ImageView();
     private Stage stage;
     private BF2Image bf2MapImage;
 
@@ -36,23 +41,36 @@ public class MapInfo extends BF2Component {
             label.setTextFill(Color.WHITE);
             mapList.getItems().add(label);
         });
+
         ((BorderPane) getLeftSidePart().getMainPane().getChildren().get(0)).setCenter(mapList);
         mapList.getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> showMap(NodeTextEnum.valueOf(newValue.getId())));
 
-        firstTeam = new Label();
+        initTopRightSide();
+        initBottomRightSide();
+    }
+
+    private void initTopRightSide() {
         firstTeam.setText(NodeTextEnum.EMPTY_STRING.getText(firstTeam.textProperty()));
         firstTeam.setTextFill(Color.WHITE);
-        secondTeam = new Label();
         secondTeam.setText(NodeTextEnum.EMPTY_STRING.getText(secondTeam.textProperty()));
         secondTeam.setTextFill(Color.WHITE);
-        title = new Label();
         title.setText(NodeTextEnum.EMPTY_STRING.getText(title.textProperty()));
         title.setId(NamespaceEnum.MAP_TITLE_STYLE.getText());
         getRightSidePart().getRightPane().setTop(new VBox(
                 new BorderPane(title, null, null, null, null),
                 new BorderPane(null, null, secondTeam, null, firstTeam),
                 teamFlags));
+    }
+
+    private void initBottomRightSide() {
+        mapNeedForRibbonLabel.setText(NodeTextEnum.EMPTY_STRING.getText(mapNeedForRibbonLabel.textProperty()));
+        mapNeedForRibbonLabel.setTextFill(Color.LIGHTGRAY);
+        mapNeedForRibbonLabel.setFont(new Font(16));
+        HBox hbox = new HBox(mapNeedForRibbonLabel, ribbonImageView);
+        hbox.setSpacing(10);
+        hbox.setAlignment(Pos.CENTER);
+        getRightSidePart().getRightPane().setBottom(hbox);
     }
 
     private void showMap(NodeTextEnum mapNodeText) {
@@ -64,6 +82,13 @@ public class MapInfo extends BF2Component {
         NodeTextEnum.getComponentsForTranslate().replace(title.textProperty(), mapNodeText);
         teamFlags.setLeft(pictureService.getFactionBF2Image(mapInfo.getIdFirstTeam()).getImageView());
         teamFlags.setRight(pictureService.getFactionBF2Image(mapInfo.getIdSecondTeam()).getImageView());
+        if (mapInfo.getIdForRibbon() != null) {
+            ribbonImageView.setImage(pictureService.getSmallAwardBF2Image(mapInfo.getIdForRibbon()).getImage());
+        } else {
+            ribbonImageView.setImage(null);
+        }
+        NodeTextEnum.getComponentsForTranslate().replace(mapNeedForRibbonLabel.textProperty(),
+                NodeTextEnum.valueOf((NamespaceEnum.FOR_RIBBON.getText() + mapInfo.getIdForRibbon()).toUpperCase()));
 
         bf2MapImage = pictureService.getMapBF2Image(mapId);
         getRightSidePart().getRightPane().setCenter(bf2MapImage.getImageView());
@@ -87,6 +112,8 @@ public class MapInfo extends BF2Component {
             ((ImageView) teamFlags.getLeft()).setFitHeight(twoThird / 9.8);
             ((ImageView) teamFlags.getRight()).setFitWidth(((ImageView) teamFlags.getLeft()).getFitWidth());
             ((ImageView) teamFlags.getRight()).setFitHeight(((ImageView) teamFlags.getLeft()).getFitHeight());
+            ribbonImageView.setFitWidth(((ImageView) teamFlags.getLeft()).getFitWidth() / 2);
+            ribbonImageView.setFitHeight(((ImageView) teamFlags.getLeft()).getFitHeight() / 4);
         }
     }
 }

@@ -149,9 +149,6 @@
 }
 
 #map-title {
-    -fx-border-color: yellow;
-    -fx-border-radius: 15px;
-    -fx-border-style: segments(10, 15, 15, 15)  line-cap round;
     -fx-text-fill: yellow;
     -fx-font-weight: bold;
     -fx-padding: 5px;

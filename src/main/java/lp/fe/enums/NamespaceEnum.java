@@ -110,7 +110,8 @@ public enum NamespaceEnum {
     NAME_OF_KILLED_PLAYER("nameOfKilledPlayer"),
     COUNT_OF_KILLS_ANOTHER_PLAYER("countOfKillsAnotherPlayer"),
     NAME_OF_PLAYER_WHO_KILLED("nameOfPlayerWhoKilled"),
-    COUNT_OF_KILLS_BY_ANOTHER_PLAYER("countOfKillsByAnotherPlayer");
+    COUNT_OF_KILLS_BY_ANOTHER_PLAYER("countOfKillsByAnotherPlayer"),
+    FOR_RIBBON("TEXT_FOR_RIBBON_");
 
     private final String text;
 
