@@ -1,7 +1,6 @@
 package lp.fe.javafx;
 
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -30,7 +29,6 @@ public class MainApp extends Application {
         VBox mainPane = new VBox();
         Scene scene = new Scene(mainPane, width, height);
         loadCssStyles(scene);
-        temporaryMethodToRemove(scene);
         stage.setScene(scene);
         stage.show();
 
@@ -82,24 +80,6 @@ public class MainApp extends Application {
         addCSS(scene, NamespaceEnum.BUTTONS_STYLE);
         addCSS(scene, NamespaceEnum.TAB_PANE_STYLE);
         addCSS(scene, NamespaceEnum.RIGHT_SIDE_STYLE);
-    }
-
-    private void temporaryMethodToRemove(Scene scene) {
-        Thread t = new Thread(() -> {
-            while (true) {
-                Platform.runLater(() -> {
-                    scene.getStylesheets().remove(NamespaceEnum.TEMPORARY_CSS_FILE.getText());
-                    scene.getStylesheets().add(NamespaceEnum.TEMPORARY_CSS_FILE.getText());
-                });
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
-            }
-        });
-        t.setDaemon(true);
-        t.start();
     }
 
     private void addCSS(Scene scene, NamespaceEnum namespaceEnum) {

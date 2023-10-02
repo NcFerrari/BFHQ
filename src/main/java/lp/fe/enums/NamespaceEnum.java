@@ -14,7 +14,6 @@ public enum NamespaceEnum {
     BUTTONS_STYLE("css/buttons.css"),
     TAB_PANE_STYLE("css/tab-pane.css"),
     RIGHT_SIDE_STYLE("css/right-side-part.css"),
-    TEMPORARY_CSS_FILE("file:///C://temp/temporary.css"),
     DATE_FORMAT("yyyy-MM-dd"),
     CZE_DATE_FORMAT("dd. MMMM. yyyy"),
     HOUR_FORMAT("HH"),
