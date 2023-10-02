@@ -50,6 +50,7 @@ public enum NamespaceEnum {
     LEFT_PANE_MAIN_PANE_STYLE("left_pane_main_pane"),
     CROSS_TABLE_STYLE("cross-table"),
     X_MARK_STYLE("x-style"),
+    MAP_TITLE_STYLE("map-title"),
     DAYS_LETTER("d"),
     HOURS_LETTER("h"),
     MINUTES_LETTER("min"),
