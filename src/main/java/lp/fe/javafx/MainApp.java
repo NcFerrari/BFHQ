@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import lp.Manager;
@@ -28,6 +29,8 @@ public class MainApp extends Application {
         stage.setTitle(NodeTextEnum.APPLICATION_TITLE.getText(stage.titleProperty()));
         VBox mainPane = new VBox();
         Scene scene = new Scene(mainPane, width, height);
+        Font.loadFont(Objects.requireNonNull(getClass().getResource("/fonts/Haettenschweiler.ttf")).toExternalForm(),
+                1);
         loadCssStyles(scene);
         stage.setScene(scene);
         stage.show();
