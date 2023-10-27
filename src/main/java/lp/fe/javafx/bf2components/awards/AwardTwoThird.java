@@ -87,8 +87,8 @@ public class AwardTwoThird {
                 localBF2Image.setLastEarned(bf2Image.getLastEarned());
                 ((Label) stackPanes.get(lastAwardNumber).getChildren().get(1)).setText(bf2Image.getLastEarned()
                         .format(DateTimeFormatter.ofPattern(NamespaceEnum.CZE_DATE_FORMAT.getText())));
-                localBF2Image.setImageId(bf2Image.getImageId());
                 lastAwardNumber++;
+                localBF2Image.setImageId(bf2Image.getImageId());
             }
             if (bf2Image.getNodeTextEnum().name().contains(NodeTextEnum.MEDAL.name())) {
                 pictureService.addColor(bf2Images.get(bf2Image.getNodeTextEnum().name()));
@@ -97,6 +97,7 @@ public class AwardTwoThird {
                 localBF2Image.setLevel(bf2Image.getLevel());
                 localBF2Image.setFirstEarned(bf2Image.getFirstEarned());
                 localBF2Image.setLastEarned(bf2Image.getLastEarned());
+                localBF2Image.setImageId(bf2Image.getImageId());
             } else if (bf2Image.getNodeTextEnum().name().contains(NodeTextEnum.BADGE.name())) {
                 String key = bf2Image.getNodeTextEnum().name().replaceFirst(NamespaceEnum.NUMBER_REGEX.getText(),
                         NamespaceEnum.ONE.getText());
@@ -113,9 +114,9 @@ public class AwardTwoThird {
                 localBF2Image.setLevel(bf2Image.getLevel());
                 localBF2Image.setFirstEarned(bf2Image.getFirstEarned());
                 localBF2Image.setLastEarned(bf2Image.getLastEarned());
-                localBF2Image.updateData(pictureService.getSmallAwardBF2Image(ribbonId), manager.isShowTooltip());
+                localBF2Image.updateData(pictureService.getSmallAwardBF2Image(ribbonId, 1), manager.isShowTooltip());
+                localBF2Image.setImageId(bf2Image.getImageId());
             }
-            localBF2Image.setImageId(bf2Image.getImageId());
         }
     }
 
@@ -133,7 +134,7 @@ public class AwardTwoThird {
         for (int i = 0; i < imageNameIds.length; i++) {
             BF2Image bf2Image = new BF2Image();
             if (imageNameIds[i] != null) {
-                bf2Image = pictureService.getSmallAwardBF2Image(imageNameIds[i]);
+                bf2Image = pictureService.getSmallAwardBF2Image(imageNameIds[i], 1);
                 bf2Images.put(bf2Image.getNodeTextEnum().name(), bf2Image);
                 imagesGridPane.add(bf2Image.getImageView(), i - (i / columns) * columns, i / columns);
             } else if (title.equals(NodeTextEnum.LAST_AWARD)) {
@@ -151,6 +152,7 @@ public class AwardTwoThird {
                 imagesGridPane.add(bf2Image.getImageView(), i - (i / columns) * columns, i / columns);
             }
         }
+
     }
 
     private void resetImages() {

@@ -40,8 +40,8 @@ public class PictureServiceImpl implements PictureService {
     }
 
     @Override
-    public BF2Image getSmallAwardBF2Image(int imageId) {
-        return getImage(PictureSourceEnum.getPictureSourceEnum(imageId, 1, true), imageId);
+    public BF2Image getSmallAwardBF2Image(int imageId, int level) {
+        return getImage(PictureSourceEnum.getPictureSourceEnum(imageId, level, true), imageId);
     }
 
     @Override

@@ -8,7 +8,7 @@ public interface PictureService {
 
     BF2Image getAwardBF2Image(int imageId, int level);
 
-    BF2Image getSmallAwardBF2Image(int imageId);
+    BF2Image getSmallAwardBF2Image(int imageId, int level);
 
     BF2Image getFactionBF2Image(int factionId);
 

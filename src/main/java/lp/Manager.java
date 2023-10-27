@@ -160,7 +160,10 @@ public class Manager {
             bf2Images.add(bf2Image);
 
         }
-        return bf2Images;
+        return bf2Images
+                .stream()
+                .sorted(Comparator.comparingInt(BF2Image::getLevel))
+                .collect(Collectors.toList());
     }
 
     public Map<NamespaceEnum, String[]> getMostPlayedData() throws Exception {

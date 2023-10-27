@@ -83,7 +83,7 @@ public class MapInfo extends BF2Component {
         teamFlags.setLeft(pictureService.getFactionBF2Image(mapInfo.getIdFirstTeam()).getImageView());
         teamFlags.setRight(pictureService.getFactionBF2Image(mapInfo.getIdSecondTeam()).getImageView());
         if (mapInfo.getIdForRibbon() != null) {
-            ribbonImageView.setImage(pictureService.getSmallAwardBF2Image(mapInfo.getIdForRibbon()).getImage());
+            ribbonImageView.setImage(pictureService.getSmallAwardBF2Image(mapInfo.getIdForRibbon(), 1).getImage());
         } else {
             ribbonImageView.setImage(null);
         }
