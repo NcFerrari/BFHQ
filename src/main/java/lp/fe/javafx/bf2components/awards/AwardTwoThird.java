@@ -106,6 +106,7 @@ public class AwardTwoThird {
                 localBF2Image.setLevel(bf2Image.getLevel());
                 localBF2Image.setFirstEarned(bf2Image.getFirstEarned());
                 localBF2Image.setLastEarned(bf2Image.getLastEarned());
+                localBF2Image.setNodeTextEnum(bf2Image.getNodeTextEnum());
                 localBF2Image.updateData(bf2Image, manager.isShowTooltip());
             } else {
                 int ribbonId = Integer.parseInt(bf2Image.getNodeTextEnum().name().substring(7));
