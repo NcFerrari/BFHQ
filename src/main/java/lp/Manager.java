@@ -410,7 +410,7 @@ public class Manager {
 
     private String[] addToResult(Long[] data) {
         return new String[]{formatNumber(data[0]), formatNumber(data[1]), formatNumber(data[2]),
-                getKDRatio(data[0], data[1]), longToTime(data[3])};
+                getKDRatio(data[0], data[2]), longToTime(data[3])};
     }
 
     public List<KillsForPlayer> getKillsForSelectedPlayer() {
