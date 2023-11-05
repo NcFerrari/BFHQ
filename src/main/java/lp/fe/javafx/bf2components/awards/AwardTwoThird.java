@@ -18,10 +18,7 @@ import lp.fe.enums.NodeTextEnum;
 import lp.fe.javafx.bf2components.RightSidePart;
 
 import java.time.format.DateTimeFormatter;
-import java.util.Comparator;
 import java.util.HashMap;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class AwardTwoThird {
 
@@ -78,11 +75,7 @@ public class AwardTwoThird {
         resetImages();
         int lastAwardNumber = 0;
         int ribbonNumber = 0;
-        List<BF2Image> list = manager.getAwardsForSelectedPlayer(6)
-                .stream()
-                .sorted(Comparator.comparing(BF2Image::getLastEarned).reversed())
-                .collect(Collectors.toList());
-        for (BF2Image bf2Image : list) {
+        for (BF2Image bf2Image : manager.getLastAwardsForSelectedPlayer(6)) {
             BF2Image localBF2Image;
             if (lastAwardNumber < stackPanes.size()) {
                 localBF2Image = bf2Images.get(NodeTextEnum.LAST_AWARD.name() + lastAwardNumber);

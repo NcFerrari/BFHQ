@@ -6,11 +6,7 @@ import javafx.collections.ObservableMap;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import lombok.Getter;
 import lp.Manager;
@@ -199,7 +195,7 @@ public class StatsOneThird {
 
         resetAwardsImages();
         int i = 0;
-        for (BF2Image bf2Image : manager.getAwardsForSelectedPlayer(3)) {
+        for (BF2Image bf2Image : manager.getLastAwardsForSelectedPlayer(3)) {
             lastThreeAwards.get(i++).updateData(bf2Image, manager.isShowTooltip());
         }
 

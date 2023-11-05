@@ -166,6 +166,13 @@ public class Manager {
                 .collect(Collectors.toList());
     }
 
+    public List<BF2Image> getLastAwardsForSelectedPlayer(int limitOfAwards) {
+        return getAwardsForSelectedPlayer(limitOfAwards)
+                .stream()
+                .sorted(Comparator.comparing(BF2Image::getLastEarned).reversed())
+                .collect(Collectors.toList());
+    }
+
     public Map<NamespaceEnum, String[]> getMostPlayedData() throws Exception {
         Map<NamespaceEnum, String[]> result = new EnumMap<>(NamespaceEnum.class);
 
