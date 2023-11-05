@@ -75,7 +75,7 @@ public class AwardTwoThird {
         resetImages();
         int lastAwardNumber = 0;
         int ribbonNumber = 0;
-        for (BF2Image bf2Image : manager.getAwardsForSelectedPlayer(0)) {
+        for (BF2Image bf2Image : manager.getAwardsForSelectedPlayer(6)) {
             BF2Image localBF2Image;
             if (lastAwardNumber < stackPanes.size()) {
                 localBF2Image = bf2Images.get(NodeTextEnum.LAST_AWARD.name() + lastAwardNumber);
@@ -90,6 +90,9 @@ public class AwardTwoThird {
                 lastAwardNumber++;
                 localBF2Image.setImageId(bf2Image.getImageId());
             }
+        }
+        for (BF2Image bf2Image : manager.getAwardsForSelectedPlayer(0)) {
+            BF2Image localBF2Image;
             if (bf2Image.getNodeTextEnum().name().contains(NodeTextEnum.MEDAL.name())) {
                 pictureService.addColor(bf2Images.get(bf2Image.getNodeTextEnum().name()));
                 localBF2Image = bf2Images.get(bf2Image.getNodeTextEnum().name());
