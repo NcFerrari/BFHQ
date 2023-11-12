@@ -61,6 +61,8 @@ public enum NamespaceEnum {
     TEXT_POINT("."),
     COLON(":"),
     UNDERSCORE("_"),
+    LEFT_BRACKET("("),
+    RIGHT_BRACKET(")"),
     ONE("1"),
     DIALOG_BUTTON_YES_EN("Yes"),
     DIALOG_BUTTON_NO_EN("No"),

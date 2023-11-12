@@ -185,7 +185,8 @@ public class StatsOneThird {
         rankImage.updateData(pictureService.getRankBF2Image(rank), false);
 
         personalInfoLabels.get(NodeTextEnum.GLOBAL_SCORE).setText(String.valueOf(player.getScore()));
-        personalInfoLabels.get(NodeTextEnum.TIME).setText(manager.longToTime(player.getTime()));
+        personalInfoLabels.get(NodeTextEnum.TIME).setText(manager.longToTime(player.getTime()) +
+                manager.getHoursInText(player.getTime()));
         personalInfoLabels.get(NodeTextEnum.KILLS).setText(String.valueOf(player.getKills()));
         personalInfoLabels.get(NodeTextEnum.DEATHS).setText(String.valueOf(player.getDeaths()));
         personalInfoLabels.get(NodeTextEnum.TEAM_KILLS).setText(

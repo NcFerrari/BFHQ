@@ -437,4 +437,9 @@ public class Manager {
                 .sorted(Comparator.comparing(KillsForTable::getName))
                 .collect(Collectors.toList());
     }
+
+    public String getHoursInText(Long time) {
+        return NamespaceEnum.SPACE_STRING.getText() + NamespaceEnum.LEFT_BRACKET.getText() + (time / 3_600)
+                + NamespaceEnum.HOURS_LETTER.getText() + NamespaceEnum.RIGHT_BRACKET.getText();
+    }
 }
