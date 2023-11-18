@@ -200,10 +200,10 @@ public enum NodeTextEnum {
     BADGE_1_1222016("Basic Transport", "Základní transport"),
 
     BADGE_2_1031105("Veteran Engineer Combat", "Veteránská práce inženýra"),
-    BADGE_2_1031109("Veteran Sniper Combat", "Veterán odstřelovač"),
+    BADGE_2_1031109("Veteran Sniper Combat", "Veterán-odstřelovač"),
     BADGE_2_1031113("Veteran Medic Combat", "Veteránská práce zdravotníka"),
     BADGE_2_1031115("Veteran Spec Ops Combat", "Veterán-spec-jednotky"),
-    BADGE_2_1031119("Veteran Assault Combat", "Veterán v pozemním boji"),
+    BADGE_2_1031119("Veteran Assault Combat", "Veterán-pozemní boj"),
     BADGE_2_1031120("Veteran Anti-Tank Combat", "Veterán protitankového boje"),
     BADGE_2_1031121("Veteran Support Combat", "Veteránská práce kulometčíka"),
     BADGE_2_1031406("Veteran Knife Combat", "Veterán-boj s nožem"),

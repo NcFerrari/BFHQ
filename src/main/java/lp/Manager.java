@@ -294,10 +294,14 @@ public class Manager {
         result.add(new String[]{formatNumber(getSelectedPlayer().getDeathstreak())});
         result.add(new String[]{formatNumber(getSelectedPlayer().getDriverassists())});
         result.add(new String[]{formatNumber(getSelectedPlayer().getCmdscore())});
-        result.add(new String[]{longToTime(getSelectedPlayer().getCmdtime())});
-        result.add(new String[]{longToTime(getSelectedPlayer().getSqltime())});
-        result.add(new String[]{longToTime(getSelectedPlayer().getSqmtime())});
-        result.add(new String[]{longToTime(getSelectedPlayer().getLwtime())});
+        result.add(new String[]{longToTime(getSelectedPlayer().getCmdtime()) +
+                getHoursInText(getSelectedPlayer().getCmdtime())});
+        result.add(new String[]{longToTime(getSelectedPlayer().getSqltime()) +
+                getHoursInText(getSelectedPlayer().getSqltime())});
+        result.add(new String[]{longToTime(getSelectedPlayer().getSqmtime()) +
+                getHoursInText(getSelectedPlayer().getSqmtime())});
+        result.add(new String[]{longToTime(getSelectedPlayer().getLwtime()) +
+                getHoursInText(getSelectedPlayer().getLwtime())});
         return result;
     }
 
