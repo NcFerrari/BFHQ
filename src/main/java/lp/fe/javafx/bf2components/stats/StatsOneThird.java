@@ -174,9 +174,11 @@ public class StatsOneThird {
         NodeTextEnum.getComponentsForTranslate().replace(currentRank.textProperty(),
                 NodeTextEnum.getRankTitleFromInt(rank));
         if (rank < 21) {
+            int newRankNumber = rank == 7 ? rank + 2 : rank + 1;
             NodeTextEnum.getComponentsForTranslate().replace(nextRank.textProperty(),
-                    NodeTextEnum.getRankTitleFromInt(rank + 1));
-            progressBar.setProgress((player.getScore() - rankLimits[rank]) / (rankLimits[rank + 1] - rankLimits[rank]));
+                    NodeTextEnum.getRankTitleFromInt(newRankNumber));
+            progressBar.setProgress(
+                    (player.getScore() - rankLimits[rank]) / (rankLimits[newRankNumber] - rankLimits[rank]));
         } else {
             NodeTextEnum.getComponentsForTranslate().replace(nextRank.textProperty(), NodeTextEnum.EMPTY_STRING);
             progressBar.setProgress(1);
