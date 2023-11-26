@@ -18,6 +18,7 @@ public enum NodeTextEnum {
     APPLICATION_TITLE("Battlefield 2 - Head Quarters", "Battlefield 2 - Informační přehledy"),
     DIALOG_TEXT_WINDOW_CLOSE_TITLE("Close application", "Ukončení aplikace"),
     DIALOG_TEXT_WINDOW_CLOSE("Do you want to exit application?", "Přejete si ukončit program?"),
+    TIME_REPAIR_BUTTON("Time repair", "Oprava časů"),
     TOOLKIT_TEXT("Images tooltips", "Popisky obrázků"),
     UPDATE_DATA_BUTTON("Update Data", "Aktualizovat Data"),
     PLAYER_NAME_TITLE("PLAYER NAME", "JMÉNO HRÁČE"),

@@ -10,6 +10,7 @@ import org.hibernate.query.Query;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class PlayerDaoImpl extends EntityManager implements PlayerDao {
 
@@ -55,6 +56,7 @@ public class PlayerDaoImpl extends EntityManager implements PlayerDao {
         return mapEntityToDto(entity);
     }
 
+    @Override
     public List<Player> getAllPlayer() {
         if (getSession() == null) {
             return new ArrayList<>();
@@ -86,6 +88,21 @@ public class PlayerDaoImpl extends EntityManager implements PlayerDao {
         Query<?> query = getSession().createQuery("DELETE FROM PlayerEntity WHERE id=:id");
         query.setParameter("id", id);
         query.executeUpdate();
+        getSession().getTransaction().commit();
+    }
+
+    @Override
+    public void timeRepair(Map<String, Player> players) {
+        getSession().beginTransaction();
+        players.values().forEach(player -> {
+            long time = player.getCmdtime() + player.getSqltime() + player.getSqmtime();
+            long lwTime = player.getTime() - time;
+            if (lwTime < 0) {
+                player.setSqmtime(player.getSqmtime() - 2 * Math.abs(lwTime));
+            }
+            player.setLwtime(Math.abs(lwTime));
+            getSession().update(mapDtoToEntity(player));
+        });
         getSession().getTransaction().commit();
     }
 

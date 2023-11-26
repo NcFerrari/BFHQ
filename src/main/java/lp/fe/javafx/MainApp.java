@@ -29,8 +29,7 @@ public class MainApp extends Application {
         stage.setTitle(NodeTextEnum.APPLICATION_TITLE.getText(stage.titleProperty()));
         VBox mainPane = new VBox();
         Scene scene = new Scene(mainPane, width, height);
-        Font.loadFont(Objects.requireNonNull(getClass().getResource("/fonts/Haettenschweiler.ttf")).toExternalForm(),
-                1);
+        Font.loadFont(Objects.requireNonNull(getClass().getResource(NamespaceEnum.FONT.getText())).toExternalForm(), 1);
         loadCssStyles(scene);
         stage.setScene(scene);
         stage.show();

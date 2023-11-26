@@ -1,19 +1,8 @@
 package lp;
 
 import lombok.Getter;
-import lp.be.business.dto.Army;
-import lp.be.business.dto.Awards;
-import lp.be.business.dto.KillsForPlayer;
-import lp.be.business.dto.KillsForTable;
-import lp.be.business.dto.Kits;
-import lp.be.business.dto.Maps;
-import lp.be.business.dto.Player;
-import lp.be.business.dto.Vehicles;
-import lp.be.business.dto.Weapons;
-import lp.be.jpa.daoimpl.AwardsDaoImpl;
-import lp.be.jpa.daoimpl.KillsDaoImpl;
-import lp.be.jpa.daoimpl.MapsDaoImpl;
-import lp.be.jpa.daoimpl.PlayerDaoImpl;
+import lp.be.business.dto.*;
+import lp.be.jpa.Daos;
 import lp.be.service.BF2Image;
 import lp.be.service.LangService;
 import lp.be.service.PictureService;
@@ -27,14 +16,7 @@ import lp.fe.javafx.bf2components.BF2Component;
 import lp.fe.javafx.bf2components.leaderboard.LeaderBoardPane;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Getter
@@ -47,6 +29,7 @@ public class Manager {
     private final Map<Integer, List<Maps>> maps = new HashMap<>();
     private final List<BF2Component> reloadableList = new ArrayList<>();
     private final PictureService pictureService = PictureServiceImpl.getInstance();
+    private final Daos daos = new Daos();
 
     private Player selectedPlayer;
     private boolean showTooltip;
@@ -92,17 +75,17 @@ public class Manager {
 
     public void loadDataFromDB() {
         players.clear();
-        new PlayerDaoImpl().getAllPlayer().forEach(player -> players.put(player.getName(), player));
+        daos.getPlayerDao().getAllPlayer().forEach(player -> players.put(player.getName(), player));
         if (getSelectedPlayer() != null) {
             setSelectedPlayer(getSelectedPlayer().getName());
         }
         awards.clear();
-        new AwardsDaoImpl().getAllAwards().forEach(award -> {
+        daos.getAwardsDao().getAllAwards().forEach(award -> {
             awards.putIfAbsent(award.getId(), new ArrayList<>());
             awards.get(award.getId()).add(award);
         });
         maps.clear();
-        new MapsDaoImpl().getAllMaps().forEach(map -> {
+        daos.getMapsDao().getAllMaps().forEach(map -> {
             maps.putIfAbsent(map.getId(), new ArrayList<>());
             maps.get(map.getId()).add(map);
         });
@@ -425,12 +408,12 @@ public class Manager {
     }
 
     public List<KillsForPlayer> getKillsForSelectedPlayer() {
-        return new KillsDaoImpl().getDataForPlayer(getSelectedPlayer().getId());
+        return daos.getKillsDao().getDataForPlayer(getSelectedPlayer().getId());
     }
 
     public List<KillsForTable> getKillsForAllPlayers() {
         List<KillsForTable> resultList = new ArrayList<>();
-        new KillsDaoImpl().getAllKills().forEach((name, map) -> {
+        daos.getKillsDao().getAllKills().forEach((name, map) -> {
             KillsForTable killsForTable = new KillsForTable();
             killsForTable.setName(name);
             killsForTable.setEnemyKills(map);

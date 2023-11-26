@@ -10,6 +10,8 @@ public interface MapsDao {
 
     Maps getMaps(int id);
 
+    List<Maps> getAllMaps();
+
     void deleteMaps(Maps maps);
 
     void deleteMaps(int id);
