@@ -3,7 +3,6 @@ package lp.fe.javafx;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ToggleButton;
@@ -34,17 +33,6 @@ public class UpperPane {
     }
 
     private void addNodes() {
-        Button timeRepairButton = new Button();
-        timeRepairButton.setText(NodeTextEnum.TIME_REPAIR_BUTTON.getText(timeRepairButton.textProperty()));
-        timeRepairButton.setOnAction(evt -> {
-            playerDao.timeRepair(manager.getPlayers());
-            Alert infoDialog = new Alert(Alert.AlertType.INFORMATION);
-            infoDialog.setHeaderText(null);
-            infoDialog.setContentText(NamespaceEnum.OK.getText());
-            infoDialog.show();
-        });
-        topPane.getChildren().add(timeRepairButton);
-
         ToggleButton toolkitToggleButton = new ToggleButton();
         toolkitToggleButton.setText(NodeTextEnum.TOOLKIT_TEXT.getText(toolkitToggleButton.textProperty()));
         toolkitToggleButton.setOnAction(evt -> manager.switchShowingTooltips());

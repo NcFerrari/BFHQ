@@ -10,7 +10,6 @@ import org.hibernate.query.Query;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class PlayerDaoImpl extends EntityManager implements PlayerDao {
 
@@ -63,6 +62,15 @@ public class PlayerDaoImpl extends EntityManager implements PlayerDao {
         }
         getSession().beginTransaction();
         List<PlayerEntity> entities = getSession().createQuery("FROM PlayerEntity").getResultList();
+        entities.forEach(player -> {
+            long time = player.getCmdtimeEntity() + player.getSqltimeEntity() + player.getSqmtimeEntity();
+            long lwTime = player.getTimeEntity() - time;
+            if (lwTime < 0) {
+                player.setSqmtimeEntity(player.getSqmtimeEntity() - 2 * Math.abs(lwTime));
+            }
+            player.setLwtimeEntity(Math.abs(lwTime));
+            getSession().update(player);
+        });
         getSession().getTransaction().commit();
         List<Player> dtos = new ArrayList<>();
         entities.forEach(entity -> dtos.add(mapEntityToDto(entity)));
@@ -88,21 +96,6 @@ public class PlayerDaoImpl extends EntityManager implements PlayerDao {
         Query<?> query = getSession().createQuery("DELETE FROM PlayerEntity WHERE id=:id");
         query.setParameter("id", id);
         query.executeUpdate();
-        getSession().getTransaction().commit();
-    }
-
-    @Override
-    public void timeRepair(Map<String, Player> players) {
-        getSession().beginTransaction();
-        players.values().forEach(player -> {
-            long time = player.getCmdtime() + player.getSqltime() + player.getSqmtime();
-            long lwTime = player.getTime() - time;
-            if (lwTime < 0) {
-                player.setSqmtime(player.getSqmtime() - 2 * Math.abs(lwTime));
-            }
-            player.setLwtime(Math.abs(lwTime));
-            getSession().update(mapDtoToEntity(player));
-        });
         getSession().getTransaction().commit();
     }
 
