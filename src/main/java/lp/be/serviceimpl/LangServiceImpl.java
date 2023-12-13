@@ -20,6 +20,6 @@ public class LangServiceImpl implements LangService {
     }
 
     private LangServiceImpl() {
-        setSelectedLanguage(LangEnum.ENG);
+        setSelectedLanguage(LangEnum.CZE);
     }
 }
