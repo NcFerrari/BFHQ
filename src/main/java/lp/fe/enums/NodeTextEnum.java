@@ -567,12 +567,15 @@ public enum NodeTextEnum {
     public static NodeTextEnum getNodeTextEnum(PictureSourceEnum pictureSourceEnum, int pictureId) {
         NamespaceEnum namespaceEnum;
         switch (pictureSourceEnum) {
+            case SMALL_BRONZE_BADGES:
             case BRONZE_BADGES:
                 namespaceEnum = NamespaceEnum.BADGE_ONE;
                 break;
+            case SMALL_SILVER_BADGES:
             case SILVER_BADGES:
                 namespaceEnum = NamespaceEnum.BADGE_TWO;
                 break;
+            case SMALL_GOLD_BADGES:
             case GOLD_BADGES:
                 namespaceEnum = NamespaceEnum.BADGE_THREE;
                 break;

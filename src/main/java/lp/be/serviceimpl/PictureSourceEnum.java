@@ -9,6 +9,9 @@ enum PictureSourceEnum {
     BRONZE_BADGES("pictures/badges/bronze/", ".jpg"),
     SILVER_BADGES("pictures/badges/silver/", ".jpg"),
     GOLD_BADGES("pictures/badges/gold/", ".jpg"),
+    SMALL_BRONZE_BADGES("pictures/smallBadges/bronze/", ".png"),
+    SMALL_SILVER_BADGES("pictures/smallBadges/silver/", ".png"),
+    SMALL_GOLD_BADGES("pictures/smallBadges/gold/", ".png"),
     FACTIONS("pictures/factions/", ".png"),
     KITS("pictures/kits/", ".png"),
     MAPS("pictures/maps/", ".png"),
@@ -34,7 +37,7 @@ enum PictureSourceEnum {
 
     static PictureSourceEnum getPictureSourceEnum(int imageId, int level, boolean smallRanks) {
         if (imageId <= 1222016) {
-            return getBadgePath(level);
+            return getBadgePath(level, smallRanks);
         } else if (imageId <= 2191608 || imageId == 3270519) {
             return MEDALS;
         } else {
@@ -49,12 +52,21 @@ enum PictureSourceEnum {
         return RIBBONS;
     }
 
-    private static PictureSourceEnum getBadgePath(int level) {
+    private static PictureSourceEnum getBadgePath(int level, boolean smallRanks) {
+        if(smallRanks) {
+            level += 3;
+        }
         switch (level) {
             case 2:
                 return SILVER_BADGES;
             case 3:
                 return GOLD_BADGES;
+            case 4:
+                return SMALL_BRONZE_BADGES;
+            case 5:
+                return SMALL_SILVER_BADGES;
+            case 6:
+                return SMALL_GOLD_BADGES;
             default:
                 return BRONZE_BADGES;
         }
