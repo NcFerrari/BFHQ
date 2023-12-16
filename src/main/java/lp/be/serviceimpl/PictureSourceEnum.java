@@ -37,7 +37,7 @@ enum PictureSourceEnum {
 
     static PictureSourceEnum getPictureSourceEnum(int imageId, int level, boolean smallRanks) {
         if (imageId <= 1222016) {
-            return getBadgePath(level, smallRanks);
+            return getBadgePath(level);
         } else if (imageId <= 2191608 || imageId == 3270519) {
             return MEDALS;
         } else {
@@ -52,21 +52,12 @@ enum PictureSourceEnum {
         return RIBBONS;
     }
 
-    private static PictureSourceEnum getBadgePath(int level, boolean smallRanks) {
-        if(smallRanks) {
-            level += 3;
-        }
+    private static PictureSourceEnum getBadgePath(int level) {
         switch (level) {
             case 2:
                 return SILVER_BADGES;
             case 3:
                 return GOLD_BADGES;
-            case 4:
-                return SMALL_BRONZE_BADGES;
-            case 5:
-                return SMALL_SILVER_BADGES;
-            case 6:
-                return SMALL_GOLD_BADGES;
             default:
                 return BRONZE_BADGES;
         }
