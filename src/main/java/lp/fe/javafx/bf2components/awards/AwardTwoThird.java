@@ -104,13 +104,15 @@ public class AwardTwoThird {
             } else if (bf2Image.getNodeTextEnum().name().contains(NodeTextEnum.BADGE.name())) {
                 String key = bf2Image.getNodeTextEnum().name().replaceFirst(NamespaceEnum.NUMBER_REGEX.getText(),
                         NamespaceEnum.ONE.getText());
+                int badgeId = Integer.parseInt(bf2Image.getNodeTextEnum().name().substring(8));
                 pictureService.addColor(bf2Images.get(key));
                 localBF2Image = bf2Images.get(key);
                 localBF2Image.setLevel(bf2Image.getLevel());
                 localBF2Image.setFirstEarned(bf2Image.getFirstEarned());
                 localBF2Image.setLastEarned(bf2Image.getLastEarned());
                 localBF2Image.setNodeTextEnum(bf2Image.getNodeTextEnum());
-                localBF2Image.updateData(bf2Image, manager.isShowTooltip());
+                localBF2Image.updateData(pictureService.getSmallAwardBF2Image(badgeId, bf2Image.getLevel()),
+                        manager.isShowTooltip());
             } else {
                 int ribbonId = Integer.parseInt(bf2Image.getNodeTextEnum().name().substring(7));
                 localBF2Image = bf2Images.get(NodeTextEnum.RIBBON.name() + ribbonNumber++);
