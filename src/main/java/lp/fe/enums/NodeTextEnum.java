@@ -579,6 +579,7 @@ public enum NodeTextEnum {
             case GOLD_BADGES:
                 namespaceEnum = NamespaceEnum.BADGE_THREE;
                 break;
+            case SMALL_MEDALS:
             case MEDALS:
                 namespaceEnum = NamespaceEnum.MEDAL_PREFIX;
                 break;

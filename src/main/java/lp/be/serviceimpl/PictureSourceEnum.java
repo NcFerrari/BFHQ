@@ -15,11 +15,12 @@ enum PictureSourceEnum {
     FACTIONS("pictures/factions/", ".png"),
     KITS("pictures/kits/", ".png"),
     MAPS("pictures/maps/", ".png"),
-    MEDALS("pictures/medals/", ".jpg"),
+    MEDALS("pictures/medals/", ".png"),
     RANKS("pictures/ranks/", ".jpg"),
     RIBBONS("pictures/ribbons/", ".png"),
     SMALL_RANKS("pictures/smallRanks/", ".png"),
     SMALL_RIBBONS("pictures/smallRibbons/", ".png"),
+    SMALL_MEDALS("pictures/smallMedals/", ".png"),
     VEHICLES("pictures/vehicles/", ".png"),
     WEAPONS("pictures/weapons/", ".png");
 
@@ -39,10 +40,17 @@ enum PictureSourceEnum {
         if (imageId <= 1222016) {
             return getBadgePath(level, smallRanks);
         } else if (imageId <= 2191608 || imageId == 3270519) {
-            return MEDALS;
+            return getMedalPath(smallRanks);
         } else {
             return getRibbonsPath(smallRanks);
         }
+    }
+
+    private static PictureSourceEnum getMedalPath(boolean smallRanks) {
+        if (smallRanks) {
+            return SMALL_MEDALS;
+        }
+        return MEDALS;
     }
 
     private static PictureSourceEnum getRibbonsPath(boolean smallRanks) {
@@ -53,7 +61,7 @@ enum PictureSourceEnum {
     }
 
     private static PictureSourceEnum getBadgePath(int level, boolean smallRanks) {
-        if(smallRanks) {
+        if (smallRanks) {
             level += 3;
         }
         switch (level) {
