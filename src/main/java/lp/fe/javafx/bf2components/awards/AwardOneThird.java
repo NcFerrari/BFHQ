@@ -123,6 +123,9 @@ public class AwardOneThird {
         this.bf2Image = bf2Image;
         if (key.contains(NodeTextEnum.RIBBON.name())) {
             bigImage.getImageView().setImage(pictureService.getAwardBF2Image(bf2Image.getImageId(), 1).getImage());
+        } else if (key.contains(NodeTextEnum.BADGE.name())) {
+            bigImage.getImageView().setImage(pictureService.getAwardBF2Image(bf2Image.getImageId(), bf2Image.getLevel())
+                    .getImage());
         } else {
             bigImage.getImageView().setImage(bf2Image.getImage());
         }

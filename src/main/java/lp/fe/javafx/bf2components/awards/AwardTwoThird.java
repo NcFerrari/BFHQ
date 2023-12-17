@@ -113,6 +113,7 @@ public class AwardTwoThird {
                 localBF2Image.setNodeTextEnum(bf2Image.getNodeTextEnum());
                 localBF2Image.updateData(pictureService.getSmallAwardBF2Image(badgeId, bf2Image.getLevel()),
                         manager.isShowTooltip());
+                localBF2Image.setImageId(bf2Image.getImageId());
             } else {
                 int ribbonId = Integer.parseInt(bf2Image.getNodeTextEnum().name().substring(7));
                 localBF2Image = bf2Images.get(NodeTextEnum.RIBBON.name() + ribbonNumber++);
