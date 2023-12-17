@@ -6,9 +6,9 @@ import lombok.Getter;
 public
 enum PictureSourceEnum {
 
-    BRONZE_BADGES("pictures/badges/bronze/", ".jpg"),
-    SILVER_BADGES("pictures/badges/silver/", ".jpg"),
-    GOLD_BADGES("pictures/badges/gold/", ".jpg"),
+    BRONZE_BADGES("pictures/badges/bronze/", ".png"),
+    SILVER_BADGES("pictures/badges/silver/", ".png"),
+    GOLD_BADGES("pictures/badges/gold/", ".png"),
     SMALL_BRONZE_BADGES("pictures/smallBadges/bronze/", ".png"),
     SMALL_SILVER_BADGES("pictures/smallBadges/silver/", ".png"),
     SMALL_GOLD_BADGES("pictures/smallBadges/gold/", ".png"),
@@ -17,7 +17,7 @@ enum PictureSourceEnum {
     MAPS("pictures/maps/", ".png"),
     MEDALS("pictures/medals/", ".jpg"),
     RANKS("pictures/ranks/", ".jpg"),
-    RIBBONS("pictures/ribbons/", ".jpg"),
+    RIBBONS("pictures/ribbons/", ".png"),
     SMALL_RANKS("pictures/smallRanks/", ".png"),
     SMALL_RIBBONS("pictures/smallRibbons/", ".png"),
     VEHICLES("pictures/vehicles/", ".png"),
