@@ -16,7 +16,7 @@ enum PictureSourceEnum {
     KITS("pictures/kits/", ".png"),
     MAPS("pictures/maps/", ".png"),
     MEDALS("pictures/medals/", ".png"),
-    RANKS("pictures/ranks/", ".jpg"),
+    RANKS("pictures/ranks/", ".png"),
     RIBBONS("pictures/ribbons/", ".png"),
     SMALL_RANKS("pictures/smallRanks/", ".png"),
     SMALL_RIBBONS("pictures/smallRibbons/", ".png"),
